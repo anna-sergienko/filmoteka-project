@@ -1,0 +1,73 @@
+.footer {
+    background-color: $bg-footer;
+    padding: 30px 0;
+
+
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+
+        @include for-phone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    &__text {
+        @include font-style(400, 16px, 1.19, $fc-footer);
+
+        @include for-phone {
+            @include font-style(400, 14px, 1.14, $fc-footer);
+        }
+    }
+
+    &__wrapper-mobile {
+
+        &--section1 {
+            @include for-phone {
+                margin-bottom: 10px;
+            }
+        }
+
+        &--section2 {
+            display: flex;
+
+            @include for-phone {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+    }
+
+    &__svg {
+        height: 12.88px;
+        width: 14px;
+        margin: 0px 10px;
+        align-self: center;
+
+        &:hover {
+            animation: color-change-3x 1s linear infinite alternate both;
+            filter: drop-shadow($svg-shadow);
+        }
+    }
+
+    &__link-team {
+        text-decoration: underline;
+        cursor: pointer;
+        transition: all $speed $cubic-bezier;
+
+        @include font-style(400, 16px, 1.19, $fc-footer);
+
+        &:hover,
+        &:focus {
+            color: $fc-accent;
+            transition: all $speed $cubic-bezier;
+        }
+
+        @include for-phone {
+            @include font-style(400, 14px, 1.14, $fc-footer);
+        }
+    }
+}

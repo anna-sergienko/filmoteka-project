@@ -1,0 +1,73 @@
+// ------------ текст ------------
+$font-family-main: 'Roboto',
+Arial,
+Helvetica,
+sans-serif;
+
+$fc-main: #000000;
+$fc-secondary: #ffffff;
+$fc-accent: #ff6b08;
+$fc-footer: #545454;
+$fc-alert: #ff001b;
+
+// ------------ фон цвета ------------
+$bg-main: #ffffff;
+$bg-footer: #F7F7F7;
+
+// ------------ кнопки ------------
+$btn-pag:#F7F7F7;
+$btn-accent: #FF6B08;
+$btn-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+
+// ------------ svg цвет ------------
+$logo-cl: #818181;
+$svg-main: #000000;
+$svg-secondary: #FF6B08;
+$svg-shadow: 0px 8px 43px rgb(255, 107, 1);
+
+// ------------ бекдроп модалки и хедера ------------
+$bd-modal: rgba(0, 0, 0, 0.25);
+$bd-header: rgba(0, 0, 0, 0.56);
+
+// ------------ ховеры текст и кнопки ------------
+$logo-speed: 1200ms;
+$speed: 300ms;
+$cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+//! использование
+// добавлять на ховер и на элемент
+// @include trans(название стиля для анимации)
+
+// ------------ значения по умолчанию в mixins.scss  ------------
+// font-style($font-weight: 500,
+//     $font-size: 12px,
+//     $line-height: 1.67,
+//     $color: $fc-main)
+//! использование
+// .text {
+// @include font-style(500, 12px, 1.67, $fc-main); значение, которые не указали идут по умолчанию
+// }
+// если хотите поменять только одно значение, третьего параметра line-height, то нужно использовать так font-styles($line-height: 16px)
+// если нужно первый параметр, то просто font-styles(500), все остальные пойдут по умолчанию
+
+// ------------ текст по умолчанию для body и всех детей ------------
+body * {
+    font-family: $font-family-main;
+    @include font-style(500, 12px, 1.67, $fc-main);
+    font-style: normal;
+    letter-spacing: normal;
+}
+
+// ------------ размеры экранов (breakpoints) ------------
+$phone-bp: 767.9px; //! до какого размера моб версия
+$tablet-bp: 768px; //! выше какого рамера табл версия
+$desktop-bp: 1024px; //! выше какого рамера деск версия
+
+// ------------ размеры контейнера ------------
+$phone-con: 320px;
+$tablet-con: 768px;
+$desktop-con: 1024px;
+
+// ------------ боковые поддинги контейнера ------------
+$phone-pad: 20px;
+$tablet-pad: 76px;
+$desktop-pad: 72px;

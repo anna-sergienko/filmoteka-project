@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  @extend %margin-center;
+
+
+  @include for-phone {
+    max-width: $phone-con;
+    padding-left: $phone-pad;
+    padding-right: $phone-pad;
+    // background-color: olive;
+  }
+
+  @include for-tablet {
+    max-width: $tablet-con;
+    padding-left: $tablet-pad;
+    padding-right: $tablet-pad;
+    // background-color: lightcoral;
+  }
+
+  @include for-desktop {
+    max-width: $desktop-con;
+    padding-left: $desktop-pad;
+    padding-right: $desktop-pad;
+    // background-color: blueviolet;
+  }
+}

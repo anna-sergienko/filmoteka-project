@@ -1,0 +1,415 @@
+/* ошибка убрать/добавить hidden p class="error" */
+/* Шаги для смены темы 
+1. section class="header" добавить header--my-library
+2. form class="form" добавить hidden
+3. div class="ln-wrapper" добавить ln-wrapper--my-library
+4. ul class="nav-my-library убрать hidden*/
+
+.header {
+    padding-top: 40px;
+    padding-bottom: 97px;
+    background-position: bottom;
+
+    @include for-phone {
+        background-image: linear-gradient($bd-header, $bd-header),
+            url(../images/header/phone/header.jpg);
+        background-size: cover, cover;
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: linear-gradient($bd-header, $bd-header),
+                url(../images/header/phone/header_2.jpg);
+            background-size: cover, cover;
+        }
+    }
+
+    @include for-tablet {
+        background-image: linear-gradient($bd-header, $bd-header),
+            url(../images/header/tablet/header.jpg);
+        background-size: cover, cover;
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: linear-gradient($bd-header, $bd-header),
+                url(../images/header/tablet/header_2.jpg);
+            background-size: cover, cover;
+        }
+
+    }
+
+    @include for-desktop {
+        background-image: linear-gradient($bd-header, $bd-header),
+            url(../images/header/desktop/header.jpg);
+        background-size: cover, cover;
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: linear-gradient($bd-header, $bd-header),
+                url(../images/header/desktop/header_2.jpg);
+            background-size: cover, cover;
+        }
+    }
+}
+
+.ln-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+
+    @include for-phone {
+        margin-bottom: 37px;
+    }
+}
+
+.logo {
+
+    transition: all $speed $cubic-bezier;
+
+    &:hover * {
+        color: $fc-accent;
+        transition: color $speed $cubic-bezier;
+    }
+
+    &:hover .logo__svg {
+        filter: drop-shadow($svg-shadow);
+        transition: color $speed $cubic-bezier;
+        animation: color-change-3x $logo-speed linear infinite alternate both;
+    }
+
+    &__svg {
+        width: 24px;
+        height: 24px;
+        fill: $logo-cl;
+        margin-right: 10px;
+
+        &:hover {
+            animation: color-change-3x 1s linear infinite alternate both;
+            filter: drop-shadow($svg-shadow);
+        }
+    }
+
+    &__title {
+        transition: all $speed $cubic-bezier;
+
+        @include for-phone {
+            display: none;
+        }
+
+        @include for-tablet {
+            @include font-style(500, 30px, 1.17, $fc-secondary);
+            font-style: normal;
+            letter-spacing: normal;
+        }
+
+        @include for-desktop {
+            @include font-style(500, 30px, 1.17, $fc-secondary);
+            font-style: normal;
+            letter-spacing: normal;
+        }
+
+        &:hover,
+        &:focus {
+            color: $fc-accent;
+            transition: all $speed $cubic-bezier;
+        }
+    }
+}
+
+.nav {
+    &__list {
+        display: flex;
+    }
+
+    &__item {
+        text-transform: uppercase;
+
+        @include for-phone {
+            &:not(:last-child) {
+                margin-right: 39px;
+            }
+        }
+
+        @include for-tablet {
+            &:not(:last-child) {
+                margin-right: 39px;
+            }
+        }
+
+        @include for-desktop {
+            &:not(:last-child) {
+                margin-right: 39px;
+            }
+        }
+    }
+
+    &__link {
+        position: relative;
+        transition: all $speed $cubic-bezier;
+
+
+        @include for-phone {
+            @include font-style(500, 12px, 1.17, $fc-secondary);
+            font-style: normal;
+            letter-spacing: normal;
+        }
+
+        @include for-tablet {
+            @include font-style(500, 12px, 1.17, $fc-secondary);
+            font-style: normal;
+            letter-spacing: normal;
+        }
+
+        @include for-desktop {
+            @include font-style(500, 12px, 1.17, $fc-secondary);
+            font-style: normal;
+            letter-spacing: normal;
+        }
+
+        &:hover {
+            color: $fc-accent;
+            transition: all $speed $cubic-bezier;
+
+        }
+
+        &--selected {
+            &::after {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 3px;
+                // border-radius: 2px;
+                bottom: -4px;
+                right: 0px;
+                background-color: $fc-accent;
+
+            }
+        }
+    }
+
+
+}
+
+.form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+
+    &__input {
+        background: transparent;
+        border: none;
+        outline-width: 0;
+        border-bottom: 0.5px solid $fc-secondary;
+        font-style: normal;
+        letter-spacing: normal;
+        opacity: 1;
+        padding: 0;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        transition: all $speed $cubic-bezier;
+
+
+        @include for-phone {
+            transition: none;
+            width: 280px;
+            @include font-style(400, 14px, 1.14, $fc-secondary);
+        }
+
+        @include for-tablet {
+            transition: none;
+            width: 336px;
+            @include font-style(400, 14px, 1.14, $fc-secondary);
+        }
+
+        @include for-desktop {
+            transition: none;
+            width: 336px;
+            @include font-style(400, 14px, 1.14, $fc-secondary);
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            outline: none;
+            border-bottom: 0.5px solid $fc-accent;
+            color: $fc-accent;
+            transition: all $speed $cubic-bezier;
+        }
+
+
+
+        &::placeholder {
+            opacity: 1;
+
+
+        }
+
+        &::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            opacity: 1;
+            color: $fc-secondary;
+
+            &:hover,
+            &:focus,
+            &:active {
+                fill: $fc-accent;
+                transition: all $speed $cubic-bezier;
+            }
+        }
+    }
+
+    &__submit {
+        background: transparent;
+        border: none;
+        position: absolute;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        transition: all $speed $cubic-bezier;
+        padding-right: 6px;
+
+        @include for-phone {
+            right: 0px;
+            transition: none;
+        }
+
+        @include for-tablet {
+            right: 140px;
+            transition: none;
+        }
+
+        @include for-desktop {
+            right: 270px;
+            transition: none;
+        }
+
+        &:hover * {
+            fill: $fc-accent;
+            cursor: pointer;
+            transition: all 250ms $cubic-bezier;
+        }
+
+    }
+
+    &__svg {
+        stroke: $fc-secondary;
+        fill: $fc-secondary;
+        height: 12px;
+        width: 12px;
+        transition: all $speed $cubic-bezier;
+
+
+        &:hover,
+        &:focus {
+            fill: $fc-accent;
+            cursor: pointer;
+            transition: all 250ms $cubic-bezier;
+
+        }
+    }
+}
+
+.error {
+    @include font-style(400, 14px, 1.14, $fc-alert);
+    text-align: center;
+    position: absolute;
+    top: 22px;
+
+    @include for-phone {
+        text-align: start;
+    }
+}
+
+.placeholder {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* стили для MY LIBRARY */
+
+.header--my-library {
+    @include for-phone {
+        padding-top: 46px;
+        padding-bottom: 155px;
+        background-image: linear-gradient($bd-header, $bd-header),
+            url(../images/header/phone/header-my-library.jpg);
+        background-size: cover, cover;
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: linear-gradient($bd-header, $bd-header),
+                url(../images/header/phone/header-my-library_2.jpg);
+            background-size: cover, cover;
+        }
+    }
+
+    @include for-tablet {
+        padding-top: 40px;
+        padding-bottom: 156px;
+        background-image: linear-gradient($bd-header, $bd-header),
+            url(../images/header/tablet/header-my-library.jpg);
+        background-size: cover, cover;
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: linear-gradient($bd-header, $bd-header),
+                url(../images/header/tablet/header-my-library_2.jpg);
+            background-size: cover, cover;
+        }
+    }
+
+    @include for-desktop {
+        padding-top: 40px;
+        padding-bottom: 156px;
+        background-image: linear-gradient($bd-header, $bd-header),
+            url(../images/header/desktop/header-my-library.jpg);
+        background-size: cover, cover;
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            background-image: linear-gradient($bd-header, $bd-header),
+                url(../images/header/desktop/header-my-library_2.jpg);
+            background-size: cover, cover;
+        }
+    }
+}
+
+.nav-my-library {
+    position: absolute;
+    display: flex;
+    top: 45px;
+
+    @include for-phone {
+        justify-content: space-between;
+    }
+
+    &__item:not(:last-child) {
+        margin-right: 15px;
+
+        @include for-phone {
+            // margin-right: 20px
+        }
+    }
+}
+
+.ln-wrapper--my-library {
+    margin-bottom: 0px;
+}
+
+.skip-nav-link {
+    background: $bg-main;
+    color: $fc-main;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    position: absolute;
+    left: 20px;
+    border-radius: 0 0 3px 3px;
+    transform: translateY(-250%);
+
+    &:focus {
+        transform: translateY(-133%);
+    }
+}

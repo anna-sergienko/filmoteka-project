@@ -1,0 +1,41 @@
+.btn {
+    background: transparent;
+    width: 136px;
+    outline: solid 1px $fc-secondary;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    padding-top: 14px;
+    padding-bottom: 12px;
+    transition: all $speed $cubic-bezier;
+
+    @include font-style(500, 12px, 1.33, $fc-secondary);
+    text-transform: uppercase;
+
+    @include for-phone {
+        max-width: 130px;
+    }
+
+    &:hover {
+        outline-color: $btn-accent;
+        background-color: $btn-accent;
+        box-shadow: $btn-shadow;
+        transition: all $speed $cubic-bezier;
+    }
+
+    &--selected {
+        outline-color: $btn-accent;
+        background-color: $btn-accent;
+        box-shadow: $btn-shadow;
+        transition: all $speed $cubic-bezier;
+    }
+
+    &--default {
+        outline: solid 1px $fc-secondary;
+        background: transparent;
+        transition: all $speed $cubic-bezier;
+        box-shadow: none;
+    }
+}

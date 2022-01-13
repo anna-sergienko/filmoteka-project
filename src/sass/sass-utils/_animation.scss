@@ -1,0 +1,17 @@
+.color-change-3x {
+    animation: color-change-3x 1s linear infinite alternate both;
+}
+
+@keyframes color-change-3x {
+    0% {
+        fill: $logo-cl;
+    }
+
+    50% {
+        fill: $svg-secondary;
+    }
+
+    100% {
+        fill: $btn-pag;
+    }
+}
