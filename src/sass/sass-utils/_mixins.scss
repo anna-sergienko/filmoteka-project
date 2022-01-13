@@ -1,0 +1,81 @@
+//! ----- Для разных экранов -----
+@mixin for-phone {
+    @media (max-width: $phone-bp) {
+        @content;
+    }
+}
+
+@mixin for-tablet {
+    @media (min-width: $tablet-bp) {
+        @content;
+    }
+}
+
+@mixin for-desktop {
+    @media (min-width: $desktop-bp) {
+        @content;
+    }
+}
+
+// использование:
+// @include for-tablet {
+//  display: none;
+// }
+
+//! ----- Для текста -----
+@mixin font-style($font-weight: 500,
+    $font-size: 12px,
+    $line-height: 1.67,
+    $color: $fc-main,
+) // значения по умолчанию
+
+    {
+    font-weight: $font-weight;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: $color;
+}
+
+// значения по умолчанию в mixins.scss
+// font-style($font-weight: 500,
+//     $font-size: 12px,
+//     $line-height: 1.67,
+//     $color: $fc-main)
+
+// использование:
+// .text {
+// @include font-style(500, 12px, 1.67, $fc-main); значение, которые не указали идут по умолчанию
+// }
+// если хотите поменять только одно значение, третьего параметра line-height, то нужно использовать так font-styles($line-height: 16px)
+// если нужно первый параметр, то просто font-styles(500), все остальные пойдут по умолчанию
+
+//! ----- Для анимации ховера -----
+@mixin trans($element) {
+    transition: #{$element} $speed $cubic-bezier;
+}
+
+// использование:
+// @include trans(стиль например: color);
+
+//! ----- Сетка для карточек -----
+@mixin grid-list($margin) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(#{$margin} * -1);
+    margin-left: calc(#{$margin} * -1);
+}
+
+@mixin grid-item($columns, $margin) {
+    flex-basis: calc((100% / #{$columns}) - #{$margin});
+    // flex-basis: calc((100% - #{$grid-item-margin} * #{$columns}) / #{$columns});
+    margin-left: $margin;
+    margin-top: $margin;
+}
+
+// .ul(задать класс для списка) {
+//   @include grid-list(марджин между колонками);
+//  }
+//
+// .li(задать класс для карточек) {
+//   @include grid-item(колонки, марджин между колонками);
+// }

@@ -1,0 +1,42 @@
+<section class="header header-section-js" id="header">
+    <a class="skip-nav-link" href="#main-content">пропустить навигацию</a>
+    <div class="container">
+        <div class="ln-wrapper header-ln-wrapper-js">
+            <a href="" class="logo header-logo-js">
+                <svg class="logo__svg header-logo-icon-js">
+                    <use href="./images/icons/film.svg#film"></use>
+                </svg>
+                <span class="logo__title">Filmoteka</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item ">
+                        <a href="" class="nav__link nav__link--selected header-home-js">home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="" class="nav__link header-my-library-js">my library</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <form class="form header-form-js">
+            <input class="form__input header-form-input-js" type="text" placeholder="Movies search" autocomplete="off">
+            <button class="form__submit header-form-submit-btn-js" type="submit">
+                <svg class="form__svg">
+                    <use use href="./images/icons/search.svg#search"></use>
+                </svg>
+            </button>
+        </form>
+        <div class="placeholder">
+            <p class="error hidden header-error-js">Search result not successful. Enter the correct movie name.</p>
+            <ul class="nav-my-library hidden header-nav-my-library-js">
+                <li class="nav-my-library__item">
+                    <button class="nav-my-library__watched btn header-watched-btn-js" type="button">watched</button>
+                </li>
+                <li class="nav-my-library__item">
+                    <button class="nav-my-library__queue btn header-queue-btn-js" type="button">queue</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
