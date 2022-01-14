@@ -4,6 +4,8 @@ const { headerLogo, headerLogoIcon, headerHome, headerMyLibrary, headerWatchedBt
     headerQueueBtn, headerFormInput, headerFormSubmitBtn, headerError,
     headerSection, headerForm, headerLnWrapper, headerNavMyLibrary } = refs;
 
+export { homePage, myLibrary };
+
 // ----- logo -----
 headerLogo.addEventListener('click', homePage)
 headerHome.addEventListener('click', homePage)
