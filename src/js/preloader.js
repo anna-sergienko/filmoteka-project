@@ -13,7 +13,9 @@ window.onload = function () {
 function startPreloader() {
     preloader.classList.remove('none')
     mainSection.classList.add('main__preloader')
+    console.log('preloader started');
 }
+
 
 // ----- для остановки -----
 function stopPreloader() {
@@ -24,4 +26,8 @@ function stopPreloader() {
     }, 400)
 
 }
+
+//! ----- разкоментировать для запуска preloader без загрузки -----
+// setTimeout(() => { startPreloader() }, 1000)
+
 
