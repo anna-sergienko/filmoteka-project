@@ -3,7 +3,7 @@ export { startPreloader, stopPreloader }
 
 const { preloader, mainSection } = refs;
 
-// ----- закрывает после первой загрузки-----
+// ----- закрывает после первой загрузки страницыn-----
 window.onload = function () {
     preloader.classList.add('none')
     mainSection.classList.remove('main__preloader')
