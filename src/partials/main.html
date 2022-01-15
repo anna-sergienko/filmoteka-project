@@ -1,6 +1,21 @@
-<section class="main" id="main">
+<section class="main main__preloader main-section-js" id="main">
+    <div class="preloader preloader-js">
+        <div class="preloader__wrapper">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <ul class="card__list">
+        <div class="main-error__wrapper">
+            <p class="main-error__watched none main-error-watched-js">Your WATCHED list is empty.</p>
+            <p class="main-error__queue none main-error-queue-js">Your QUEUE list is empty.</p>
+        </div>
+        <ul class="card__list main-list-js">
             <li class="card__item">
                 <a class="card__lightbox">
                     <img class="card__img" src="./images/demo.jpg" alt="">
@@ -54,5 +69,26 @@
                 </a>
             </li>
         </ul>
+        <style>
+            .embed-container {
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                max-width: 100%;
+            }
+
+            .embed-container iframe,
+            .embed-container object,
+            .embed-container embed {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <div class='embed-container'><iframe src='https://www.youtube.com/embed/N8f-BQFo7lw' frameborder='0'
+                allowfullscreen></iframe></div>
     </div>
 </section>
