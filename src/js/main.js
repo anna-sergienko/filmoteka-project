@@ -11,7 +11,7 @@ headerHome.addEventListener('click', onLoadTrendingMoviesForToday);
 headerLogo.addEventListener('click', onLoadTrendingMoviesForToday); 
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 
-// ----- Функция для загрузки списка самых популярных фильмов на сегодня -----
+// ----- Функция для загрузки списка самых популярных фильмов на сегодняя -----
 function onLoadTrendingMoviesForToday(event) {
     event.preventDefault(); 
     
