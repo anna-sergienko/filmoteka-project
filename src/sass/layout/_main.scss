@@ -1,26 +1,15 @@
 .main {
-
   min-height: 68vh;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  position: relative;
+
+  &__preloader {}
 
   @include for-phone {
     padding-top: 20px;
     padding-bottom: 40px;
   }
-
-    
-
-    &__preloader {
-
-    }
-
-    @include for-phone {
-        padding-top: 20px;
-        padding-bottom: 40px;
-    }
-
 
 }
 
@@ -116,12 +105,11 @@
 
 
 
-    &__wrapper {}
+  &__wrapper {}
 
-    &__queue,
-    &__watched {
-        text-align: center;
-        @include font-style(500, 16px, 1.19, $fc-main);
-    }
+  &__queue,
+  &__watched {
+    text-align: center;
+    @include font-style(500, 16px, 1.19, $fc-main);
+  }
 }
-
