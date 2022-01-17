@@ -1,11 +1,27 @@
 .main {
-  padding-top: 60px;
-  padding-bottom: 60px;
+
+  min-height: 68vh;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    position: relative;
 
   @include for-phone {
     padding-top: 20px;
     padding-bottom: 40px;
   }
+
+    
+
+    &__preloader {
+
+    }
+
+    @include for-phone {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+
+
 }
 
 .card {
@@ -73,6 +89,7 @@
     & * {
       color: $fc-accent;
     }
+
   }
 
   &__title {
@@ -90,3 +107,21 @@
     border-radius: 5px;
   }
 }
+
+
+
+// ----- ошибки или пустые библиотеки -----
+
+.main-error {
+
+
+
+    &__wrapper {}
+
+    &__queue,
+    &__watched {
+        text-align: center;
+        @include font-style(500, 16px, 1.19, $fc-main);
+    }
+}
+

@@ -14,6 +14,14 @@ export default {
     headerForm: document.querySelector('.header-form-js'),
     headerLnWrapper: document.querySelector('.header-ln-wrapper-js'),
     headerNavMyLibrary: document.querySelector('.header-nav-my-library-js'),
+    // ---- main ----
+    mainSection: document.querySelector('.main-section-js'),
+    mainList: document.querySelector('.main-list-js'),
+    // ----- main ошибки -----
+    mainErrorQueue: document.querySelector('.main-error-queue-js'),
+    mainErrorWatched: document.querySelector('.main-error-watched-js'),
+    // ----- preloader -----
+    preloader: document.querySelector('.preloader-js'),
 
     // ---- ul для рендера карток фильмов ----
     cardList: document.querySelector('.card__list'),

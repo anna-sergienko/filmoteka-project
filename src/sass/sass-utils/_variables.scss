@@ -52,7 +52,7 @@ $cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
 // ------------ текст по умолчанию для body и всех детей ------------
 body * {
     font-family: $font-family-main;
-    @include font-style(500, 12px, 1.67, $fc-main);
+    @include font-style(300, 12px, 1.67, $fc-main);
     font-style: normal;
     letter-spacing: normal;
 }
