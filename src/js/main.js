@@ -1,7 +1,7 @@
 
 import filmCard from '../templates/movie-card.hbs'
 import refs from './refs.js';
-import Api from './api.js'; 
+import Api from './api.js';
 
 const { cardList, headerLogo, headerFormInput, headerFormSubmitBtn, headerHome,
     headerQueueBtn,
@@ -10,21 +10,21 @@ const { cardList, headerLogo, headerFormInput, headerFormSubmitBtn, headerHome,
     headerMyLibrary,
     headerWatchedBtn,
     mainErrorQueue,
-    mainErrorWatched,} = refs; 
+    mainErrorWatched } = refs;
 
 const api = new Api();
 
 window.addEventListener('load', onLoadTrendingMoviesForToday);
 headerHome.addEventListener('click', onLoadTrendingMoviesForToday);
-headerLogo.addEventListener('click', onLoadTrendingMoviesForToday); 
+headerLogo.addEventListener('click', onLoadTrendingMoviesForToday);
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 
 // ----- Функция для загрузки списка самых популярных фильмов на сегодняя -----
 function onLoadTrendingMoviesForToday(event) {
-    event.preventDefault(); 
-    
-        api.fetchTrendingMoviesForToday().then(movies => {
-        appendMovieCardMarkup(movies); 
+    event.preventDefault();
+
+    api.fetchTrendingMoviesForToday().then(movies => {
+        appendMovieCardMarkup(movies);
         clearMovieCardContainer();
         console.log(movies);
     })
@@ -32,11 +32,11 @@ function onLoadTrendingMoviesForToday(event) {
 
 // ----- Функция для загрузки фильмов по ключевому слову -----
 function onSearchMovies(event) {
-     event.preventDefault(); 
-        api.query = headerFormInput.value.trim(); 
-    
-        api.fetchSearchMovies().then(movies => {
-        appendMovieCardMarkup(movies); 
+    event.preventDefault();
+    api.query = headerFormInput.value.trim();
+
+    api.fetchSearchMovies().then(movies => {
+        appendMovieCardMarkup(movies);
         clearMovieCardContainer();
         console.log(movies);
     })
@@ -46,17 +46,12 @@ function onSearchMovies(event) {
 async function appendMovieCardMarkup(movies) {
     const markup = await filmCard(movies);
     cardList.innerHTML = markup;
-} 
+}
 
 // ----- Функция для очистки разметки картки фильма -----
 function clearMovieCardContainer() {
     cardList.innerHTML = '';
-
-// import clearInnerHTML from './common.js'
-// import { homePage, myLibrary } from './header.js'
-import refs from './refs.js';
-
-// console.log('main');
+}
 
 headerWatchedBtn.addEventListener('click', emptyWatchedListError);
 headerQueueBtn.addEventListener('click', emptyQueueListError);
@@ -90,26 +85,25 @@ function clearEmptyError() {
     mainSection.classList.remove('main-error');
 }
 
-// ----- ТЕСТОВАЯ ФУНКЦИЯ -----
-function headerHomeClearError() {
-    clearEmptyError();
-    mainList.insertAdjacentHTML(
-        'afterbegin',
-        `
-                <li class="card__item">
-                <a class="card__lightbox">
-                    <img class="card__img" src="./images/demo.jpg" alt="">
-                    <div class="card__info">
-                        <p class="card__title">MONSTER HUNTER</p>
-                        <p class="card__text">
-                            <span class="card__text--genre">Drama, Action</span><span>&nbsp;|&nbsp;</span>
-                            <span class="card__text--date">2020</span>
-                            <span class="card__rating">8.0</span>
-                        </p>
-                    </div>
-                </a>
-            </li>
-            `,
-    );
-
-}
+    // ----- ТЕСТОВАЯ ФУНКЦИЯ -----
+    // function headerHomeClearError() {
+    //     clearEmptyError();
+    //     mainList.insertAdjacentHTML(
+    //         'afterbegin',
+    //         `
+    //             <li class="card__item">
+    //             <a class="card__lightbox">
+    //                 <img class="card__img" src="./images/demo.jpg" alt="">
+    //                 <div class="card__info">
+    //                     <p class="card__title">MONSTER HUNTER</p>
+    //                     <p class="card__text">
+    //                         <span class="card__text--genre">Drama, Action</span><span>&nbsp;|&nbsp;</span>
+    //                         <span class="card__text--date">2020</span>
+    //                         <span class="card__rating">8.0</span>
+    //                     </p>
+    //                 </div>
+    //             </a>
+    //         </li>
+    //         `,
+    //     );
+    // }
