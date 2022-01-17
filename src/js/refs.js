@@ -15,6 +15,9 @@ export default {
     headerLnWrapper: document.querySelector('.header-ln-wrapper-js'),
     headerNavMyLibrary: document.querySelector('.header-nav-my-library-js'),
 
+    // ---- ul для рендера карток фильмов ----
+    cardList: document.querySelector('.card__list'),
+
     // ---- footer ----
     footerHeart: document.querySelector('.footer-heart-js'),
 }
