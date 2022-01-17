@@ -23,6 +23,9 @@ export default {
     // ----- preloader -----
     preloader: document.querySelector('.preloader-js'),
 
+    // ---- ul для рендера карток фильмов ----
+    cardList: document.querySelector('.card__list'),
+
     // ---- footer ----
     footerHeart: document.querySelector('.footer-heart-js'),
 }

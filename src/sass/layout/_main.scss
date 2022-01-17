@@ -1,8 +1,16 @@
 .main {
-    min-height: 68vh;
+
+  min-height: 68vh;
     padding-top: 60px;
     padding-bottom: 60px;
     position: relative;
+
+  @include for-phone {
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+
+    
 
     &__preloader {
 
@@ -13,97 +21,94 @@
         padding-bottom: 40px;
     }
 
+
 }
 
 .card {
-    &__list {
-        @include grid-list(30px);
+  &__list {
+    @include grid-list(30px);
 
-        @include for-phone {
-            @include grid-list(0px);
-        }
+    @include for-phone {
+      @include grid-list(0px);
+    }
+  }
+
+  &__item {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+    transition: all $speed $cubic-bezier;
+
+    @include for-phone {
+      @include grid-item(1, 0px);
+      margin-bottom: 20px;
     }
 
-    &__item {
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        border-radius: 5px;
-        transition: all $speed $cubic-bezier;
-
-        @include for-phone {
-            @include grid-item(1, 0px);
-            margin-bottom: 20px;
-        }
-
-        @include for-tablet {
-            @include grid-item(2, 30px)
-        }
-
-        @include for-desktop {
-            @include grid-item(3, 30px)
-        }
-
-        &:hover,
-        &:focus {
-            cursor: pointer;
-            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-            transform: scale(1.03);
-            transition: all $speed $cubic-bezier;
-        }
-
+    @include for-tablet {
+      @include grid-item(2, 30px);
     }
 
-    &__lightbox {
-        display: block;
-        max-width: 100%;
-        max-height: 100%;
-
-
-
-
+    @include for-desktop {
+      @include grid-item(3, 30px);
     }
 
-    &__img {
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        margin-bottom: 10px;
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      transform: scale(1.03);
+      transition: all $speed $cubic-bezier;
+    }
+  }
 
+  &__lightbox {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  &__info {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+  }
+
+  &__info * {
+    @include font-style(500, 12px, 1.33, $fc-main);
+  }
+
+  &__text {
+    display: flex;
+
+    & * {
+      color: $fc-accent;
     }
 
-    &__info {
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-bottom: 5px;
-    }
+  }
 
-    &__info * {
+  &__title {
+    margin-bottom: 4px;
+  }
 
-        @include font-style(500, 12px, 1.33, $fc-main);
-    }
+  &__text--date {
+    margin-right: 10px;
+  }
 
-    &__text {
-        display: flex;
-
-        & * {
-            color: $fc-accent;
-        }
-    }
-
-    &__title {
-        margin-bottom: 4px;
-    }
-
-    &__text--date {
-        margin-right: 10px;
-    }
-
-    &__rating {
-        @include font-style(500, 12px, 1.17, $fc-secondary);
-        background-color: $btn-accent;
-        padding: 1px 9px;
-        border-radius: 5px;
-    }
+  &__rating {
+    @include font-style(500, 12px, 1.17, $fc-secondary);
+    background-color: $btn-accent;
+    padding: 1px 9px;
+    border-radius: 5px;
+  }
 }
+
+
 
 // ----- ошибки или пустые библиотеки -----
 
@@ -119,3 +124,4 @@
         @include font-style(500, 16px, 1.19, $fc-main);
     }
 }
+

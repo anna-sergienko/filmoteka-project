@@ -1,0 +1,14 @@
+{{#each results}}
+    <li class="card__item">
+        <a class="card__lightbox">
+            <img  class="card__img" src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" width="274" height="398">
+            <div class="card__info">
+                <p class="card__title">{{original_title}}</p>  
+                <p class="card__text">
+                    <span class="card__text--genre">{{genre_ids}}</span><span>&nbsp;|&nbsp;</span>
+                    <span class="card__text--date">{{release_date}}</span>
+                </p>
+            </div>
+        </a>
+    </li>
+{{/each}} 
