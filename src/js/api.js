@@ -13,63 +13,64 @@ export default class Api {
     // ----- Метод класса для запроса на список самых популярных фильмов на сегодня -----
     async fetchTrendingMoviesForToday() {
         const url = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.page}&language=en-US`;
-        
+
         try {
             const response = await axios.get(url);
             const data = response.data;
+            console.log(data)
             return data;
-              
+
         } catch (error) {
             console.log(error);
-        } 
+        }
     }
 
     // ----- Метод класса для запроса фильмов по ключевому слову  -----
     async fetchSearchMovies() {
         const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&include_adult=false&query=${this.searchQuery}`;
-        
+
         try {
             const response = await axios.get(url);
-            const data = response.data; 
+            const data = response.data;
             return data;
-              
+
         } catch (error) {
             console.log(error);
-        } 
+        }
     }
 
     // ----- Метод класса для запроса полной информации о фильме для страницы фильма -----
     async fetchMovieDetails() {
         const url = `${BASE_URL}movie/{movie_id}?api_key=${API_KEY}&language=en-US`;
-        
+
         try {
             const response = await axios.get(url);
-            const data = response.data; 
+            const data = response.data;
             return data;
-              
+
         } catch (error) {
             console.log(error);
-        } 
+        }
     }
 
-     // ----- Метод класса для запроса жанра фильмов -----
+    // ----- Метод класса для запроса жанра фильмов -----
     async fetchGenre() {
         const url = `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
-        
+
         try {
             const response = await axios.get(url);
-            const data = response.data; 
+            const data = response.data;
             return data;
-              
+
         } catch (error) {
             console.log(error);
-        } 
+        }
     }
 
     decrementPage() {
         this.page -= 1;
     }
-    
+
     incrementPage() {
         this.page += 1;
     }
@@ -77,7 +78,7 @@ export default class Api {
     resetPage() {
         this.page = 1;
     }
-        
+
     get query() {
         return this.searchQuery;
     }
