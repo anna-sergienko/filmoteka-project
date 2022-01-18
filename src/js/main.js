@@ -1,8 +1,11 @@
 import filmCard from '../templates/movie-card.hbs';
 import refs from './refs.js';
 import Api from './api.js';
+import filters from './filters.js';
 
 const {
+headerError,
+
     cardList,
     headerLogo,
     headerFormInput,
@@ -31,7 +34,7 @@ headerQueueBtn.addEventListener('click', emptyQueueListError);
 onLoadTrendingMoviesForToday()
 
 // ----- Функция для загрузки списка самых популярных фильмов на сегодняя -----
-function onLoadTrendingMoviesForToday() {
+export default function onLoadTrendingMoviesForToday() {
 
     api.fetchTrendingMoviesForToday().then(movies => {
         appendMovieCardMarkup(movies);
@@ -46,9 +49,12 @@ function onSearchMovies(event) {
     api.query = headerFormInput.value.trim();
 
     api.fetchSearchMovies().then(movies => {
+       
         appendMovieCardMarkup(movies);
-        clearMovieCardContainer();
+        filters(movies);
         console.log(movies);
+        clearMovieCardContainer();
+    
     });
 }
 

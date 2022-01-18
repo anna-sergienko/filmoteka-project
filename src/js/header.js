@@ -69,7 +69,7 @@ function error(e) {
     } else {
         headerError.classList.add('hidden', 'none')
     }
-}
+}   
 
 function defaultBtn(e) {
     if (e.target.classList.contains('header-queue-btn-js')) {
