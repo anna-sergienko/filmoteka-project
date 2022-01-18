@@ -5,7 +5,7 @@ import './js/header';
 import './js/preloader';
 import './js/main';
 import './js/footer';
-
+import './js/pagination';
 import './js/api';
 
 
