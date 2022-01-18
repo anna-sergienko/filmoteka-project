@@ -11,6 +11,7 @@ window.onload = function () {
 
 // ----- для запуска -----
 function startPreloader() {
+    mainSection.scrollIntoView({ behavior: "smooth" })
     preloader.classList.remove('none')
     mainSection.classList.add('main__preloader')
     console.log('preloader started');
