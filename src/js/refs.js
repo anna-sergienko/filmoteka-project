@@ -28,4 +28,10 @@ export default {
 
     // ---- footer ----
     footerHeart: document.querySelector('.footer-heart-js'),
+    footerLink: document.querySelector('.footer-link-js'),
+
+    // ---- модалка команды в футере ----
+    teamModalBackdrop: document.querySelector('.team-backdrop-js'), // ---- бекдроп модалки ----
+    teamModalCloseBtn: document.querySelector('.team-closebtn-js'), // ---- кнопка закрытия модалки ----
+
 }
