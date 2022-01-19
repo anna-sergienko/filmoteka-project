@@ -1,6 +1,6 @@
 import refs from '../js/refs.js';
 
-const { lightbox, lightboxOpenLink, lightboxCloseBtn } = refs;
+const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox } = refs;
 
 lightboxCloseBtn.addEventListener('click', lightboxClose)
 
