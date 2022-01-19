@@ -4,8 +4,8 @@ import Api from './api.js';
 import filters from './filters.js';
 
 const {
-headerError,
-
+    headerError,
+    bodyLightbox,
     cardList,
     headerLogo,
     headerFormInput,
@@ -29,6 +29,7 @@ headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 headerWatchedBtn.addEventListener('click', emptyWatchedListError);
 headerQueueBtn.addEventListener('click', emptyQueueListError);
 // headerHome.addEventListener('click', headerHomeClearError);
+mainList.addEventListener('click', lightboxOpen)
 
 // ----- выполняеться при загруки -----
 onLoadTrendingMoviesForToday()
@@ -49,12 +50,12 @@ function onSearchMovies(event) {
     api.query = headerFormInput.value.trim();
 
     api.fetchSearchMovies().then(movies => {
-       
+
         appendMovieCardMarkup(movies);
         filters(movies);
         console.log(movies);
         clearMovieCardContainer();
-    
+
     });
 }
 
@@ -99,4 +100,12 @@ function clearEmptyError() {
     mainSection.classList.remove('main-error');
 }
 
+function lightboxOpen(e) {
+    console.log(e.currentTarget, e.target, e.target.nodeName)
+    if (e.target.nodeName !== "IMG") {
+        return;
+    }
+    lightbox.classList.toggle('none')
+    bodyLightbox.classList.toggle('body__lightbox-open')
+}
 
