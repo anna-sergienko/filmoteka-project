@@ -2,6 +2,7 @@ import filmCard from '../templates/movie-card.hbs';
 import refs from './refs.js';
 import Api from './api.js';
 import filters from './filters.js';
+import { lightboxCloseOnEscape } from './lightbox.js'
 
 const {
     headerError,
@@ -100,7 +101,7 @@ function clearEmptyError() {
     mainSection.classList.remove('main-error');
 }
 
-
+// ---- открыть lightbox по нажатию на картинку -----
 function lightboxOpen(e) {
     console.log(e.currentTarget, e.target, e.target.nodeName)
     if (e.target.nodeName !== "IMG") {
@@ -108,5 +109,9 @@ function lightboxOpen(e) {
     }
     lightbox.classList.remove('none')
     bodyLightbox.classList.add('lightbox__open')
+    setTimeout(() => {
+        lightbox.classList.remove('hidden')
+    }, 200)
+    window.addEventListener('keydown', lightboxCloseOnEscape);
 }
 
