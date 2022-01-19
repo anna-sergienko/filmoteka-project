@@ -8,5 +8,5 @@ import './js/footer';
 import './js/pagination';
 import './js/api';
 
-
+import './js/local-storage';
 import './js/lightbox';
