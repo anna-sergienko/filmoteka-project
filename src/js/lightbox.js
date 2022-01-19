@@ -9,5 +9,6 @@ lightboxCloseBtn.addEventListener('click', lightboxClose)
 
 function lightboxClose() {
     lightbox.classList.toggle('none')
+    bodyLightbox.classList.toggle('body__lightbox-open')
 }
 
