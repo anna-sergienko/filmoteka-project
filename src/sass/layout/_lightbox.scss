@@ -3,13 +3,28 @@
     @include font-style(300, 12px, 1.67, $fc-main);
     font-style: normal;
     letter-spacing: normal;
+    background: $bd-modal;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow-y: scroll;
+
+    &__container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 101;
+    }
 
 
     &__wrapper {
         padding-top: 50px;
         padding-bottom: 40px;
-
-        // background-color: $bd-header;
+        background: $bg-main;
         position: relative;
 
         @include for-phone {

@@ -1,4 +1,6 @@
 export default {
+    // ----- body -----
+    bodyLightbox: document.querySelector('.body-js'),
     // ---- header ---- 
     headerLogo: document.querySelector('.header-logo-js'),
     headerLogoIcon: document.querySelector('.header-logo-icon-js'),
@@ -17,6 +19,7 @@ export default {
     // ---- main ----
     mainSection: document.querySelector('.main-section-js'),
     mainList: document.querySelector('.main-list-js'),
+
     // ----- main ошибки -----
     mainErrorQueue: document.querySelector('.main-error-queue-js'),
     mainErrorWatched: document.querySelector('.main-error-watched-js'),
@@ -28,4 +31,11 @@ export default {
 
     // ---- footer ----
     footerHeart: document.querySelector('.footer-heart-js'),
+
+    // ----- lightbox -----
+    lightbox: document.querySelector('.lightbox-js'),
+    lightboxOpenLink: document.querySelector('.lightbox-open-js'),
+    lightboxCloseBtn: document.querySelector('.lightbox-close-btn-js'),
+    lightboxAddToWatchedBtn: document.querySelector('.lightbox-add-to-watched-btn-js'),
+    lightboxAddToQueueBtn: document.querySelector('.lightbox-add-to-queue-btn-js'),
 }
