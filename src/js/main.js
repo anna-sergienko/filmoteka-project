@@ -1,8 +1,11 @@
 import filmCard from '../templates/movie-card.hbs';
 import refs from './refs.js';
 import Api from './api.js';
+import filters from './filters.js';
 
 const {
+    headerError,
+    bodyLightbox,
     cardList,
     headerLogo,
     headerFormInput,
@@ -26,12 +29,13 @@ headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 headerWatchedBtn.addEventListener('click', emptyWatchedListError);
 headerQueueBtn.addEventListener('click', emptyQueueListError);
 // headerHome.addEventListener('click', headerHomeClearError);
+mainList.addEventListener('click', lightboxOpen)
 
 // ----- выполняеться при загруки -----
 onLoadTrendingMoviesForToday()
 
 // ----- Функция для загрузки списка самых популярных фильмов на сегодняя -----
-function onLoadTrendingMoviesForToday() {
+export default function onLoadTrendingMoviesForToday() {
 
     api.fetchTrendingMoviesForToday().then(movies => {
         appendMovieCardMarkup(movies);
@@ -46,9 +50,12 @@ function onSearchMovies(event) {
     api.query = headerFormInput.value.trim();
 
     api.fetchSearchMovies().then(movies => {
+
         appendMovieCardMarkup(movies);
-        clearMovieCardContainer();
+        filters(movies);
         console.log(movies);
+        clearMovieCardContainer();
+
     });
 }
 
@@ -93,4 +100,12 @@ function clearEmptyError() {
     mainSection.classList.remove('main-error');
 }
 
+function lightboxOpen(e) {
+    console.log(e.currentTarget, e.target, e.target.nodeName)
+    if (e.target.nodeName !== "IMG") {
+        return;
+    }
+    lightbox.classList.toggle('none')
+    bodyLightbox.classList.toggle('body__lightbox-open')
+}
 
