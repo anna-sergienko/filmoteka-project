@@ -32,10 +32,19 @@ export default {
     // ---- footer ----
     footerHeart: document.querySelector('.footer-heart-js'),
 
+    footerLink: document.querySelector('.footer-link-js'),
+
+    // ---- модалка команды в футере ----
+    teamModalBackdrop: document.querySelector('.team-backdrop-js'), // ---- бекдроп модалки ----
+    teamModalCloseBtn: document.querySelector('.team-closebtn-js'), // ---- кнопка закрытия модалки ----
+
+
+
     // ----- lightbox -----
     lightbox: document.querySelector('.lightbox-js'),
     lightboxOpenLink: document.querySelector('.lightbox-open-js'),
     lightboxCloseBtn: document.querySelector('.lightbox-close-btn-js'),
     lightboxAddToWatchedBtn: document.querySelector('.lightbox-add-to-watched-btn-js'),
     lightboxAddToQueueBtn: document.querySelector('.lightbox-add-to-queue-btn-js'),
+
 }
