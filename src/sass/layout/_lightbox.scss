@@ -81,8 +81,9 @@
         width: 396px;
 
         @include for-phone {
-            max-height: 100%;
-            max-width: 240px;
+            max-height: 356px;
+            min-height: 345px;
+            max-width: 241px;
             margin-bottom: 30px;
         }
 
