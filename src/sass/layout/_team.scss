@@ -1,61 +1,56 @@
-.team { 
-// ----- Бекдроп для модалки c командой -----
- &__backdrop {
+.team {
+
+  // ----- Бекдроп для модалки c командой -----
+  &__backdrop {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: $bd-modal;
-    // overflow: hidden;
-    transform: scale(1);
+    z-index: 100;
+    overflow-y: auto;
+    opacity: 1;
+  }
 
-    @include trans(opacity);
-    @include trans(transform);
-    
-//     &::-webkit-scrollbar {
-// width: 0;
-//     }
-}
- 
 
-// ----- Класс для скрытия модалки с командой -----
+  // ----- Класс для скрытия модалки с командой -----
   &__backdrop-is-hidden {
     opacity: 0;
     transform: scale(0);
     pointer-events: none;
-}
+  }
 
-// ----- Модалка с командой -----
+  // ----- Модалка с командой -----
   &__modal {
-//    height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $fc-secondary;
-    overflow-y: scroll;
+    z-index: 101;
 
-   @include for-phone {
-    width: 280px;
-   }
+    @include for-phone {
+      width: 280px;
+      left: 51%;
+    }
 
-   @include for-tablet {
-    width: 618px;
-    // min-height: 562px;
-   }
+    @include for-tablet {
+      width: 618px;
 
-   @include for-desktop {
-    width: 880px;
-   }
-}
+    }
 
-// ----- Кнопка закрытия модалки -----
+    @include for-desktop {
+      width: 880px;
+    }
+  }
+
+  // ----- Кнопка закрытия модалки -----
   &__button-wrapper {
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 5px;
-}
+  }
 
   &__modal-closebtn {
     display: flex;
@@ -68,34 +63,61 @@
     background-color: $fc-secondary;
     border: none;
     cursor: pointer;
-    
-}
+
+    &:hover *,
+    &:focus * {
+      cursor: pointer;
+      fill: $fc-accent;
+      stroke: $fc-accent;
+    }
+
+  }
 
   &__modal-close-svg {
     width: 30px;
     height: 30px;
-}
+    stroke: $fc-main;
+  }
 
-// ----- Карточки на модалке команды -----
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+
+    @include for-phone {
+      @include font-style(500, 20px, 1.17, $fc-main);
+    }
+
+    @include for-tablet {
+      @include font-style(500, 20px, 1.17, $fc-main);
+    }
+
+    @include for-desktop {
+      @include font-style(500, 30px, 1.16, $fc-main);
+    }
+
+  }
+
+  // ----- Карточки на модалке команды -----
   &__card-list {
-    @include grid-list(30px); 
+    @include grid-list(30px);
     padding-bottom: 25px;
 
     @include for-phone {
-        @include grid-list(0px);
-        padding-left: $phone-pad;
-        padding-right: $phone-pad;
-       }
-    
-       @include for-tablet {
-        padding-left: 28px;
-        padding-right: 28px;
-       }
-    
-       @include for-desktop {
-        padding-left: 30px;
-        padding-right: 30px;
-       }
+      @include grid-list(0px);
+      padding-left: $phone-pad;
+      padding-right: $phone-pad;
+    }
+
+    @include for-tablet {
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+
+    @include for-desktop {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 
   &__card-img {
@@ -108,7 +130,7 @@
     @include for-phone {
       min-height: auto;
     }
-}
+  }
 
   &__card-info {
     display: flex;
@@ -130,15 +152,15 @@
     margin-left: 10px;
 
     @include for-phone {
-        margin-right: 5px;
-      }
-    
+      margin-right: 5px;
+    }
+
   }
 
   &__card-text {
     text-transform: uppercase;
     @include font-style(500, 12px, 1.33, $fc-main);
-}
+  }
 
   // &__card-icons {
   //   display: flex;
@@ -151,32 +173,30 @@
   //     }
   // }
 
-    &__card-icon-link {
+  &__card-icon-link {
     display: flex;
     justify-content: center;
     align-items: center;
 
     padding: 0;
-    width: 70px; 
+    width: 70px;
     height: 44px;
     border-radius: 5px;
     border: 1px solid $fc-main;
-    
+
     transition: all $speed $cubic-bezier;
 
-        &:hover, &:focus {
-            background-color: $fc-accent;
-            fill: $fc-secondary;
-            border: none; 
-        } 
+    &:hover,
+    &:focus {
+      background-color: $fc-accent;
+      fill: $fc-secondary;
+      border: none;
+    }
   }
 
 
-  &__card-icon-link + &__card-icon-link {
-      margin-left: 10px;
+  &__card-icon-link+&__card-icon-link {
+    margin-left: 10px;
   }
-//   &__card-svg {
-//     width: 40px;
-//     height: 40px;
-//   }
+
 }
