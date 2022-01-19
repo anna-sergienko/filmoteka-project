@@ -10,6 +10,7 @@ teamModalBackdrop.addEventListener("click", teamModalCloseOnBackdrop)
 // ----- открытие модалки команды по кнопке-----
 function teamModalOpen(e) {
   window.addEventListener('keydown', teamModalCloseOnEscape);
+
   teamModalBackdrop.classList.remove("team__backdrop-is-hidden"); 
 }
 

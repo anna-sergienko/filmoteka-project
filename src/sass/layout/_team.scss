@@ -34,7 +34,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $fc-secondary;
-    // overflow-y: auto;
+    overflow-y: scroll;
 
    @include for-phone {
     width: 280px;
@@ -113,7 +113,7 @@
   &__card-info {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 
     padding-top: 5px;
     padding-bottom: 5px;
@@ -127,6 +127,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+    margin-left: 10px;
 
     @include for-phone {
         margin-right: 5px;
@@ -139,16 +140,16 @@
     @include font-style(500, 12px, 1.33, $fc-main);
 }
 
-  &__card-icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  // &__card-icons {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   align-items: center;
 
-    @include for-phone {
-        justify-content: flex-end;
-      }
-  }
+  //   @include for-phone {
+  //       justify-content: flex-end;
+  //     }
+  // }
 
     &__card-icon-link {
     display: flex;
@@ -156,7 +157,7 @@
     align-items: center;
 
     padding: 0;
-    width: 44px; 
+    width: 70px; 
     height: 44px;
     border-radius: 5px;
     border: 1px solid $fc-main;
