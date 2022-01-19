@@ -100,12 +100,13 @@ function clearEmptyError() {
     mainSection.classList.remove('main-error');
 }
 
+
 function lightboxOpen(e) {
     console.log(e.currentTarget, e.target, e.target.nodeName)
     if (e.target.nodeName !== "IMG") {
         return;
     }
-    lightbox.classList.toggle('none')
-    bodyLightbox.classList.toggle('body__lightbox-open')
+    lightbox.classList.remove('none')
+    bodyLightbox.classList.add('lightbox__open')
 }
 

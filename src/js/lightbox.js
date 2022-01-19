@@ -5,7 +5,7 @@ const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox } = refs;
 lightboxCloseBtn.addEventListener('click', lightboxClose)
 
 function lightboxClose() {
-    lightbox.classList.toggle('none')
-    bodyLightbox.classList.toggle('lightbox__open')
+    lightbox.classList.add('none')
+    bodyLightbox.classList.remove('lightbox__open')
 }
 
