@@ -114,7 +114,7 @@
         }
 
         @include for-desktop {
-            @include font-style(500, 20px, 1.15, $fc-main);
+            @include font-style(500, 30px, 1.16, $fc-main);
         }
 
 
