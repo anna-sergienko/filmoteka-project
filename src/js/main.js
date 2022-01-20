@@ -123,7 +123,7 @@ function cleanInput() {
         console.log(movies);
         clearMovieCardContainer();
 
-    });
+    }); 
 }
 
 // ----- функция для разметки картки фильма  -----
@@ -133,10 +133,10 @@ async function appendMovieCardMarkup(movies) {
 }
 
 // ----- функция для очистки разметки картки фильма -----
-/* function clearMovieCardContainer() {
+ function clearMovieCardContainer() {
     cardList.innerHTML = '';
 }
- */
+ 
 
 // ----- очищает список -----
 function clearMainList() {
