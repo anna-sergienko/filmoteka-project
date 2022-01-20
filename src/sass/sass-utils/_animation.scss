@@ -15,3 +15,13 @@
         fill: $btn-pag;
     }
 }
+
+.modal__backdrop {
+    opacity: 0;
+}
+
+.modal__hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: all $speed $cubic-bezier;
+}

@@ -1,3 +1,8 @@
+// ----- для анимации -----
+
+
+
+
 .team {
 
   // ----- Бекдроп для модалки c командой -----
@@ -29,19 +34,28 @@
     transform: translate(-50%, -50%);
     background-color: $fc-secondary;
     z-index: 101;
+    opacity: 1;
+    scale: 1;
+    transition: all $speed $cubic-bezier;
 
     @include for-phone {
       width: 280px;
-      left: 51%;
+      left: 50%;
+      height: 99.9%;
+      overflow-y: auto;
     }
 
     @include for-tablet {
       width: 618px;
+      height: 99.9%;
+      overflow-y: auto;
 
     }
 
     @include for-desktop {
       width: 880px;
+      height: auto;
+      overflow-y: auto;
     }
   }
 
@@ -66,7 +80,7 @@
 
     &:hover *,
     &:focus * {
-      cursor: pointer;
+      // cursor: pointer;
       fill: $fc-accent;
       stroke: $fc-accent;
     }
@@ -100,6 +114,7 @@
 
   // ----- Карточки на модалке команды -----
   &__card-list {
+    justify-content: center;
     @include grid-list(30px);
     padding-bottom: 25px;
 

@@ -37,6 +37,7 @@ export default {
     // ---- модалка команды в футере ----
     teamModalBackdrop: document.querySelector('.team-backdrop-js'), // ---- бекдроп модалки ----
     teamModalCloseBtn: document.querySelector('.team-closebtn-js'), // ---- кнопка закрытия модалки ----
+    teamContainer: document.querySelector('.team-container-js'),
 
 
 
@@ -46,5 +47,6 @@ export default {
     lightboxCloseBtn: document.querySelector('.lightbox-close-btn-js'),
     lightboxAddToWatchedBtn: document.querySelector('.lightbox-add-to-watched-btn-js'),
     lightboxAddToQueueBtn: document.querySelector('.lightbox-add-to-queue-btn-js'),
+    lightboxContainer: document.querySelector('.lightbox-container-js')
 
 }
