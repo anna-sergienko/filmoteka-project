@@ -129,15 +129,20 @@ function cleanInput() {
 
 // ----- функция для разметки картки фильма  -----
 async function appendMovieCardMarkup(movies) {
-  const markup = await filmCard(movies);
+
+    const markup = await filmCard(movies.results);
   cardList.innerHTML = markup;
+  window.movies = movies.results;
+
+
+
 }
 
-// ----- функция для очистки разметки картки фильма -----
-/* function clearMovieCardContainer() {
-    cardList.innerHTML = '';
-}
- */
+// // ----- функция для очистки разметки картки фильма -----
+// /* function clearMovieCardContainer() {
+//     cardList.innerHTML = '';
+// }
+//  */
 
 // ----- очищает список -----
 function clearMainList() {
