@@ -1,7 +1,10 @@
 import refs from '../js/refs.js';
+import { scrollToMe } from './main.js';
+
 
 
 const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer, lightboxAddToWatchedBtn } = refs;
+
 
 lightboxCloseBtn.addEventListener('click', lightboxClose)
 lightbox.addEventListener("click", lightboxCloseOnBackdrop)
@@ -9,12 +12,18 @@ lightboxAddToWatchedBtn.addEventListener("click", onWatchedBtnClick)
 
 // ----- закрыть lightbox -----
 function lightboxClose() {
-
     lightboxContainer.classList.add('modal__hidden')
     setTimeout(() => {
         lightbox.classList.add('none')
         bodyLightbox.classList.remove('lightbox__open')
     }, 350)
+    scrollToMe[0].scrollIntoView({ behavior: "auto" })
+    setTimeout(() => {
+        scrollToMe.forEach(function (el) { el.classList.remove('main-scroll-to-me-js') })
+        // .classList.remove('main-scroll-to-me-js')
+        // scrollToMe.classList.remove('main-scroll-to-me-js')
+    }, 1000)
+
 }
 
 
