@@ -12,7 +12,10 @@ headerHome.addEventListener('click', homePage)
 // ----- navigation menu -----
 headerMyLibrary.addEventListener('click', myLibrary)
 // ----- shearch input -----
-// headerFormSubmitBtn.addEventListener('click', error)
+
+/* headerFormSubmitBtn.addEventListener('click', error) */
+
+
 // ----- navigation user -----
 headerWatchedBtn.addEventListener('click', watchedBtn)
 headerWatchedBtn.addEventListener('mouseover', defaultBtn)
@@ -62,14 +65,16 @@ function QueueBtn(e) {
     headerQueueBtn.classList.add('btn--selected')
 }
 
-// function error(e) {
-//     e.preventDefault();
-//     if (headerError.classList.contains('hidden')) {
-//         headerError.classList.remove('hidden', 'none')
-//     } else {
-//         headerError.classList.add('hidden', 'none')
-//     }
-// }   
+
+/* function error(e) {
+    e.preventDefault();
+    if (headerError.classList.contains('hidden')) {
+        headerError.classList.remove('hidden', 'none')
+    } else {
+        headerError.classList.add('hidden', 'none')
+    }
+}     */
+
 
 function defaultBtn(e) {
     if (e.target.classList.contains('header-queue-btn-js')) {

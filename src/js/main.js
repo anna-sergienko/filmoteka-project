@@ -87,8 +87,9 @@ function onSearchMovies(event) {
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-    headerError.classList.add('hidden', 'none')
-    cleanInput()
+   /*  headerError.classList.add('hidden', 'none') */
+        cleanInput()
+
   }
 
   if (api.query !== '') {
@@ -100,7 +101,7 @@ function onSearchMovies(event) {
           return;
         };
         if (movies.results.length > 1) {
-          headerError.classList.add('hidden', 'none')
+          /* headerError.classList.add('hidden', 'none')  */
           appendMovieCardMarkup(movies.results);
           cleanInput()
 
@@ -130,6 +131,7 @@ function cleanInput() {
 // ----- функция для разметки картки фильма  -----
 async function appendMovieCardMarkup(movies) {
 
+  
     const markup = await filmCard(movies.results);
   cardList.innerHTML = markup;
   window.movies = movies.results;
@@ -143,6 +145,7 @@ async function appendMovieCardMarkup(movies) {
 //     cardList.innerHTML = '';
 // }
 //  */
+
 
 // ----- очищает список -----
 function clearMainList() {
