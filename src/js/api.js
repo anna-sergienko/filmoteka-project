@@ -18,7 +18,6 @@ export default class Api {
         try {
             const response = await axios.get(url);
             const data = response.data;
-            
             console.log(data)
             return data;
 

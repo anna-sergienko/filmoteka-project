@@ -29,6 +29,10 @@ export default {
     // ---- ul для рендера карток фильмов ----
     cardList: document.querySelector('.card__list'),
 
+    // --------------pagination--------------
+    paginationSearch: document.getElementById('pagination1'),
+    paginationTrending: document.getElementById('pagination2'),
+
     // ---- footer ----
     footerHeart: document.querySelector('.footer-heart-js'),
 
