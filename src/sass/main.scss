@@ -12,7 +12,7 @@
 @import './sass-utils/mixins';
 @import './sass-utils/variables';
 @import './sass-utils/helpers';
-@import './sass-utils/animation';
+
 
 @import './components/button';
 @import './components/pagination';
@@ -31,5 +31,5 @@
 @import './layout/footer';
 @import './layout/lightbox';
 
-
+@import './sass-utils/animation';
 @import './example';

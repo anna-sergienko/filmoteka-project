@@ -1,6 +1,6 @@
 import refs from './refs.js';
 
-const { footerLink, teamModalBackdrop, teamModalCloseBtn, bodyLightbox } = refs;
+const { footerLink, teamModalBackdrop, teamModalCloseBtn, bodyLightbox, teamContainer } = refs;
 
 footerLink.addEventListener("click", teamModalOpen);
 teamModalCloseBtn.addEventListener("click", teamModalCloseOnBtn);
@@ -12,13 +12,20 @@ function teamModalOpen(e) {
   window.addEventListener('keydown', teamModalCloseOnEscape);
   teamModalBackdrop.classList.remove("team__backdrop-is-hidden");
   bodyLightbox.classList.add('lightbox__open')
+  setTimeout(() => {
+    teamContainer.classList.remove('modal__hidden')
+  }, 100)
 }
 
 // ----- закрытие модалки команды по кнопке-----
 function teamModalCloseOnBtn(e) {
   window.removeEventListener('keydown', teamModalCloseOnEscape);
-  teamModalBackdrop.classList.add("team__backdrop-is-hidden");
-  bodyLightbox.classList.remove('lightbox__open')
+  teamContainer.classList.add('modal__hidden')
+  setTimeout(() => {
+    teamModalBackdrop.classList.add("team__backdrop-is-hidden");
+    bodyLightbox.classList.remove('lightbox__open')
+  }, 350)
+
 }
 
 // ----- закрытие модалки команды по клику вне модалки-----

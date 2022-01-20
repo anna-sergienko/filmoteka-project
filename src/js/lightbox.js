@@ -1,7 +1,7 @@
 import refs from '../js/refs.js';
 
 
-const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox } = refs;
+const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer } = refs;
 
 lightboxCloseBtn.addEventListener('click', lightboxClose)
 lightbox.addEventListener("click", lightboxCloseOnBackdrop)
@@ -9,8 +9,12 @@ lightbox.addEventListener("click", lightboxCloseOnBackdrop)
 
 // ----- закрыть lightbox -----
 function lightboxClose() {
-    lightbox.classList.add('none')
-    bodyLightbox.classList.remove('lightbox__open')
+
+    lightboxContainer.classList.add('modal__hidden')
+    setTimeout(() => {
+        lightbox.classList.add('none')
+        bodyLightbox.classList.remove('lightbox__open')
+    }, 350)
 }
 
 

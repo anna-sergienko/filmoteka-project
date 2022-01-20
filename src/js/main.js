@@ -19,6 +19,7 @@ const {
     headerWatchedBtn,
     mainErrorQueue,
     mainErrorWatched,
+    lightboxContainer,
 } = refs;
 
 const api = new Api();
@@ -109,9 +110,12 @@ function lightboxOpen(e) {
     }
     lightbox.classList.remove('none')
     bodyLightbox.classList.add('lightbox__open')
+    // setTimeout(() => {
+    //     lightbox.classList.remove('hidden')
+    // }, 50)
     setTimeout(() => {
-        lightbox.classList.remove('hidden')
-    }, 200)
+        lightboxContainer.classList.remove('modal__hidden')
+    }, 50)
     window.addEventListener('keydown', lightboxCloseOnEscape);
 }
 
