@@ -23,6 +23,9 @@ export default {
     // ----- main ошибки -----
     mainErrorQueue: document.querySelector('.main-error-queue-js'),
     mainErrorWatched: document.querySelector('.main-error-watched-js'),
+
+    // ----- main скролл к карточке -----
+    mainScrollToMe: document.querySelector('.main-scroll-to-me-js'),
     // ----- preloader -----
     preloader: document.querySelector('.preloader-js'),
 
@@ -34,11 +37,12 @@ export default {
     paginationTrending: document.getElementById('pagination2'),
 
     // ---- footer ----
+    footerSection: document.querySelector('.footer-section-js'),
     footerHeart: document.querySelector('.footer-heart-js'),
-
     footerLink: document.querySelector('.footer-link-js'),
 
     // ---- модалка команды в футере ----
+
     teamModalBackdrop: document.querySelector('.team-backdrop-js'), // ---- бекдроп модалки ----
     teamModalCloseBtn: document.querySelector('.team-closebtn-js'), // ---- кнопка закрытия модалки ----
     teamContainer: document.querySelector('.team-container-js'),
