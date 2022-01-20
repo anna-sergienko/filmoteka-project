@@ -3,29 +3,30 @@ import refs from './refs.js';
 import Api from './api.js';
 import filters from './filters.js';
 import { lightboxCloseOnEscape } from './lightbox.js';
-import { trendingPaginationHome, searchQueryPagination  } from './pagination.js';
+import { trendingPaginationHome, searchQueryPagination } from './pagination.js';
 
 const {
-    headerError,
-    paginationSearch,
-    paginationTrending, 
-    bodyLightbox,
-    cardList,
-    headerLogo,
-    headerFormInput,
-    headerFormSubmitBtn,
-    headerHome,
-    headerQueueBtn,
-    mainSection,
-    mainList,
-    headerMyLibrary,
-    headerWatchedBtn,
-    mainErrorQueue,
-    mainErrorWatched,
-    lightboxContainer,
+  headerError,
+  paginationSearch,
+  paginationTrending,
+  bodyLightbox,
+  cardList,
+  headerLogo,
+  headerFormInput,
+  headerFormSubmitBtn,
+  headerHome,
+  headerQueueBtn,
+  mainSection,
+  mainList,
+  headerMyLibrary,
+  headerWatchedBtn,
+  mainErrorQueue,
+  mainErrorWatched,
+  lightboxContainer,
 } = refs;
 
 const api = new Api();
+export let scrollToMe;
 
 headerHome.addEventListener('click', onLoadTrendingMoviesForToday);
 headerLogo.addEventListener('click', onLoadTrendingMoviesForToday);
@@ -43,53 +44,53 @@ onLoadTrendingMoviesForToday()
 function switchClass(refsRemove, refsAdd, cl) {
   refsRemove.classList.remove(cl);
   refsAdd.classList.add(cl);
-}  
+}
 
 //----- пагинация списка самых популярных фильмов на сегодняя -----
 trendingPaginationHome.on('afterMove', e => {
   api.page = e.page;
-    api.fetchTrendingMoviesForToday()
-     .then((movies  ) => {  
-       appendMovieCardMarkup(movies);
-     })
-      .catch(err => console.log(err))
-  });
+  api.fetchTrendingMoviesForToday()
+    .then((movies) => {
+      appendMovieCardMarkup(movies);
+    })
+    .catch(err => console.log(err))
+});
 
 // ----- функция для загрузки списка самых популярных фильмов на сегодняя -----
 export default function onLoadTrendingMoviesForToday() {
 
   api.fetchTrendingMoviesForToday().then(movies => {
     appendMovieCardMarkup(movies);
-    
-      switchClass(paginationTrending, paginationSearch , 'visually-hidden' );  
-      trendingPaginationHome.setTotalItems(movies.total_results);
-      trendingPaginationHome.movePageTo(1);
-      
-      console.log(movies);
-    });
+
+    switchClass(paginationTrending, paginationSearch, 'visually-hidden');
+    trendingPaginationHome.setTotalItems(movies.total_results);
+    trendingPaginationHome.movePageTo(1);
+
+    console.log(movies);
+  });
 }
 
 // ----- пагинация загрузки фильмов по ключевому слову -----
 searchQueryPagination.on('beforeMove', (e) => {
-    api.page = e.page;
-    api.fetchSearchMovies()
-     .then((movies  ) => {  
-       appendMovieCardMarkup(movies);
-     })
-      .catch(err => console.log(err))
+  api.page = e.page;
+  api.fetchSearchMovies()
+    .then((movies) => {
+      appendMovieCardMarkup(movies);
+    })
+    .catch(err => console.log(err))
 });
 
 // ----- функция для загрузки фильмов по ключевому слову -----
 function onSearchMovies(event) {
   api.query = headerFormInput.value.trim();
 
-  event.preventDefault(); 
+  event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
     headerError.classList.add('hidden', 'none')
-        cleanInput()
+    cleanInput()
   }
-   
+
   if (api.query !== '') {
     api.fetchSearchMovies()
       .then((movies) => {
@@ -102,34 +103,34 @@ function onSearchMovies(event) {
           headerError.classList.add('hidden', 'none')
           appendMovieCardMarkup(movies.results);
           cleanInput()
-          
+
           switchClass(paginationSearch, paginationTrending, 'visually-hidden');
           searchQueryPagination.setTotalItems(movies.total_results);
           searchQueryPagination.movePageTo(1);
         }
-        
+
       })
       .catch(err => console.log(err))
-  } 
+  }
 }
- 
+
 // ----- функция для очистки инпута  -----
 function cleanInput() {
   headerFormInput.value = '';
-    api.query = headerFormInput.value.trim();
-    api.fetchSearchMovies().then(movies => {
-        appendMovieCardMarkup(movies);
-        filters(movies);
-        console.log(movies);
-        clearMovieCardContainer();
+  api.query = headerFormInput.value.trim();
+  api.fetchSearchMovies().then(movies => {
+    appendMovieCardMarkup(movies);
+    filters(movies);
+    console.log(movies);
+    clearMovieCardContainer();
 
-    });
+  });
 }
 
 // ----- функция для разметки картки фильма  -----
 async function appendMovieCardMarkup(movies) {
-    const markup = await filmCard(movies);
-    cardList.innerHTML = markup;
+  const markup = await filmCard(movies);
+  cardList.innerHTML = markup;
 }
 
 // ----- функция для очистки разметки картки фильма -----
@@ -140,46 +141,49 @@ async function appendMovieCardMarkup(movies) {
 
 // ----- очищает список -----
 function clearMainList() {
-    mainList.innerHTML = '';
+  mainList.innerHTML = '';
 }
 
 // ----- пустой список Watched -----
 function emptyWatchedListError() {
-    clearMainList();
-    mainSection.classList.add('main-error');
-    mainErrorWatched.classList.remove('none');
-    mainErrorQueue.classList.add('none');
+  clearMainList();
+  mainSection.classList.add('main-error');
+  mainErrorWatched.classList.remove('none');
+  mainErrorQueue.classList.add('none');
 }
 
 // ----- пустой список Queue -----
 function emptyQueueListError() {
-    clearMainList();
-    mainSection.classList.add('main-error');
-    mainErrorQueue.classList.remove('none');
-    mainErrorWatched.classList.add('none');
+  clearMainList();
+  mainSection.classList.add('main-error');
+  mainErrorQueue.classList.remove('none');
+  mainErrorWatched.classList.add('none');
 }
 
 // ----- вернуть в нормальный стиль main -----
 function clearEmptyError() {
-    mainErrorWatched.classList.add('none');
-    mainErrorQueue.classList.add('none');
-    mainSection.classList.remove('main-error');
+  mainErrorWatched.classList.add('none');
+  mainErrorQueue.classList.add('none');
+  mainSection.classList.remove('main-error');
 }
 
 // ---- открыть lightbox по нажатию на картинку -----
 function lightboxOpen(e) {
-    console.log(e.currentTarget, e.target, e.target.nodeName)
-    if (e.target.nodeName !== "IMG") {
-        return;
-    }
-    lightbox.classList.remove('none')
-    bodyLightbox.classList.add('lightbox__open')
-    // setTimeout(() => {
-    //     lightbox.classList.remove('hidden')
-    // }, 50)
-    setTimeout(() => {
-        lightboxContainer.classList.remove('modal__hidden')
-    }, 50)
-    window.addEventListener('keydown', lightboxCloseOnEscape);
+  console.log(e.target.nodeName)
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
+  e.target.classList.add('main-scroll-to-me-js')
+  lightbox.classList.remove('none')
+  bodyLightbox.classList.add('lightbox__open')
+  // setTimeout(() => {
+  //     lightbox.classList.remove('hidden')
+  // }, 50)
+  setTimeout(() => {
+    lightboxContainer.classList.remove('modal__hidden')
+  }, 50)
+  window.addEventListener('keydown', lightboxCloseOnEscape);
+  scrollToMe = document.querySelectorAll('.main-scroll-to-me-js')
+  // console.log(scrollToMe);
 }
 
