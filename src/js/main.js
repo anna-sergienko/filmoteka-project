@@ -1,13 +1,15 @@
 import filmCard from '../templates/movie-card.hbs';
 import refs from './refs.js';
 import Api from './api.js';
+import filters from './filters.js';
+import { lightboxCloseOnEscape } from './lightbox.js';
 import { trendingPaginationHome, searchQueryPagination  } from './pagination.js';
 
-
 const {
-headerError,
+    headerError,
     paginationSearch,
     paginationTrending, 
+    bodyLightbox,
     cardList,
     headerLogo,
     headerFormInput,
@@ -20,6 +22,7 @@ headerError,
     headerWatchedBtn,
     mainErrorQueue,
     mainErrorWatched,
+    lightboxContainer,
 } = refs;
 
 const api = new Api();
@@ -31,6 +34,7 @@ headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 headerWatchedBtn.addEventListener('click', emptyWatchedListError);
 headerQueueBtn.addEventListener('click', emptyQueueListError);
 // headerHome.addEventListener('click', headerHomeClearError);
+mainList.addEventListener('click', lightboxOpen)
 
 // ----- выполняеться при загруки -----
 onLoadTrendingMoviesForToday()
@@ -112,6 +116,14 @@ function onSearchMovies(event) {
 // ----- функция для очистки инпута  -----
 function cleanInput() {
   headerFormInput.value = '';
+    api.query = headerFormInput.value.trim();
+    api.fetchSearchMovies().then(movies => {
+        appendMovieCardMarkup(movies);
+        filters(movies);
+        console.log(movies);
+        clearMovieCardContainer();
+
+    });
 }
 
 // ----- функция для разметки картки фильма  -----
@@ -154,4 +166,20 @@ function clearEmptyError() {
     mainSection.classList.remove('main-error');
 }
 
+// ---- открыть lightbox по нажатию на картинку -----
+function lightboxOpen(e) {
+    console.log(e.currentTarget, e.target, e.target.nodeName)
+    if (e.target.nodeName !== "IMG") {
+        return;
+    }
+    lightbox.classList.remove('none')
+    bodyLightbox.classList.add('lightbox__open')
+    // setTimeout(() => {
+    //     lightbox.classList.remove('hidden')
+    // }, 50)
+    setTimeout(() => {
+        lightboxContainer.classList.remove('modal__hidden')
+    }, 50)
+    window.addEventListener('keydown', lightboxCloseOnEscape);
+}
 

@@ -1,0 +1,217 @@
+// ----- для анимации -----
+
+
+
+
+.team {
+
+  // ----- Бекдроп для модалки c командой -----
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $bd-modal;
+    z-index: 100;
+    overflow-y: auto;
+    opacity: 1;
+  }
+
+
+  // ----- Класс для скрытия модалки с командой -----
+  &__backdrop-is-hidden {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+  }
+
+  // ----- Модалка с командой -----
+  &__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $fc-secondary;
+    z-index: 101;
+    opacity: 1;
+    scale: 1;
+    transition: all $speed $cubic-bezier;
+
+    @include for-phone {
+      width: 280px;
+      left: 50%;
+      height: 99.9%;
+      overflow-y: auto;
+    }
+
+    @include for-tablet {
+      width: 618px;
+      height: 99.9%;
+      overflow-y: auto;
+
+    }
+
+    @include for-desktop {
+      width: 880px;
+      height: auto;
+      overflow-y: auto;
+    }
+  }
+
+  // ----- Кнопка закрытия модалки -----
+  &__button-wrapper {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+  }
+
+  &__modal-closebtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+    margin-left: auto;
+    padding: 0;
+
+    background-color: $fc-secondary;
+    border: none;
+    cursor: pointer;
+
+    &:hover *,
+    &:focus * {
+      // cursor: pointer;
+      fill: $fc-accent;
+      stroke: $fc-accent;
+    }
+
+  }
+
+  &__modal-close-svg {
+    width: 30px;
+    height: 30px;
+    stroke: $fc-main;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+
+    @include for-phone {
+      @include font-style(500, 20px, 1.17, $fc-main);
+    }
+
+    @include for-tablet {
+      @include font-style(500, 20px, 1.17, $fc-main);
+    }
+
+    @include for-desktop {
+      @include font-style(500, 30px, 1.16, $fc-main);
+    }
+
+  }
+
+  // ----- Карточки на модалке команды -----
+  &__card-list {
+    justify-content: center;
+    @include grid-list(30px);
+    padding-bottom: 25px;
+
+    @include for-phone {
+      @include grid-list(0px);
+      padding-left: $phone-pad;
+      padding-right: $phone-pad;
+    }
+
+    @include for-tablet {
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+
+    @include for-desktop {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
+  &__card-img {
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    object-fit: cover;
+
+    @include for-phone {
+      min-height: auto;
+    }
+  }
+
+  &__card-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__card-text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    @include for-phone {
+      margin-right: 5px;
+    }
+
+  }
+
+  &__card-text {
+    text-transform: uppercase;
+    @include font-style(500, 12px, 1.33, $fc-main);
+  }
+
+  // &__card-icons {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   align-items: center;
+
+  //   @include for-phone {
+  //       justify-content: flex-end;
+  //     }
+  // }
+
+  &__card-icon-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+    width: 70px;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid $fc-main;
+
+    transition: all $speed $cubic-bezier;
+
+    &:hover,
+    &:focus {
+      background-color: $fc-accent;
+      fill: $fc-secondary;
+      border: none;
+    }
+  }
+
+
+  &__card-icon-link+&__card-icon-link {
+    margin-left: 10px;
+  }
+
+}

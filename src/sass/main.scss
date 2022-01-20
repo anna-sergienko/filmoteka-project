@@ -8,10 +8,11 @@
 @import './base/resets';
 @import './base/dev-tools';
 
-@import './sass-utils/helpers';
+
 @import './sass-utils/mixins';
 @import './sass-utils/variables';
-@import './sass-utils/animation';
+@import './sass-utils/helpers';
+
 
 @import './components/button';
 @import './components/pagination';
@@ -21,6 +22,14 @@
 @import './layout/header';
 @import './layout/preloader';
 @import './layout/main';
-@import './layout/footer';
 
+@import './layout/lightbox';
+@import './layout/footer';
+@import './layout/team';
+
+
+@import './layout/footer';
+@import './layout/lightbox';
+
+@import './sass-utils/animation';
 @import './example';
