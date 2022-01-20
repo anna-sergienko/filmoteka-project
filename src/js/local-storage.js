@@ -15,6 +15,7 @@ export default {
       console.error('Get state error: ', err);
     }
   },
+
 };
 
 
