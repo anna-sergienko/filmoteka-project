@@ -116,14 +116,14 @@ function onSearchMovies(event) {
 // ----- функция для очистки инпута  -----
 function cleanInput() {
   headerFormInput.value = '';
-    api.query = headerFormInput.value.trim();
+    /* api.query = headerFormInput.value.trim();
     api.fetchSearchMovies().then(movies => {
         appendMovieCardMarkup(movies);
         filters(movies);
         console.log(movies);
         clearMovieCardContainer();
 
-    });
+    }); */
 }
 
 // ----- функция для разметки картки фильма  -----
