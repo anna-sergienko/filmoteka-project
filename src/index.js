@@ -12,7 +12,7 @@ import './js/team';
 import './js/pagination';
 
 import './js/api';
-
+import './js/library';
 import './js/local-storage';
 import './js/lightbox';
 

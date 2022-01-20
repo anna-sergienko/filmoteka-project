@@ -1,20 +1,29 @@
 import refs from '../js/refs.js';
+import { scrollToMe } from './main.js';
 
 
-const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer } = refs;
+
+const { lightbox, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer, lightboxAddToWatchedBtn } = refs;
+
 
 lightboxCloseBtn.addEventListener('click', lightboxClose)
 lightbox.addEventListener("click", lightboxCloseOnBackdrop)
-
+lightboxAddToWatchedBtn.addEventListener("click", onWatchedBtnClick)
 
 // ----- закрыть lightbox -----
 function lightboxClose() {
-
     lightboxContainer.classList.add('modal__hidden')
     setTimeout(() => {
         lightbox.classList.add('none')
         bodyLightbox.classList.remove('lightbox__open')
     }, 350)
+    scrollToMe[0].scrollIntoView({ behavior: "auto" })
+    setTimeout(() => {
+        scrollToMe.forEach(function (el) { el.classList.remove('main-scroll-to-me-js') })
+        // .classList.remove('main-scroll-to-me-js')
+        // scrollToMe.classList.remove('main-scroll-to-me-js')
+    }, 1000)
+
 }
 
 
@@ -32,3 +41,33 @@ export function lightboxCloseOnEscape(e) {
     };
 }
 
+
+function onWatchedBtnClick(e) {
+  const id = e.target.dataset.id;
+  e.preventDefault();
+  
+  const watchedFilms = getWatchedMovieList();
+    const currentFilms = window.movies || [];
+    console.log(currentFilms);
+    
+const isFilmExist = watchedFilms.find(item => item.id == id);
+
+if(isFilmExist){
+  const newState = watchedFilms.filter(item => item.id != id);
+  localStorage.setItem('watched', JSON.stringify(newState))
+}else{
+  const findedFilm = currentFilms.find(item => item.id == id);
+  watchedFilms.unshift(findedFilm)
+    localStorage.setItem('watched', JSON.stringify(watchedFilms))
+}
+}
+
+function getWatchedMovieList() {
+      if (!(localStorage.getItem('watched')) || JSON.parse(localStorage.getItem('watched')).length === 0 ) {
+      console.log('empty');
+      return [];
+    } else {
+      return  JSON.parse(localStorage.getItem('watched'));
+    }
+    
+};
