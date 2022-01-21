@@ -55,6 +55,7 @@ export default {
     lightboxCloseBtn: document.querySelector('.lightbox-close-btn-js'),
     lightboxAddToWatchedBtn: document.querySelector('.lightbox-add-to-watched-btn-js'),
     lightboxAddToQueueBtn: document.querySelector('.lightbox-add-to-queue-btn-js'),
-    lightboxContainer: document.querySelector('.lightbox-container-js')
+    lightboxContainer: document.querySelector('.lightbox-container-js'),
+    lightboxHandlebars: document.querySelector('.lightbox-tpl-js'),
 
 }

@@ -8,7 +8,7 @@ export default class Api {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
-        this.movie_id = null; 
+        this.movie_id = null;
     }
 
     // ----- Метод класса для запроса на список самых популярных фильмов на сегодня -----
@@ -83,7 +83,6 @@ export default class Api {
     get query() {
         return this.searchQuery;
     }
-
     set query(newQuery) {
         this.searchQuery = newQuery;
     }
