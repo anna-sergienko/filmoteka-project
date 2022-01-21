@@ -8,6 +8,7 @@ import { trendingPaginationHome, searchQueryPagination } from './pagination.js';
 
 const {
   headerError,
+  headerSection,
   paginationSearch,
   paginationTrending,
   bodyLightbox,
@@ -54,6 +55,7 @@ trendingPaginationHome.on('afterMove', e => {
   api.fetchTrendingMoviesForToday()
     .then((movies) => {
       appendMovieCardMarkup(movies);
+      headerSection.scrollIntoView(); 
     })
     .catch(err => console.log(err))
 });
@@ -78,6 +80,7 @@ searchQueryPagination.on('beforeMove', (e) => {
   api.fetchSearchMovies()
     .then((movies) => {
       appendMovieCardMarkup(movies);
+      mainSection.scrollIntoView();
     })
     .catch(err => console.log(err))
 });
@@ -89,9 +92,9 @@ function onSearchMovies(event) {
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-    /*  headerError.classList.add('hidden', 'none') */
+    headerError.classList.remove('hidden', 'none');
     cleanInput()
-
+    return;
   }
 
   if (api.query !== '') {
@@ -99,11 +102,12 @@ function onSearchMovies(event) {
       .then((movies) => {
         if (movies.results.length < 1) {
           console.log("Фильм не знайдено! Спробуйте знову.");
+          headerError.classList.remove('hidden', 'none');
           cleanInput()
           return;
         };
         if (movies.results.length > 1) {
-          /* headerError.classList.add('hidden', 'none')  */
+          headerError.classList.add('hidden', 'none');
           appendMovieCardMarkup(movies.results);
           cleanInput()
 
@@ -120,21 +124,12 @@ function onSearchMovies(event) {
 // ----- функция для очистки инпута  -----
 function cleanInput() {
   headerFormInput.value = '';
-  /* api.query = headerFormInput.value.trim();
-  api.fetchSearchMovies().then(movies => {
-      appendMovieCardMarkup(movies);
-      filters(movies);
-      console.log(movies);
-      clearMovieCardContainer();
-
-  }); */
 }
 
 // ----- функция для разметки картки фильма  -----
 async function appendMovieCardMarkup(movies) {
   const markup = await filmCard(movies.results);
   cardList.innerHTML = markup;
-  window.movies = movies.results;
 }
 
 // // ----- функция для очистки разметки картки фильма -----

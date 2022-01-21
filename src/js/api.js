@@ -86,6 +86,7 @@ export default class Api {
     set query(newQuery) {
         this.searchQuery = newQuery;
     }
+
     get idquery() {
         return this.movie_id
     }
