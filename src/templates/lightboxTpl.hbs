@@ -1,0 +1,34 @@
+<img class="movie-info__img" src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="">
+<div class="movie-info__data">
+    <h1 class="movie-info__title">{{original_title}}</h1>
+    <table class="movie-info__table">
+        <tr>
+            <th class="movie-info__parameter">Vote / Votes</th>
+            <th class="movie-info__value">
+                <span class="movie-info__value--rating">{{vote_average}}</span>
+                <span class="movie-info__value--devider">&nbsp;/</span>
+                <span class="movie-info__value--votes">{{vote_count}}</span>
+            </th>
+        </tr>
+        <tr>
+            <td class="movie-info__parameter">Popularity</td>
+            <td class="movie-info__value">{{popularity}}</td>
+        </tr>
+        <tr>
+            <td class="movie-info__parameter">Original Title</td>
+            <td class="movie-info__value--title">{{original_title}}</td>
+        </tr>
+        <tr>
+            <td class="movie-info__parameter">Genre</td>
+            <td class="movie-info__value">Western</td>
+        </tr>
+    </table>
+    <h2 class="movie-info__about">about</h2>
+    <p class="movie-info__text">{{overview}}</p>
+    <div class="movie-info__buttons-wrapper">
+        <button class="movie-info__button-add-to-watched lightbox-add-to-watched-btn-js" data-id="{{id}}">add to
+            watched</button>
+        <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">add to
+            queue</button>
+    </div>
+</div>

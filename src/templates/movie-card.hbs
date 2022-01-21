@@ -1,17 +1,17 @@
 {{#each this}}
 <li class='card__item'>
-    <a class='card__lightbox lightbox-open-js'>
+    <a class='card__lightbox lightbox-open lightbox-open-js'>
         {{#if poster_path}}
-        <img class='card__img' src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt='{{title}}' />
+        <img class='card__img lightbox-open' data-id='{{id}}' src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt='{{title}}' />
         {{else}}
-        <img class='card__img' src="https://cinemaone.net/images/movie_placeholder.png" alt='placeholder' />
+        <img class='card__img lightbox-open'  data-id='{{id}}' src="https://cinemaone.net/images/movie_placeholder.png" alt='placeholder' />
         {{/if}}
-        <div class='card__info'>
-            <p class='card__title'>{{original_title}}</p>
-            <p class='card__text'>
-                <span class='card__text--genre'>{{genre_ids}}</span><span>&nbsp;|&nbsp;</span>
-                <span class='card__text--date'>{{release_date}}</span>
-                <span class='card__rating'>{{vote_average}}</span>
+        <div class='card__info lightbox-open'  data-id='{{id}}'>
+            <p class='card__title lightbox-open'  data-id='{{id}}'>{{original_title}}</p>
+            <p class='card__text lightbox-open'  data-id='{{id}}'>
+                <span class='card__text--genre lightbox-open'  data-id='{{id}}'>{{genre_ids}}</span><span>&nbsp;|&nbsp;</span>
+                <span class='card__text--date lightbox-open'  data-id='{{id}}'>{{release_date}}</span>
+                <span class='card__rating lightbox-open'  data-id='{{id}}'>{{vote_average}}</span>
             </p>
         </div>
     </a>

@@ -8,7 +8,7 @@ export default class Api {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
-        this.movie_id = null; 
+        this.movie_id = null;
     }
 
     // ----- Метод класса для запроса на список самых популярных фильмов на сегодня -----
@@ -42,7 +42,7 @@ export default class Api {
 
     // ----- Метод класса для запроса полной информации о фильме для страницы фильма -----
     async fetchMovieDetails() {
-        const url = `${BASE_URL}movie/${this.movie_id}?api_key=${API_KEY}&language=en-US`;
+        const url = `${BASE_URL}movie/${this.movie_id}?api_key=${API_KEY}`;
 
         try {
             const response = await axios.get(url);
@@ -83,9 +83,14 @@ export default class Api {
     get query() {
         return this.searchQuery;
     }
-
     set query(newQuery) {
         this.searchQuery = newQuery;
+    }
+    get idquery() {
+        return this.movie_id
+    }
+    set idquery(newId) {
+        this.movie_id = newId;
     }
 }
 
