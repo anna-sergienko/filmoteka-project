@@ -1,6 +1,6 @@
 {{#each this}}
 <li class='card__item'>
-    <a class='card__lightbox lightbox-open lightbox-open-js'>
+    <a class='card__lightbox lightbox-open lightbox-open-js' data-id='{{id}}'>
         {{#if poster_path}}
         <img class='card__img lightbox-open' data-id='{{id}}' src='https://image.tmdb.org/t/p/w300{{poster_path}}' alt='{{title}}' />
         {{else}}

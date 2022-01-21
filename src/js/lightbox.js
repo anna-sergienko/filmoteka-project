@@ -1,5 +1,6 @@
 import refs from '../js/refs.js';
 import { scrollToMe } from './main.js';
+import api from './api.js';
 
 
 
@@ -34,6 +35,7 @@ export function lightboxCloseOnEscape(e) {
     lightboxClose();
   };
 }
+
 
 
 
