@@ -31,6 +31,7 @@ const {
 const api = new Api();
 export let scrollToMe;
 
+
 headerHome.addEventListener('click', onLoadTrendingMoviesForToday);
 headerLogo.addEventListener('click', onLoadTrendingMoviesForToday);
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
@@ -55,7 +56,7 @@ trendingPaginationHome.on('afterMove', e => {
   api.fetchTrendingMoviesForToday()
     .then((movies) => {
       appendMovieCardMarkup(movies);
-      headerSection.scrollIntoView(); 
+      headerSection.scrollIntoView();
     })
     .catch(err => console.log(err))
 });
@@ -132,12 +133,6 @@ async function appendMovieCardMarkup(movies) {
   cardList.innerHTML = markup;
 }
 
-// // ----- функция для очистки разметки картки фильма -----
-// /* function clearMovieCardContainer() {
-//     cardList.innerHTML = '';
-// }
-//  */
-
 
 // ----- очищает список -----
 function clearMainList() {
@@ -161,7 +156,7 @@ function emptyQueueListError() {
 }
 
 // ----- вернуть в нормальный стиль main -----
-function clearEmptyError() {
+export function clearEmptyError() {
   mainErrorWatched.classList.add('none');
   mainErrorQueue.classList.add('none');
   mainSection.classList.remove('main-error');
@@ -169,11 +164,11 @@ function clearEmptyError() {
 
 // ---- открыть lightbox по нажатию на картинку -----
 function lightboxOpen(e) {
-  let movieId = e.target.dataset.id
-  api.idquery = movieId
+  let movieId = e.target.dataset.id   // проверка data-id
+  api.idQuery = movieId   //запрос на api по фильму             
   api.fetchMovieDetails().then((movie) => {
-    console.log(movie)
-    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie))
+    console.log(movie)    // консолит ответ с api
+    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie))   // рендерит ответ с api по шаблону lightboxTpl
   })
   if (e.target.classList.contains('lightbox-open')) {
     lightbox.classList.remove('none')

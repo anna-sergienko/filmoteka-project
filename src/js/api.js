@@ -87,10 +87,10 @@ export default class Api {
         this.searchQuery = newQuery;
     }
 
-    get idquery() {
+    get idQuery() {
         return this.movie_id
     }
-    set idquery(newId) {
+    set idQuery(newId) {
         this.movie_id = newId;
     }
 }

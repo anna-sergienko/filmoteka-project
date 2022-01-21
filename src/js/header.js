@@ -1,10 +1,12 @@
 import refs from './refs.js';
+import { clearEmptyError } from './main.js';
 
 const { headerLogo, headerLogoIcon, headerHome, headerMyLibrary, headerWatchedBtn,
     headerQueueBtn, headerFormInput, headerFormSubmitBtn, headerError,
     headerSection, headerForm, headerLnWrapper, headerNavMyLibrary } = refs;
 
 export { homePage, myLibrary };
+
 
 // ----- logo -----
 headerLogo.addEventListener('click', homePage)
@@ -28,6 +30,7 @@ headerQueueBtn.addEventListener('mouseout', removeDefaultBtn)
 
 function homePage(e) {
     e.preventDefault();
+    clearEmptyError();      // убирает сообщения о пустых библиотеках пользователя 
     headerSection.classList.remove('header--my-library');
     headerForm.classList.remove('hidden')
     headerLnWrapper.classList.remove('ln-wrapper--my-library')
