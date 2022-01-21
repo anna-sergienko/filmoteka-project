@@ -42,7 +42,7 @@ export default class Api {
 
     // ----- Метод класса для запроса полной информации о фильме для страницы фильма -----
     async fetchMovieDetails() {
-        const url = `${BASE_URL}movie/${this.movie_id}?api_key=${API_KEY}&language=en-US`;
+        const url = `${BASE_URL}movie/${this.movie_id}?api_key=${API_KEY}`;
 
         try {
             const response = await axios.get(url);
@@ -86,6 +86,13 @@ export default class Api {
 
     set query(newQuery) {
         this.searchQuery = newQuery;
+    }
+
+    get idquery() {
+        return this.movie_id
+    }
+    set idquery(newId) {
+        this.movie_id = newId;
     }
 }
 
