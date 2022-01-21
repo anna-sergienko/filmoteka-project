@@ -134,7 +134,11 @@
       padding-right: 30px;
     }
   }
-
+  &__item {
+    &:hover {
+      cursor: default;
+    }
+  }
   &__card-img {
     width: 100%;
     height: 200px;
