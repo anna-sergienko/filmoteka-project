@@ -1,4 +1,5 @@
 import filmCard from '../templates/movie-card.hbs';
+import lightboxTpl from '../templates/lightboxTpl.hbs';
 import refs from './refs.js';
 import Api from './api.js';
 import filters from './filters.js';
@@ -23,6 +24,7 @@ const {
   mainErrorQueue,
   mainErrorWatched,
   lightboxContainer,
+  lightboxHandlebars,
 } = refs;
 
 const api = new Api();
@@ -87,8 +89,8 @@ function onSearchMovies(event) {
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-   /*  headerError.classList.add('hidden', 'none') */
-        cleanInput()
+    /*  headerError.classList.add('hidden', 'none') */
+    cleanInput()
 
   }
 
@@ -118,26 +120,21 @@ function onSearchMovies(event) {
 // ----- функция для очистки инпута  -----
 function cleanInput() {
   headerFormInput.value = '';
-    /* api.query = headerFormInput.value.trim();
-    api.fetchSearchMovies().then(movies => {
-        appendMovieCardMarkup(movies);
-        filters(movies);
-        console.log(movies);
-        clearMovieCardContainer();
+  /* api.query = headerFormInput.value.trim();
+  api.fetchSearchMovies().then(movies => {
+      appendMovieCardMarkup(movies);
+      filters(movies);
+      console.log(movies);
+      clearMovieCardContainer();
 
-    }); */
+  }); */
 }
 
 // ----- функция для разметки картки фильма  -----
 async function appendMovieCardMarkup(movies) {
-
-  
-    const markup = await filmCard(movies.results);
+  const markup = await filmCard(movies.results);
   cardList.innerHTML = markup;
   window.movies = movies.results;
-
-
-
 }
 
 // // ----- функция для очистки разметки картки фильма -----
@@ -177,21 +174,22 @@ function clearEmptyError() {
 
 // ---- открыть lightbox по нажатию на картинку -----
 function lightboxOpen(e) {
-  console.log(e.target.nodeName)
-  if (e.target.nodeName !== "IMG") {
-    return;
+  let movieId = e.target.dataset.id
+  api.idquery = movieId
+  api.fetchMovieDetails().then((movie) => {
+    console.log(movie)
+    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie))
+  })
+  if (e.target.classList.contains('lightbox-open')) {
+    lightbox.classList.remove('none')
+    bodyLightbox.classList.add('lightbox__open')
+    setTimeout(() => {
+      lightboxContainer.classList.remove('modal__hidden')
+    }, 50)
+
+    window.addEventListener('keydown', lightboxCloseOnEscape);
   }
-  e.target.classList.add('main-scroll-to-me-js')
-  lightbox.classList.remove('none')
-  bodyLightbox.classList.add('lightbox__open')
-  // setTimeout(() => {
-  //     lightbox.classList.remove('hidden')
-  // }, 50)
-  setTimeout(() => {
-    lightboxContainer.classList.remove('modal__hidden')
-  }, 50)
-  window.addEventListener('keydown', lightboxCloseOnEscape);
-  scrollToMe = document.querySelectorAll('.main-scroll-to-me-js')
-  // console.log(scrollToMe);
+  return;
 }
+
 
