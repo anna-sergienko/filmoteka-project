@@ -1,6 +1,6 @@
 import refs from './refs.js';
 
-const { mainSection, footerLink, teamModalBackdrop, teamModalCloseBtn, bodyLightbox, teamContainer, footerSection } = refs;
+const { toTopButton, mainSection, footerLink, teamModalBackdrop, teamModalCloseBtn, bodyLightbox, teamContainer, footerSection } = refs;
 
 footerLink.addEventListener("click", teamModalOpen);
 teamModalCloseBtn.addEventListener("click", teamModalCloseOnBtn);
@@ -15,6 +15,8 @@ function teamModalOpen(e) {
   setTimeout(() => {
     teamContainer.classList.remove('modal__hidden')
   }, 100)
+
+  toTopButton.classList.remove('show');
 }
 
 // ----- закрытие модалки команды по кнопке-----
