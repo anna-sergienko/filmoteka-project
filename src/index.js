@@ -1,6 +1,7 @@
 import './sass/main.scss';
 
 import './js/common';
+import './js/totopbutton';
 import './js/header';
 import './js/preloader';
 import './js/main';

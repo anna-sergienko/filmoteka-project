@@ -1,4 +1,6 @@
 export default {
+    // ----- Кнопка прокрутки наверх -----
+    toTopButton: document.querySelector('.totop-button-js'),
     // ----- body -----
     bodyLightbox: document.querySelector('.body-js'),
     // ---- header ---- 

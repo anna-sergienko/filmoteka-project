@@ -1,0 +1,32 @@
+.totop__button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    
+    width: 40px;
+    height: 40px;
+    outline: solid 1px $btn-accent;
+    border-radius: 5px;
+    border: none;
+
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+
+    fill:  $btn-accent;
+    background: url(../images/icons/arrow-up.svg) no-repeat 50% 50%;
+    transition: all $speed $cubic-bezier;
+
+    &:hover, &:focus {
+        cursor: pointer;
+        outline-color: $btn-accent;
+        background-color: $btn-accent;
+        box-shadow: $btn-shadow;
+        transition: all $speed $cubic-bezier;
+    }
+
+    &.show {
+        opacity: 1;
+        visibility: visible;          
+    }
+}
