@@ -29,10 +29,9 @@ export default class Api {
         }
     }
 
-    // ----- Метод класса для запроса фильмов по ключевому слову  -----
+    // ----- Метод класса для запроса фильмов по ключевому слову -----
     async fetchSearchMovies() {
-
-        const url = `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&include_adult=false&query=${this.searchQuery}`;
+        const url = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${this.searchQuery}&page=${this.page}`;
 
         try {
             const response = await axios.get(url);

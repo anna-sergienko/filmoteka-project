@@ -60,6 +60,7 @@ trendingPaginationHome.on('afterMove', e => {
       appendMovieCardMarkup(movies);
       headerSection.scrollIntoView({ behavior: "smooth" });
       stopPreloader()
+
     })
     .catch(err => console.log(err))
 });
@@ -68,12 +69,12 @@ trendingPaginationHome.on('afterMove', e => {
 export default function onLoadTrendingMoviesForToday() {
   startPreloader()
   api.fetchTrendingMoviesForToday().then(movies => {
+    clearMovieCardContainer();
     appendMovieCardMarkup(movies);
 
     switchClass(paginationTrending, paginationSearch, 'visually-hidden');
     trendingPaginationHome.setTotalItems(movies.total_results);
     trendingPaginationHome.movePageTo(1);
-
     console.log(movies);
     stopPreloader()
   });
@@ -88,6 +89,7 @@ searchQueryPagination.on('beforeMove', (e) => {
       appendMovieCardMarkup(movies);
       mainSection.scrollIntoView({ behavior: "smooth" });
       stopPreloader()
+
     })
     .catch(err => console.log(err))
 });
@@ -96,13 +98,16 @@ searchQueryPagination.on('beforeMove', (e) => {
 function onSearchMovies(event) {
   startPreloader()
   api.query = headerFormInput.value.trim();
-
+  api.resetPage(); 
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
     stopPreloader()
+
     headerError.classList.remove('hidden', 'none');
-    cleanInput()
+    setTimeout(() => {
+      headerError.classList.add('hidden', 'none');
+    }, 3000);
     return;
   }
 
@@ -111,20 +116,26 @@ function onSearchMovies(event) {
       .then((movies) => {
         if (movies.results.length < 1) {
           stopPreloader()
-          console.log("Фильм не знайдено! Спробуйте знову.");
+          
           headerError.classList.remove('hidden', 'none');
+          setTimeout(() => {
+            headerError.classList.add('hidden', 'none');
+          }, 3000);
           cleanInput()
           return;
         };
         if (movies.results.length > 1) {
           stopPreloader()
           headerError.classList.add('hidden', 'none');
+          clearMovieCardContainer();
           appendMovieCardMarkup(movies.results);
+          
           cleanInput()
 
           switchClass(paginationSearch, paginationTrending, 'visually-hidden');
           searchQueryPagination.setTotalItems(movies.total_results);
           searchQueryPagination.movePageTo(1);
+          console.log(movies);
         }
 
       })
@@ -143,6 +154,10 @@ async function appendMovieCardMarkup(movies) {
   cardList.innerHTML = markup;
 }
 
+// ----- функция для очистки разметки картки фильма -----
+function clearMovieCardContainer() {
+     cardList.innerHTML = '';
+}
 
 // ----- очищает список -----
 function clearMainList() {
