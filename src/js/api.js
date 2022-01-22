@@ -1,4 +1,5 @@
 import axios from "axios";
+import { startPreloader, stopPreloader } from "./preloader.js"
 
 const API_KEY = 'd3c00761eff125b45afbcd52d8235bc7';
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -13,12 +14,14 @@ export default class Api {
 
     // ----- Метод класса для запроса на список самых популярных фильмов на сегодня -----
     async fetchTrendingMoviesForToday() {
+
         const url = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.page}&language=en-US`;
 
         try {
             const response = await axios.get(url);
             const data = response.data;
             console.log(data)
+
             return data;
 
         } catch (error) {
@@ -33,6 +36,7 @@ export default class Api {
         try {
             const response = await axios.get(url);
             const data = response.data;
+
             return data;
 
         } catch (error) {
@@ -42,11 +46,13 @@ export default class Api {
 
     // ----- Метод класса для запроса полной информации о фильме для страницы фильма -----
     async fetchMovieDetails() {
+
         const url = `${BASE_URL}movie/${this.movie_id}?api_key=${API_KEY}`;
 
         try {
             const response = await axios.get(url);
             const data = response.data;
+
             return data;
 
         } catch (error) {
@@ -87,10 +93,10 @@ export default class Api {
         this.searchQuery = newQuery;
     }
 
-    get idquery() {
+    get idQuery() {
         return this.movie_id
     }
-    set idquery(newId) {
+    set idQuery(newId) {
         this.movie_id = newId;
     }
 }

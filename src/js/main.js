@@ -3,6 +3,7 @@ import lightboxTpl from '../templates/lightboxTpl.hbs';
 import refs from './refs.js';
 import Api from './api.js';
 import filters from './filters.js';
+import { startPreloader, stopPreloader } from './preloader.js'
 import { lightboxCloseOnEscape } from './lightbox.js';
 import { trendingPaginationHome, searchQueryPagination } from './pagination.js';
 
@@ -31,6 +32,7 @@ const {
 const api = new Api();
 export let scrollToMe;
 
+
 headerHome.addEventListener('click', onLoadTrendingMoviesForToday);
 headerLogo.addEventListener('click', onLoadTrendingMoviesForToday);
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
@@ -51,18 +53,21 @@ function switchClass(refsRemove, refsAdd, cl) {
 
 //----- пагинация списка самых популярных фильмов на сегодняя -----
 trendingPaginationHome.on('afterMove', e => {
+  startPreloader()
   api.page = e.page;
   api.fetchTrendingMoviesForToday()
     .then((movies) => {
       appendMovieCardMarkup(movies);
-     
+      headerSection.scrollIntoView({ behavior: "smooth" });
+      stopPreloader()
+
     })
     .catch(err => console.log(err))
 });
 
 // ----- функция для загрузки списка самых популярных фильмов на сегодняя -----
 export default function onLoadTrendingMoviesForToday() {
-
+  startPreloader()
   api.fetchTrendingMoviesForToday().then(movies => {
     clearMovieCardContainer();
     appendMovieCardMarkup(movies);
@@ -71,28 +76,34 @@ export default function onLoadTrendingMoviesForToday() {
     trendingPaginationHome.setTotalItems(movies.total_results);
     trendingPaginationHome.movePageTo(1);
     console.log(movies);
+    stopPreloader()
   });
 }
 
 // ----- пагинация загрузки фильмов по ключевому слову -----
 searchQueryPagination.on('beforeMove', (e) => {
+  startPreloader()
   api.page = e.page;
   api.fetchSearchMovies()
     .then((movies) => {
       appendMovieCardMarkup(movies);
-      
+      mainSection.scrollIntoView({ behavior: "smooth" });
+      stopPreloader()
+
     })
     .catch(err => console.log(err))
 });
 
 // ----- функция для загрузки фильмов по ключевому слову -----
 function onSearchMovies(event) {
+  startPreloader()
   api.query = headerFormInput.value.trim();
   api.resetPage(); 
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-    
+    stopPreloader()
+
     headerError.classList.remove('hidden', 'none');
     setTimeout(() => {
       headerError.classList.add('hidden', 'none');
@@ -104,6 +115,8 @@ function onSearchMovies(event) {
     api.fetchSearchMovies()
       .then((movies) => {
         if (movies.results.length < 1) {
+          stopPreloader()
+          
           headerError.classList.remove('hidden', 'none');
           setTimeout(() => {
             headerError.classList.add('hidden', 'none');
@@ -112,6 +125,7 @@ function onSearchMovies(event) {
           return;
         };
         if (movies.results.length > 1) {
+          stopPreloader()
           headerError.classList.add('hidden', 'none');
           clearMovieCardContainer();
           appendMovieCardMarkup(movies.results);
@@ -140,12 +154,10 @@ async function appendMovieCardMarkup(movies) {
   cardList.innerHTML = markup;
 }
 
-// // ----- функция для очистки разметки картки фильма -----
+// ----- функция для очистки разметки картки фильма -----
 function clearMovieCardContainer() {
      cardList.innerHTML = '';
 }
-
-
 
 // ----- очищает список -----
 function clearMainList() {
@@ -169,7 +181,7 @@ function emptyQueueListError() {
 }
 
 // ----- вернуть в нормальный стиль main -----
-function clearEmptyError() {
+export function clearEmptyError() {
   mainErrorWatched.classList.add('none');
   mainErrorQueue.classList.add('none');
   mainSection.classList.remove('main-error');
@@ -177,11 +189,15 @@ function clearEmptyError() {
 
 // ---- открыть lightbox по нажатию на картинку -----
 function lightboxOpen(e) {
-  let movieId = e.target.dataset.id
-  api.idquery = movieId
+  startPreloader()
+  let movieId = e.target.dataset.id   // проверка data-id
+  api.idQuery = movieId   //запрос на api по фильму             
   api.fetchMovieDetails().then((movie) => {
-    console.log(movie)
-    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie))
+    console.log(movie)    // консолит ответ с api
+
+    stopPreloader()
+    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie)) // рендерит ответ с api по шаблону lightboxTpl
+
   })
   if (e.target.classList.contains('lightbox-open')) {
     lightbox.classList.remove('none')
