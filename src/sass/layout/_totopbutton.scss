@@ -1,31 +1,51 @@
-.totop__button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
+.totop {
     
-    width: 40px;
-    height: 40px;
-    outline: solid 1px $btn-accent;
+    &__button {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+    margin: 0;
     border-radius: 5px;
-    border: none;
+    border: 1px solid $fc-main;
 
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
 
-    fill:  $btn-accent;
-    background: url(../images/icons/arrow-up.svg) no-repeat 50% 50%;
+    background: url(../images/icons/arrow-right.svg) no-repeat 50% 50%;
+   
+    transform: rotate(90deg);
     transition: all $speed $cubic-bezier;
 
-    &:hover, &:focus {
-        cursor: pointer;
-        outline-color: $btn-accent;
-        background-color: $btn-accent;
-        box-shadow: $btn-shadow;
-        transition: all $speed $cubic-bezier;
-    }
+    @include for-phone {
+        bottom: 110px;
+        right: 30px;
+    } 
 
-    &.show {
+    @include for-tablet {
+        bottom: 85px;
+        right: 30px;
+    } 
+
+    @include for-desktop {
+        bottom: 90px;
+        right: 100px;
+    } 
+
+    &:hover , &:focus {
+        background-color: $fc-accent;
+        // stroke: $fc-secondary;
+        border: none;
+        cursor: pointer;
+    }
+}
+  
+    &__button.show {
         opacity: 1;
         visibility: visible;          
     }
