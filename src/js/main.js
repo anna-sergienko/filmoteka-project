@@ -27,6 +27,8 @@ const {
   mainErrorWatched,
   lightboxContainer,
   lightboxHandlebars,
+  lightboxAddToWatchedBtn,
+  lightbox
 } = refs;
 
 const api = new Api();
@@ -189,11 +191,11 @@ export function clearEmptyError() {
 }
 
 // ---- открыть lightbox по нажатию на картинку -----
-function lightboxOpen(e) {
+async function lightboxOpen(e) {
   startPreloader()
   let movieId = e.target.dataset.id   // проверка data-id
   api.idQuery = movieId   //запрос на api по фильму             
-  api.fetchMovieDetails().then((movie) => {
+  await api.fetchMovieDetails().then((movie) => {
     console.log(movie)    // консолит ответ с api
     lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie)) // рендерит ответ с api по шаблону lightboxTpl
     stopPreloader()
@@ -201,14 +203,14 @@ function lightboxOpen(e) {
   if (e.target.classList.contains('lightbox-open')) {
     lightbox.classList.remove('none')
     bodyLightbox.classList.add('lightbox__open')
-
     setTimeout(() => {
       lightboxContainer.classList.remove('modal__hidden')
     }, 50)
-
     window.addEventListener('keydown', lightboxCloseOnEscape);
   }
   return;
 }
+
+
 
 
