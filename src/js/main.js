@@ -59,8 +59,8 @@ trendingPaginationHome.on('afterMove', e => {
     .then((movies) => {
       appendMovieCardMarkup(movies);
       headerSection.scrollIntoView({ behavior: "smooth" });
-      stopPreloader()
 
+      stopPreloader()
     })
     .catch(err => console.log(err))
 });
@@ -88,8 +88,8 @@ searchQueryPagination.on('beforeMove', (e) => {
     .then((movies) => {
       appendMovieCardMarkup(movies);
       mainSection.scrollIntoView({ behavior: "smooth" });
-      stopPreloader()
 
+      stopPreloader()
     })
     .catch(err => console.log(err))
 });
@@ -98,16 +98,17 @@ searchQueryPagination.on('beforeMove', (e) => {
 function onSearchMovies(event) {
   startPreloader()
   api.query = headerFormInput.value.trim();
-  api.resetPage(); 
+  api.resetPage();
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-    stopPreloader()
+
 
     headerError.classList.remove('hidden', 'none');
     setTimeout(() => {
       headerError.classList.add('hidden', 'none');
     }, 3000);
+    stopPreloader()
     return;
   }
 
@@ -115,27 +116,27 @@ function onSearchMovies(event) {
     api.fetchSearchMovies()
       .then((movies) => {
         if (movies.results.length < 1) {
-          stopPreloader()
-          
           headerError.classList.remove('hidden', 'none');
           setTimeout(() => {
             headerError.classList.add('hidden', 'none');
           }, 3000);
           cleanInput()
+          stopPreloader()
           return;
         };
         if (movies.results.length > 1) {
-          stopPreloader()
+
           headerError.classList.add('hidden', 'none');
           clearMovieCardContainer();
           appendMovieCardMarkup(movies.results);
-          
+
           cleanInput()
 
           switchClass(paginationSearch, paginationTrending, 'visually-hidden');
           searchQueryPagination.setTotalItems(movies.total_results);
           searchQueryPagination.movePageTo(1);
           console.log(movies);
+          stopPreloader()
         }
 
       })
@@ -156,7 +157,7 @@ async function appendMovieCardMarkup(movies) {
 
 // ----- функция для очистки разметки картки фильма -----
 function clearMovieCardContainer() {
-     cardList.innerHTML = '';
+  cardList.innerHTML = '';
 }
 
 // ----- очищает список -----
@@ -194,14 +195,13 @@ function lightboxOpen(e) {
   api.idQuery = movieId   //запрос на api по фильму             
   api.fetchMovieDetails().then((movie) => {
     console.log(movie)    // консолит ответ с api
-
-    stopPreloader()
     lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie)) // рендерит ответ с api по шаблону lightboxTpl
-
+    stopPreloader()
   })
   if (e.target.classList.contains('lightbox-open')) {
     lightbox.classList.remove('none')
     bodyLightbox.classList.add('lightbox__open')
+
     setTimeout(() => {
       lightboxContainer.classList.remove('modal__hidden')
     }, 50)
