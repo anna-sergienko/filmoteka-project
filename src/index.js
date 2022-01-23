@@ -11,6 +11,7 @@ import './js/team';
 
 
 import './js/pagination';
+import './js/genres';
 
 import './js/api';
 import './js/library';

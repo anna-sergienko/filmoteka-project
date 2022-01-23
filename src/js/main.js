@@ -2,6 +2,7 @@ import filmCard from '../templates/movie-card.hbs';
 import lightboxTpl from '../templates/lightboxTpl.hbs';
 import refs from './refs.js';
 import Api from './api.js';
+import Genres from './genres.js'
 import filters from './filters.js';
 import { startPreloader, stopPreloader } from './preloader.js'
 import { lightboxCloseOnEscape } from './lightbox.js';
@@ -33,6 +34,7 @@ const {
 } = refs;
 
 const api = new Api();
+const genresAppend = new Genres(); 
 export let scrollToMe;
 
 
@@ -61,6 +63,8 @@ trendingPaginationHome.on('afterMove', e => {
   api.page = e.page;
   api.fetchTrendingMoviesForToday()
     .then((movies) => {
+      genresAppend.addGenres(movies.results);
+      genresAppend.changeDate(movies.results); 
       headerSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(movies);
       stopPreloader()
@@ -89,6 +93,8 @@ searchQueryPagination.on('beforeMove', (e) => {
   api.fetchSearchMovies()
     .then((movies) => {
       mainSection.scrollIntoView({ behavior: "smooth" });
+      genresAppend.addGenres(movies.results);
+      genresAppend.changeDate(movies.results); 
       appendMovieCardMarkup(movies);
       stopPreloader()
     })
