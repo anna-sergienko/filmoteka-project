@@ -27,6 +27,9 @@ const {
   mainErrorWatched,
   lightboxContainer,
   lightboxHandlebars,
+  lightboxAddToWatchedBtn,
+  lightbox
+
 } = refs;
 
 const api = new Api();
@@ -46,7 +49,6 @@ mainList.addEventListener('click', lightboxOpen)
 
 onLoadTrendingMoviesForToday()
 
-
 //----- переключатель класов -----
 function switchClass(refsRemove, refsAdd, cl) {
   refsRemove.classList.remove(cl);
@@ -62,7 +64,6 @@ trendingPaginationHome.on('afterMove', e => {
       headerSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(movies);
       stopPreloader()
-
     })
     .catch(err => console.log(err))
 });
@@ -90,7 +91,6 @@ searchQueryPagination.on('beforeMove', (e) => {
       mainSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(movies);
       stopPreloader()
-
     })
     .catch(err => console.log(err))
 });
@@ -99,32 +99,32 @@ searchQueryPagination.on('beforeMove', (e) => {
 function onSearchMovies(event) {
   startPreloader()
   api.query = headerFormInput.value.trim();
-  api.resetPage(); 
+  api.resetPage();
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-    stopPreloader();
     headerError.classList.remove('hidden', 'none');
     setTimeout(() => {
       headerError.classList.add('hidden', 'none');
     }, 3000);
-    return; 
+    stopPreloader()
+    return;
   }
 
   if (api.query !== '') {
     api.fetchSearchMovies()
       .then((movies) => {
         if (movies.results.length < 1) {
-          stopPreloader();
           headerError.classList.remove('hidden', 'none');
           setTimeout(() => {
             headerError.classList.add('hidden', 'none');
           }, 3000);
           cleanInput()
+          stopPreloader()
           return;
         };
         if (movies.results.length > 1) {
-          stopPreloader()
+
           headerError.classList.add('hidden', 'none');
           clearMovieCardContainer();
           appendMovieCardMarkup(movies.results);
@@ -134,6 +134,7 @@ function onSearchMovies(event) {
           searchQueryPagination.setTotalItems(movies.total_results);
           searchQueryPagination.movePageTo(1);
           console.log(movies);
+          stopPreloader()
         }
 
       })
@@ -147,13 +148,14 @@ function cleanInput() {
 }
 
 // ----- функция для разметки картки фильма  -----
-async function appendMovieCardMarkup(movies) {
+export async function appendMovieCardMarkup(movies) {
   const markup = await filmCard(movies.results);
   cardList.innerHTML = markup;
 }
 
 // ----- функция для очистки разметки картки фильма -----
-function clearMovieCardContainer() {
+
+export function clearMovieCardContainer() {
      cardList.innerHTML = '';
 }
 
@@ -163,7 +165,7 @@ function clearMainList() {
 }
 
 // ----- пустой список Watched -----
-function emptyWatchedListError() {
+export function emptyWatchedListError() {
   clearMainList();
   mainSection.classList.add('main-error');
   mainErrorWatched.classList.remove('none');
@@ -171,7 +173,7 @@ function emptyWatchedListError() {
 }
 
 // ----- пустой список Queue -----
-function emptyQueueListError() {
+export function emptyQueueListError() {
   clearMainList();
   mainSection.classList.add('main-error');
   mainErrorQueue.classList.remove('none');
@@ -186,16 +188,14 @@ export function clearEmptyError() {
 }
 
 // ---- открыть lightbox по нажатию на картинку -----
-function lightboxOpen(e) {
+async function lightboxOpen(e) {
   startPreloader()
   let movieId = e.target.dataset.id   // проверка data-id
   api.idQuery = movieId   //запрос на api по фильму             
-  api.fetchMovieDetails().then((movie) => {
+  await api.fetchMovieDetails().then((movie) => {
     console.log(movie)    // консолит ответ с api
-
-    stopPreloader()
     lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie)) // рендерит ответ с api по шаблону lightboxTpl
-
+    stopPreloader()
   })
   if (e.target.classList.contains('lightbox-open')) {
     lightbox.classList.remove('none')
@@ -203,10 +203,14 @@ function lightboxOpen(e) {
     setTimeout(() => {
       lightboxContainer.classList.remove('modal__hidden')
     }, 50)
-
     window.addEventListener('keydown', lightboxCloseOnEscape);
+    // lightboxAddToWatchedBtn.addEventListener("click", () => {
+    //   console.log("click");
+    // });
   }
   return;
 }
+
+
 
 
