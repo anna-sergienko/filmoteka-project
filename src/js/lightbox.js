@@ -19,6 +19,13 @@ lightbox.addEventListener("click", lightboxCloseOnBackdrop);
 
 
 
+lightboxCloseBtn.addEventListener('click', lightboxClose)
+lightbox.addEventListener("click", lightboxCloseOnBackdrop)
+lightbox.addEventListener("click", click)
+// lightboxAddToWatchedBtn.addEventListener("click", click)
+// lightboxAddToWatchedBtn.addEventListener("click", onWatchedBtnClick)
+
+
 // ----- закрыть lightbox -----
 function lightboxClose() {
   lightboxContainer.classList.add('modal__hidden')
@@ -42,6 +49,18 @@ export function lightboxCloseOnEscape(e) {
   if (e.code === 'Escape') {
     lightboxClose();
   };
+}
+
+// ----- делигатор ----- 
+function click(e) {
+  // console.log(e.currentTarget);
+  console.log(e.target);
+  if (e.target.classList.contains('lightbox-add-to-watched-btn-js')) {
+    console.log('lightbox: add to watched');
+  }
+  if (e.target.classList.contains('lightbox-add-to-queue-btn-js')) {
+    console.log('lightbox: add to queue');
+  }
 }
 
 

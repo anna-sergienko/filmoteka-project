@@ -1,0 +1,52 @@
+.totop {
+    
+    &__button {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    border: 1px solid $fc-main;
+
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+
+    background: url(../images/icons/arrow-right.svg) no-repeat 50% 50%;
+   
+    transform: rotate(90deg);
+    transition: all $speed $cubic-bezier;
+
+    @include for-phone {
+        bottom: 110px;
+        right: 30px;
+    } 
+
+    @include for-tablet {
+        bottom: 85px;
+        right: 30px;
+    } 
+
+    @include for-desktop {
+        bottom: 90px;
+        right: 100px;
+    } 
+
+    &:hover , &:focus {
+        background-color: $fc-accent;
+        // stroke: $fc-secondary;
+        border: none;
+        cursor: pointer;
+    }
+}
+  
+    &__button.show {
+        opacity: 1;
+        visibility: visible;          
+    }
+}

@@ -1,7 +1,7 @@
 {{#if poster_path}}
 <img class="movie-info__img" src="https://image.tmdb.org/t/p/w500/{{poster_path}}" alt="{{original_title}}">
 {{else}}
-<img class="movie-info__img"  src="https://cinemaone.net/images/movie_placeholder.png" alt='placeholder' />
+<img class="movie-info__img" src="https://cinemaone.net/images/movie_placeholder.png" alt='placeholder' />
 {{/if}}
 <div class="movie-info__data">
     <h1 class="movie-info__title">{{original_title}}</h1>
@@ -30,15 +30,11 @@
     <h2 class="movie-info__about">about</h2>
     <p class="movie-info__text">{{overview}}</p>
     <div class="movie-info__buttons-wrapper">
-        {{#if isWatched}} 
-        <button class="movie-info__button-add-to-watched lightbox-add-to-watched-btn-js" data-id="{{id}}">remove from watched</button>
-        {{else}}
-       <button class="movie-info__button-add-to-watched lightbox-add-to-watched-btn-js" data-id="{{id}}">add to watched</button>
-         {{/if}} 
-        {{#if isQueue}} 
-       <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">remove from queue</button>
-        {{else}} 
-        <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">add to queue</button>
-       {{/if}}
+
+        <button class="movie-info__button-add-to-watched  btn lightbox-add-to-watched-btn-js" data-id="{{id}}">add to
+            watched</button>
+        <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">add to
+            queue</button>
+
     </div>
 </div>
