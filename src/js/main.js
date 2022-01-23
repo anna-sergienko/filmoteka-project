@@ -29,6 +29,7 @@ const {
   lightboxHandlebars,
   lightboxAddToWatchedBtn,
   lightbox
+
 } = refs;
 
 const api = new Api();
@@ -152,14 +153,15 @@ function cleanInput() {
 }
 
 // ----- функция для разметки картки фильма  -----
-async function appendMovieCardMarkup(movies) {
+export async function appendMovieCardMarkup(movies) {
   const markup = await filmCard(movies.results);
   cardList.innerHTML = markup;
 }
 
 // ----- функция для очистки разметки картки фильма -----
-function clearMovieCardContainer() {
-  cardList.innerHTML = '';
+
+export function clearMovieCardContainer() {
+     cardList.innerHTML = '';
 }
 
 // ----- очищает список -----
@@ -168,7 +170,7 @@ function clearMainList() {
 }
 
 // ----- пустой список Watched -----
-function emptyWatchedListError() {
+export function emptyWatchedListError() {
   clearMainList();
   mainSection.classList.add('main-error');
   mainErrorWatched.classList.remove('none');
@@ -176,7 +178,7 @@ function emptyWatchedListError() {
 }
 
 // ----- пустой список Queue -----
-function emptyQueueListError() {
+export function emptyQueueListError() {
   clearMainList();
   mainSection.classList.add('main-error');
   mainErrorQueue.classList.remove('none');
@@ -207,6 +209,9 @@ async function lightboxOpen(e) {
       lightboxContainer.classList.remove('modal__hidden')
     }, 50)
     window.addEventListener('keydown', lightboxCloseOnEscape);
+    // lightboxAddToWatchedBtn.addEventListener("click", () => {
+    //   console.log("click");
+    // });
   }
   return;
 }

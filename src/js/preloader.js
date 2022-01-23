@@ -15,7 +15,7 @@ function startPreloader() {
     preloader.classList.remove('preloader--hide')
     preloader.classList.remove('none')
     mainSection.classList.add('main__preloader')
-    console.log('preloader started');
+    // console.log('preloader started');
 }
 
 

@@ -1,10 +1,22 @@
 import refs from '../js/refs.js';
 import { scrollToMe } from './main.js';
 import api from './api.js';
+// import filmCard from '../templates/movie-card.hbs';
+// import lightboxTpl from '../templates/lightboxTpl.hbs';
+// import LocalStorage from "./local-storage";
 
 
 
-const { lightbox, lightboxHandlebars, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer, lightboxAddToWatchedBtn } = refs;
+const { lightbox, lightboxHandlebars, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer, lightboxAddToWatchedBtn, lightboxAddToQueueBtn  } = refs;
+
+
+
+
+lightboxCloseBtn.addEventListener('click', lightboxClose);
+lightbox.addEventListener("click", lightboxCloseOnBackdrop);
+
+
+
 
 
 lightboxCloseBtn.addEventListener('click', lightboxClose)
@@ -12,6 +24,7 @@ lightbox.addEventListener("click", lightboxCloseOnBackdrop)
 lightbox.addEventListener("click", click)
 // lightboxAddToWatchedBtn.addEventListener("click", click)
 // lightboxAddToWatchedBtn.addEventListener("click", onWatchedBtnClick)
+
 
 // ----- закрыть lightbox -----
 function lightboxClose() {
@@ -55,32 +68,20 @@ function click(e) {
 
 
 
-function onWatchedBtnClick(e) {
-  const id = e.target.dataset.id;
-  e.preventDefault();
 
-  const watchedFilms = getWatchedMovieList();
-  const currentFilms = window.movies || [];
-  console.log(currentFilms);
 
-  const isFilmExist = watchedFilms.find(item => item.id == id);
 
-  if (isFilmExist) {
-    const newState = watchedFilms.filter(item => item.id != id);
-    localStorage.setItem('watched', JSON.stringify(newState))
-  } else {
-    const findedFilm = currentFilms.find(item => item.id == id);
-    watchedFilms.unshift(findedFilm)
-    localStorage.setItem('watched', JSON.stringify(watchedFilms))
-  }
-}
 
-function getWatchedMovieList() {
-  if (!(localStorage.getItem('watched')) || JSON.parse(localStorage.getItem('watched')).length === 0) {
-    console.log('empty');
-    return [];
-  } else {
-    return JSON.parse(localStorage.getItem('watched'));
-  }
 
-};
+
+
+
+
+
+
+
+
+
+
+
+
