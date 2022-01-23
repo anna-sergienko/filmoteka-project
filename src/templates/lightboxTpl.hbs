@@ -30,9 +30,15 @@
     <h2 class="movie-info__about">about</h2>
     <p class="movie-info__text">{{overview}}</p>
     <div class="movie-info__buttons-wrapper">
-        <button class="movie-info__button-add-to-watched lightbox-add-to-watched-btn-js" data-id="{{id}}">add to
-            watched</button>
-        <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">add to
-            queue</button>
+        {{#if isWatched}} 
+        <button class="movie-info__button-add-to-watched lightbox-add-to-watched-btn-js" data-id="{{id}}">remove from watched</button>
+        {{else}}
+       <button class="movie-info__button-add-to-watched lightbox-add-to-watched-btn-js" data-id="{{id}}">add to watched</button>
+         {{/if}} 
+        {{#if isQueue}} 
+       <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">remove from queue</button>
+        {{else}} 
+        <button class="movie-info__button-add-to-queue lightbox-add-to-queue-btn-js" data-id="{{id}}">add to queue</button>
+       {{/if}}
     </div>
 </div>
