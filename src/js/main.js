@@ -46,6 +46,7 @@ headerQueueBtn.addEventListener('click', emptyQueueListError);
 mainList.addEventListener('click', lightboxOpen)
 
 // ----- выполняеться при загруки -----
+
 onLoadTrendingMoviesForToday()
 
 //----- переключатель класов -----
@@ -60,9 +61,8 @@ trendingPaginationHome.on('afterMove', e => {
   api.page = e.page;
   api.fetchTrendingMoviesForToday()
     .then((movies) => {
-      appendMovieCardMarkup(movies);
       headerSection.scrollIntoView({ behavior: "smooth" });
-
+      appendMovieCardMarkup(movies);
       stopPreloader()
     })
     .catch(err => console.log(err))
@@ -74,7 +74,6 @@ export default function onLoadTrendingMoviesForToday() {
   api.fetchTrendingMoviesForToday().then(movies => {
     clearMovieCardContainer();
     appendMovieCardMarkup(movies);
-
     switchClass(paginationTrending, paginationSearch, 'visually-hidden');
     trendingPaginationHome.setTotalItems(movies.total_results);
     trendingPaginationHome.movePageTo(1);
@@ -89,9 +88,8 @@ searchQueryPagination.on('beforeMove', (e) => {
   api.page = e.page;
   api.fetchSearchMovies()
     .then((movies) => {
-      appendMovieCardMarkup(movies);
       mainSection.scrollIntoView({ behavior: "smooth" });
-
+      appendMovieCardMarkup(movies);
       stopPreloader()
     })
     .catch(err => console.log(err))
@@ -105,8 +103,6 @@ function onSearchMovies(event) {
   event.preventDefault();
   if (api.query === '') {
     event.preventDefault();
-
-
     headerError.classList.remove('hidden', 'none');
     setTimeout(() => {
       headerError.classList.add('hidden', 'none');
@@ -132,7 +128,6 @@ function onSearchMovies(event) {
           headerError.classList.add('hidden', 'none');
           clearMovieCardContainer();
           appendMovieCardMarkup(movies.results);
-
           cleanInput()
 
           switchClass(paginationSearch, paginationTrending, 'visually-hidden');
