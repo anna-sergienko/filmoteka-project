@@ -8,6 +8,14 @@ const options1 = {
   itemsPerPage: 20,
   visiblePages: 5,
   centerAlign: true,
+  template: {
+         
+         disabledMoveButton:
+             '<span class="tui-page-btn tui-{{type}}">' +
+                 '<span class="tui-ico-{{type}}">{{type}}</span>' +
+             '</span>'
+  }
+  
 };
 
 const options2 = {
@@ -15,6 +23,13 @@ const options2 = {
   itemsPerPage: 20,
   visiblePages: 5,
   centerAlign: true,
+  template: {
+         
+         disabledMoveButton:
+             '<span class="tui-page-btn tui-{{type}}">' +
+                 '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>'
+     }
 }
 
 const searchQueryPagination = new Pagination(paginationSearch, options1);
