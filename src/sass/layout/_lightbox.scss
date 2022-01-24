@@ -310,3 +310,18 @@
     }
   }
 }
+body.dark-theme {
+  & .lightbox__wrapper {
+    background-color: #333333;
+  }
+
+  & .movie-info {
+    .movie-info__title,
+    .movie-info__about,
+    .movie-info__text,
+    .movie-info__value--title,
+    .movie-info__value {
+      color: #ffffff;
+    }
+  }
+}

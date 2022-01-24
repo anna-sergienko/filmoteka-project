@@ -14,6 +14,8 @@ export default {
     headerFormInput: document.querySelector('.header-form-input-js'),
     headerFormSubmitBtn: document.querySelector('.header-form-submit-btn-js'),
     headerError: document.querySelector('.header-error-js'),
+    checkboxEl: document.querySelector('.theme-switch__toggle'),
+    bodyEl: document.querySelector('body'),
     // ---- header для смены вида ----
     headerSection: document.querySelector('.header-section-js'),
     headerLnWrapper: document.querySelector('.header-ln-wrapper-js'),

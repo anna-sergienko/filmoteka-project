@@ -18,5 +18,5 @@ import './js/genres';
 import './js/library';
 import './js/local-storage';
 import './js/lightbox';
-
+import './js/theme-switch';
 //build1
