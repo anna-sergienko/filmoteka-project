@@ -3,6 +3,7 @@ import lightboxTpl from '../templates/lightboxTpl.hbs';
 import refs from './refs.js';
 import Api from './api.js';
 import Genres from './genres.js'
+import localStorage from './local-storage.js'
 import filters from './filters.js';
 import { startPreloader, stopPreloader } from './preloader.js'
 import { lightboxCloseOnEscape } from './lightbox.js';
@@ -34,7 +35,7 @@ const {
 } = refs;
 
 const api = new Api();
-const genresAppend = new Genres(); 
+const genresAppend = new Genres();
 export let scrollToMe;
 
 
@@ -42,8 +43,8 @@ headerHome.addEventListener('click', onLoadTrendingMoviesForToday);
 headerLogo.addEventListener('click', onLoadTrendingMoviesForToday);
 headerFormSubmitBtn.addEventListener('click', onSearchMovies);
 
-headerWatchedBtn.addEventListener('click', emptyWatchedListError);
-headerQueueBtn.addEventListener('click', emptyQueueListError);
+// headerWatchedBtn.addEventListener('click', emptyWatchedListError);
+// headerQueueBtn.addEventListener('click', emptyQueueListError);
 // headerHome.addEventListener('click', headerHomeClearError);
 mainList.addEventListener('click', lightboxOpen)
 
@@ -64,7 +65,7 @@ trendingPaginationHome.on('afterMove', e => {
   api.fetchTrendingMoviesForToday()
     .then((movies) => {
       genresAppend.addGenres(movies.results);
-      genresAppend.changeDate(movies.results); 
+      genresAppend.changeDate(movies.results);
       headerSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(movies);
       stopPreloader()
@@ -81,7 +82,7 @@ export default function onLoadTrendingMoviesForToday() {
     switchClass(paginationTrending, paginationSearch, 'visually-hidden');
     trendingPaginationHome.setTotalItems(movies.total_results);
     trendingPaginationHome.movePageTo(1);
-    console.log(movies);
+    // console.log(movies);
     stopPreloader()
   });
 }
@@ -94,7 +95,7 @@ searchQueryPagination.on('beforeMove', (e) => {
     .then((movies) => {
       mainSection.scrollIntoView({ behavior: "smooth" });
       genresAppend.addGenres(movies.results);
-      genresAppend.changeDate(movies.results); 
+      genresAppend.changeDate(movies.results);
       appendMovieCardMarkup(movies);
       stopPreloader()
     })
@@ -156,13 +157,14 @@ function cleanInput() {
 // ----- функция для разметки картки фильма  -----
 export async function appendMovieCardMarkup(movies) {
   const markup = await filmCard(movies.results);
+  // console.log(markup);
   cardList.innerHTML = markup;
 }
 
 // ----- функция для очистки разметки картки фильма -----
 
 export function clearMovieCardContainer() {
-     cardList.innerHTML = '';
+  cardList.innerHTML = '';
 }
 
 // ----- очищает список -----
@@ -199,7 +201,9 @@ async function lightboxOpen(e) {
   let movieId = e.target.dataset.id   // проверка data-id
   api.idQuery = movieId   //запрос на api по фильму             
   await api.fetchMovieDetails().then((movie) => {
-    console.log(movie)    // консолит ответ с api
+    // console.log(movie.id)    // консолит ответ с api
+    localStorage.setItem('currentMovieId', movie.id)
+    // console.log(`in localStorage currentMovieId: ${localStorage.getItem('currentMovieId')}`);
     lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie)) // рендерит ответ с api по шаблону lightboxTpl
     stopPreloader()
   })

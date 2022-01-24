@@ -231,6 +231,8 @@
     }
 
     &__button-add-to-watched {
+
+
         text-transform: uppercase;
         @include font-style(500, 12px, 1.33, $fc-main);
         width: 136px;
@@ -240,6 +242,7 @@
         margin-right: 15px;
         outline: 1px solid $svg-main;
         border-radius: 5px;
+        
 
         @include for-phone {
             width: 112px;
@@ -260,6 +263,10 @@
             color: $fc-secondary;
             outline: 1px solid $btn-accent;
             cursor: pointer;
+        }
+
+        &:after {
+            content: ' test';
         }
     }
 

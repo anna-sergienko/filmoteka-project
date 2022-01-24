@@ -1,5 +1,4 @@
 import axios from "axios";
-import { startPreloader, stopPreloader } from "./preloader.js"
 
 const API_KEY = 'd3c00761eff125b45afbcd52d8235bc7';
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -20,7 +19,7 @@ export default class Api {
         try {
             const response = await axios.get(url);
             const data = response.data;
-            console.log(data)
+            // console.log(data)
 
             return data;
 

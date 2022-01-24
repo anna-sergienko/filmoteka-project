@@ -1,5 +1,5 @@
 export default {
-  setLocalStorage(key, array) {
+  setItem(key, array) {
     try {
       localStorage.setItem(key, JSON.stringify(array));
     } catch (err) {
@@ -7,15 +7,14 @@ export default {
     }
   },
 
-  getLocalStorage(key) {
+  getItem(key) {
     try {
-      const lsData = localStorage.getItem(key);
-      return lsData === null ? undefined : JSON.parse(lsData);
+      const localStorageData = localStorage.getItem(key);
+      return localStorageData === null ? undefined : JSON.parse(localStorageData);
     } catch (err) {
       console.error('Get state error: ', err);
     }
   },
-
 };
 
 
