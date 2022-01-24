@@ -59,5 +59,10 @@ export default {
     lightboxAddToQueueBtn: document.querySelector('.lightbox-add-to-queue-btn-js'),
     lightboxContainer: document.querySelector('.lightbox-container-js'),
     lightboxHandlebars: document.querySelector('.lightbox-tpl-js'),
+    lightboxAddToWatchedBtnUnpressed: document.querySelector('.button-add-to-watched__unpressed'),
+    lightboxAddToWatchedBtnPressed: document.querySelector('.button-add-to-watched__pressed'),
+    lightboxAddToQueueBtnUnpressed: document.querySelector('.button-add-to-queue__unpressed'),
+    lightboxAddToQueueBtnPpressed: document.querySelector('.button-add-to-queue__pressed'),
+    
 
 }

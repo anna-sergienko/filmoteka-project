@@ -7,7 +7,10 @@ import { emptyWatchedListError, emptyQueueListError, clearMovieCardContainer, ap
 import watchedBtn from "./header";
 import QueueBtn from "./header";
 
-const { headerMyLibrary, cardList, headerQueueBtn, headerWatchedBtn, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightbox,  } = refs;
+const { headerMyLibrary, cardList, headerQueueBtn, headerWatchedBtn, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightbox, lightboxAddToWatchedBtnUnpressed,
+lightboxAddToWatchedBtnPressed,
+lightboxAddToQueueBtnUnpressed,
+lightboxAddToQueueBtnPpressed } = refs;
 
 const api = new Api();
 let moviesAddedToWatchedList = []; 
@@ -17,7 +20,7 @@ let userQueueListMarkup = [];
 headerMyLibrary.addEventListener("click", showUserWatchedListMarkup);
 headerWatchedBtn.addEventListener("click", showUserWatchedListMarkup);
 headerQueueBtn.addEventListener("click", showUserQueueListMarkup);
-// lightboxAddToWatchedBtn.addEventListener("click", );
+
 lightbox.addEventListener("click", click)
 
 // ----- делигатор ----- 
@@ -50,6 +53,7 @@ function addMovieToWatchedList() {
     // console.log(typeof moviesAddedToWatchedList[0], typeof movie);
     moviesAddedToWatchedList = moviesAddedToWatchedList.filter(id => id != movie) // фильтрует список от текущего id фильма
     localStorage.setItem('userWatchedList', moviesAddedToWatchedList) // сохраняет скисок фильмов в localStorage с ключом userWatchedList
+
     return
   }
 }
