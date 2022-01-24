@@ -19,6 +19,7 @@ headerQueueBtn.addEventListener("click", showUserQueueListMarkup);
 lightbox.addEventListener("click", click)
 
 renderUserMovieList()
+renderUserQueueList()
 
 // ----- делигатор ----- 
 function click(e) {
