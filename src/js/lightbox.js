@@ -7,7 +7,10 @@ import api from './api.js';
 
 
 
-const { lightbox, lightboxHandlebars, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer, lightboxAddToWatchedBtn, lightboxAddToQueueBtn } = refs;
+const { lightbox, lightboxHandlebars, lightboxOpenLink, lightboxCloseBtn, bodyLightbox, lightboxContainer, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightboxAddToWatchedBtnUnpressed,
+lightboxAddToWatchedBtnPressed,
+lightboxAddToQueueBtnUnpressed,
+lightboxAddToQueueBtnPpressed  } = refs;
 
 
 
