@@ -210,3 +210,8 @@ span.tui-page-btn.tui-prev {
   vertical-align: top;
   background-position: 0px -24px;
 }
+body.dark-theme {
+  & .tui-page-btn {
+    color: #ffffff;
+  }
+}

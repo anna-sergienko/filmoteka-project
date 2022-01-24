@@ -120,7 +120,9 @@
   }
 }
 body.dark-theme {
-  & .card__title {
+  & .card__title,
+  .main-error__watched,
+  .main-error__queue {
     color: #ffffff;
   }
 }
