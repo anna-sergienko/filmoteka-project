@@ -3,7 +3,7 @@ import { clearEmptyError } from './main.js';
 
 const { headerLogo, headerLogoIcon, headerHome, headerMyLibrary, headerWatchedBtn,
     headerQueueBtn, headerFormInput, headerFormSubmitBtn, headerError,
-    headerSection, headerForm, headerLnWrapper, headerNavMyLibrary } = refs;
+    headerSection, headerForm, headerLnWrapper, headerNavMyLibrary, mainList, paginationSearch, paginationTrending } = refs;
 
 export { homePage, myLibrary };
 
@@ -30,7 +30,13 @@ headerQueueBtn.addEventListener('mouseout', removeDefaultBtn)
 
 function homePage(e) {
     e.preventDefault();
+
+
     clearEmptyError();      // убирает сообщения о пустых библиотеках пользователя 
+    mainList.classList.remove('card__list--none') // показывает главный список
+    paginationSearch.classList.remove('tui-pagination--none')
+    paginationTrending.classList.remove('tui-pagination--none')
+    headerForm.classList.remove('form--none')
     headerSection.classList.remove('header--my-library');
     headerForm.classList.remove('hidden')
     headerLnWrapper.classList.remove('ln-wrapper--my-library')
@@ -40,10 +46,15 @@ function homePage(e) {
     headerMyLibrary.classList.remove('nav__link--selected')
     headerQueueBtn.classList.remove('btn--selected')
     headerError.classList.add('hidden', 'none')
+
 }
 
 function myLibrary(e) {
     e.preventDefault();
+
+    paginationSearch.classList.add('tui-pagination--none')
+    paginationTrending.classList.add('tui-pagination--none')
+    headerForm.classList.add('form--none')
     headerSection.classList.add('header--my-library');
     headerForm.classList.add('hidden')
     headerLnWrapper.classList.add('ln-wrapper--my-library')

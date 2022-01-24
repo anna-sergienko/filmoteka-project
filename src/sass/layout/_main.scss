@@ -31,6 +31,9 @@
     @include for-phone {
       @include grid-list(0px);
     }
+    &--none {
+      display: none;
+    }
   }
 
   &__item {

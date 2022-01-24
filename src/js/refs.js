@@ -10,12 +10,12 @@ export default {
     headerMyLibrary: document.querySelector('.header-my-library-js'),
     headerWatchedBtn: document.querySelector('.header-watched-btn-js'),
     headerQueueBtn: document.querySelector('.header-queue-btn-js'),
+    headerForm: document.querySelector('.header-form-js'),
     headerFormInput: document.querySelector('.header-form-input-js'),
     headerFormSubmitBtn: document.querySelector('.header-form-submit-btn-js'),
     headerError: document.querySelector('.header-error-js'),
     // ---- header для смены вида ----
     headerSection: document.querySelector('.header-section-js'),
-    headerForm: document.querySelector('.header-form-js'),
     headerLnWrapper: document.querySelector('.header-ln-wrapper-js'),
     headerNavMyLibrary: document.querySelector('.header-nav-my-library-js'),
     // ---- main ----
@@ -63,6 +63,6 @@ export default {
     lightboxAddToWatchedBtnPressed: document.querySelector('.button-add-to-watched__pressed'),
     lightboxAddToQueueBtnUnpressed: document.querySelector('.button-add-to-queue__unpressed'),
     lightboxAddToQueueBtnPpressed: document.querySelector('.button-add-to-queue__pressed'),
-    
+
 
 }

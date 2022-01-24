@@ -2,22 +2,23 @@ import refs from "./refs";
 import localStorage from './local-storage.js'
 import Api from './api.js';
 import libraryFilmCard from '../templates/libraryTpl.hbs';
-import { emptyWatchedListError, emptyQueueListError, clearMovieCardContainer, appendMovieCardMarkup, clearEmptyError   } from "./main";
+import { emptyWatchedListError, emptyQueueListError, clearMovieCardContainer, appendMovieCardMarkup, clearEmptyError } from "./main";
 import watchedBtn from "./header";
 import QueueBtn from "./header";
 
-const { headerMyLibrary, cardList, headerQueueBtn, headerWatchedBtn, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightbox } = refs;
+const { headerMyLibrary, cardList, headerQueueBtn, headerWatchedBtn, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightbox, mainList } = refs;
 
 const api = new Api();
-let moviesAddedToWatchedList = []; 
-let moviesAddedToQueueList = []; 
-let userWatchedListMarkup = []; 
+let moviesAddedToWatchedList = [];
+let moviesAddedToQueueList = [];
+let userWatchedListMarkup = [];
 let userQueueListMarkup = [];
 headerMyLibrary.addEventListener("click", showUserWatchedListMarkup);
 headerWatchedBtn.addEventListener("click", showUserWatchedListMarkup);
 headerQueueBtn.addEventListener("click", showUserQueueListMarkup);
-
 lightbox.addEventListener("click", click)
+
+renderUserMovieList()
 
 // ----- делигатор ----- 
 function click(e) {
@@ -74,25 +75,42 @@ function addMovieToQueueList() {
 
 
 
+
 function renderUserMovieList() {
   let markupAccumulator = ""
   const userWatchedList = localStorage.getItem('userWatchedList')
   console.log(userWatchedList);
-  
+
   if (userWatchedList.length > 0) {
-    userWatchedList.forEach(function createMarkup(movieId) {
+    userWatchedList.forEach(async function createMarkup(movieId) {
       api.idQuery = movieId
       console.log(api.idQuery);
-      api.fetchMovieDetails().then((movieDetails) => {
+      await api.fetchMovieDetails().then((movieDetails) => {
         console.log(movieDetails);
-        markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails)) 
+        markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;
         console.log(userWatchedListMarkup);
+        // return userWatchedListMarkup
       })
     })
   }
 }
+function showUserWatchedListMarkup() {
+  clearEmptyError()
+  const userWatchedList = localStorage.getItem('userWatchedList')
+  console.log(userWatchedList, typeof userWatchedList);
+  if (userWatchedList === undefined || userWatchedList.length === 0) {
+    emptyWatchedListError()
+  } else {
+    renderUserMovieList()
+    mainList.classList.remove('card__list--none')
+    cardList.innerHTML = ''
+    cardList.innerHTML = userWatchedListMarkup
+    console.log(userWatchedListMarkup);
+  }
+}
+
 
 function renderUserQueueList() {
   let markupAccumulator = ""
@@ -108,26 +126,13 @@ function renderUserQueueList() {
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         console.log(markupAccumulator);
         userQueueListMarkup = markupAccumulator
-        return userQueueListMarkup
+        // return userQueueListMarkup
       })
     })
   }
 }
 
 
-function showUserWatchedListMarkup() {
-  clearEmptyError()
-  const userWatchedList = localStorage.getItem('userWatchedList') 
-  console.log(userWatchedList, typeof userWatchedList);
-  if (userWatchedList === undefined ||  userWatchedList.length === 0) {
-    emptyWatchedListError() 
-  } else {
-    cardList.innerHTML = ''
-    renderUserMovieList()
-    console.log(userWatchedListMarkup);
-    cardList.innerHTML = userWatchedListMarkup
-  }
-}
 
 function showUserQueueListMarkup() {
   clearEmptyError()
@@ -135,7 +140,9 @@ function showUserQueueListMarkup() {
   if (userQueueList === undefined || userQueueList.length === 0) {
     emptyQueueListError()
   } else {
+    mainList.classList.remove('card__list--none')
     cardList.innerHTML = ''
+
     renderUserMovieList()
     cardList.innerHTML = userQueueListMarkup
   }
