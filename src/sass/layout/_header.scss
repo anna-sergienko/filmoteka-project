@@ -195,6 +195,9 @@
     position: relative;
     display: flex;
     justify-content: center;
+    &--none {
+        display: none;
+    }
 
 
     &__input {

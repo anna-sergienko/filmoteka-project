@@ -30,7 +30,7 @@ const {
   lightboxContainer,
   lightboxHandlebars,
   lightboxAddToWatchedBtn,
-  lightbox
+  lightbox,
 
 } = refs;
 
@@ -174,18 +174,18 @@ function clearMainList() {
 
 // ----- пустой список Watched -----
 export function emptyWatchedListError() {
-  clearMainList();
   mainSection.classList.add('main-error');
   mainErrorWatched.classList.remove('none');
   mainErrorQueue.classList.add('none');
+  mainList.classList.add('card__list--none')
 }
 
 // ----- пустой список Queue -----
 export function emptyQueueListError() {
-  clearMainList();
   mainSection.classList.add('main-error');
   mainErrorQueue.classList.remove('none');
   mainErrorWatched.classList.add('none');
+  mainList.classList.add('card__list--none')
 }
 
 // ----- вернуть в нормальный стиль main -----
