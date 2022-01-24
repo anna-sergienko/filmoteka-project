@@ -8,14 +8,14 @@
 @import './base/resets';
 @import './base/dev-tools';
 
-
 @import './sass-utils/mixins';
 @import './sass-utils/variables';
 @import './sass-utils/helpers';
 
-
 @import './components/button';
 @import './components/pagination';
+@import './components/theme-switch-toggle';
+@import './components/theme-switch';
 
 @import './layout/container';
 @import './layout/totopbutton';
@@ -27,7 +27,6 @@
 @import './layout/lightbox';
 @import './layout/footer';
 @import './layout/team';
-
 
 @import './layout/footer';
 @import './layout/lightbox';

@@ -119,7 +119,11 @@
     border-radius: 5px;
   }
 }
-
+body.dark-theme {
+  & .card__title {
+    color: #ffffff;
+  }
+}
 // ----- ошибки или пустые библиотеки -----
 
 .main-error {

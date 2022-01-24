@@ -1,0 +1,20 @@
+body.light-theme {
+  color: #000000;
+}
+
+body.dark-theme {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.dark-theme .theme-switch__icon {
+  fill: #ffffff;
+
+  &:last-child {
+    fill: #ff6b08;
+  }
+}
+
+.dark-theme .theme-switch__marker {
+  background-color: #ffffff;
+}
