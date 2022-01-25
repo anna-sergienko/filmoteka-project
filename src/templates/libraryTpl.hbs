@@ -10,7 +10,9 @@
             <p class='card__title lightbox-open'  data-id='{{id}}'>{{original_title}}</p>
             <p class='card__text lightbox-open'  data-id='{{id}}'>
                 <span class='card__text--genre lightbox-open'  data-id='{{id}}'> 
-                    {{#each genres}}{{this.name}}{{/each}}   
+                    {{#each genres}}
+                        {{this.name }}, 
+                    {{/each}} Other
                 </span>
                
                  {{#if genres}}                   
