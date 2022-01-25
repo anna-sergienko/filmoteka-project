@@ -104,7 +104,7 @@
     }
 
     &-svg {
-      fill: $fc-main;
+      //fill: $fc-main;
       stroke: $fc-main;
       width: 100%;
       height: 100%;
@@ -314,13 +314,20 @@ body.dark-theme {
   & .lightbox__wrapper {
     background-color: #333333;
   }
+  & .lightbox__close-btn-svg {
+    stroke: #ffffff;
+  }
 
   & .movie-info {
     .movie-info__title,
     .movie-info__about,
     .movie-info__text,
     .movie-info__value--title,
-    .movie-info__value {
+    .movie-info__value,
+    .movie-info__button-add-to-watched__pressed,
+    .movie-info__button-add-to-watched__unpressed,
+    .movie-info__button-add-to-queue__pressed,
+    .movie-info__button-add-to-queue__unpressed {
       color: #ffffff;
     }
   }

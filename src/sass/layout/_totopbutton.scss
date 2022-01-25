@@ -1,67 +1,69 @@
 .totop {
+  &__button {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    stroke: $fc-main;
 
-    &__button {
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        stroke: $fc-main;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    border: 1px solid $fc-main;
 
-        padding: 0;
-        margin: 0;
-        border-radius: 5px;
-        border: 1px solid $fc-main;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
 
-        opacity: 0;
-        visibility: hidden;
-        z-index: 1000;
+    transform: rotate(-90deg);
+    transition: all $speed $cubic-bezier;
 
-
-        transform: rotate(-90deg);
-        transition: all $speed $cubic-bezier;
-
-        @include for-phone {
-            bottom: 203px;
-            right: 30px;
-            width: 38px;
-            height: 38px;
-            // border-color: ;
-        }
-
-        @include for-tablet {
-            bottom: 139px;
-            right: 30px;
-        }
-
-        @include for-desktop {
-            bottom: 139px;
-            right: 100px;
-        }
-
-        &:hover,
-        &:focus {
-            background-color: $fc-accent;
-            stroke: $fc-secondary;
-            border: none;
-            cursor: pointer;
-
-        }
+    @include for-phone {
+      bottom: 203px;
+      right: 30px;
+      width: 38px;
+      height: 38px;
+      // border-color: ;
     }
 
-    &__button.show {
-        opacity: 0.5;
-        visibility: visible;
-
-        &:hover,
-        &:focus {
-            opacity: 1;
-        }
+    @include for-tablet {
+      bottom: 139px;
+      right: 30px;
     }
 
-    &__button-svg {
-        height: 90%;
-        width: auto;
+    @include for-desktop {
+      bottom: 139px;
+      right: 100px;
     }
+
+    &:hover,
+    &:focus {
+      background-color: $fc-accent;
+      stroke: $fc-secondary;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  &__button.show {
+    opacity: 0.5;
+    visibility: visible;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &__button-svg {
+    height: 90%;
+    width: auto;
+  }
+}
+body.dark-theme {
+  & .totop__button-svg {
+    stroke: #ffffff;
+  }
 }
