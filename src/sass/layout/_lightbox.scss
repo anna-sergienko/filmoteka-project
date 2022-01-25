@@ -17,8 +17,8 @@
   overflow-y: auto;
   opacity: 1;
 
-  @include for-phone {
-  }
+
+  @include for-phone {}
 
   &__container {
     position: absolute;
@@ -228,9 +228,11 @@
     text-transform: uppercase;
     @include font-style(500, 12px, 1.33, $fc-main);
     width: 136px;
+    height: 44px;
+
     background: transparent;
     border: none;
-    padding: 13px 0;
+    // padding: 13px 0;
     margin-right: 15px;
     outline: 1px solid $svg-main;
     border-radius: 5px;
@@ -272,12 +274,15 @@
   &__button-add-to-queue {
     text-transform: uppercase;
     @include font-style(500, 12px, 1.33, $fc-main);
+    height: 44px;
 
     background: transparent;
     border: none;
-    padding: 13px 0;
+
     outline: 1px solid $svg-main;
     border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     @include for-phone {
       width: 112px;
@@ -299,26 +304,31 @@
       cursor: pointer;
     }
   }
+
   &__button-add-to-queue__unpressed {
     &:after {
       content: 'ADD TO QUEUE';
     }
   }
+
   &__button-add-to-queue__pressed {
     &:after {
       content: 'REMOVE FROM QUEUE';
     }
   }
 }
+
 body.dark-theme {
   & .lightbox__wrapper {
     background-color: #333333;
   }
+
   & .lightbox__close-btn-svg {
     stroke: #ffffff;
   }
 
   & .movie-info {
+
     .movie-info__title,
     .movie-info__about,
     .movie-info__text,

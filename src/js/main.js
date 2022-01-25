@@ -198,13 +198,34 @@ export function clearEmptyError() {
 // ---- открыть lightbox по нажатию на картинку -----
 async function lightboxOpen(e) {
   startPreloader()
+  let lightboxHTML = {};
+  let watchedlog = {};
+  let queuelog = {};
   let movieId = e.target.dataset.id   // проверка data-id
   api.idQuery = movieId   //запрос на api по фильму             
   await api.fetchMovieDetails().then((movie) => {
-    // console.log(movie.id)    // консолит ответ с api
     localStorage.setItem('currentMovieId', movie.id)
+    // console.log(movie);
+    // let includes = ;
+    // console.log(includes);
+    lightboxHTML = movie
+    if (!(localStorage.getItem('userWatchedList') === undefined) && localStorage.getItem('userWatchedList').includes(localStorage.getItem('currentMovieId'))) {
+      let watchedState = { watched: true }
+      watchedlog = { ...watchedState, ...lightboxHTML }
+      // console.log(watchedlog);
+      lightboxHTML = watchedlog
+    }
+    if (!(localStorage.getItem('userQueueList') === undefined) && localStorage.getItem('userQueueList').includes(localStorage.getItem('currentMovieId'))) {
+      let queueState = { queue: true }
+      queuelog = { ...queueState, ...lightboxHTML }
+      // console.log(queuelog);
+      lightboxHTML = queuelog
+      // lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(watchedlog)) // рендерит ответ с api по шаблону lightboxTpl
+    }
+    // && (localStorage.getItem('userWatchedList')).includes(localStorage.getItem('currentMovieId')))
+
     // console.log(`in localStorage currentMovieId: ${localStorage.getItem('currentMovieId')}`);
-    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(movie)) // рендерит ответ с api по шаблону lightboxTpl
+    lightboxHandlebars.insertAdjacentHTML('afterbegin', lightboxTpl(lightboxHTML)) // рендерит ответ с api по шаблону lightboxTpl
     stopPreloader()
   })
   if (e.target.classList.contains('lightbox-open')) {
