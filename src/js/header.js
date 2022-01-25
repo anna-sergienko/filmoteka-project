@@ -30,7 +30,8 @@ headerQueueBtn.addEventListener('mouseout', removeDefaultBtn)
 
 function homePage(e) {
     e.preventDefault();
-
+    headerQueueBtn.blur()
+    headerWatchedBtn.blur()
 
     clearEmptyError();      // убирает сообщения о пустых библиотеках пользователя 
     mainList.classList.remove('card__list--none') // показывает главный список
