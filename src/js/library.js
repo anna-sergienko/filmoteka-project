@@ -145,7 +145,7 @@ function renderUserMovieList() {
   let markupAccumulator = ""
   // console.log('step 2');
   const userWatchedList = localStorage.getItem('userWatchedList')
-  // console.log(userWatchedList);
+   // console.log(userWatchedList);
   if (userWatchedList === undefined || userWatchedList.length === 0) {
     if (headerWatchedBtn.classList.contains('btn--selected')) {
       // console.log('empty');
@@ -160,7 +160,18 @@ function renderUserMovieList() {
       api.idQuery = movieId
       // console.log(api.idQuery);
       await api.fetchMovieDetails().then((movieDetails) => {
-        // console.log(movieDetails);
+        let genAr = movieDetails.genres; 
+          if (genAr.length <= 2) {
+              genAr === genAr
+          }
+          if (genAr.length === 3) {
+          genAr === genAr.splice(2, 1) 
+          }
+          if (genAr.length === 4) {
+          genAr === genAr.splice(2, 2)
+          }
+          console.log(genAr)
+        
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         // console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;

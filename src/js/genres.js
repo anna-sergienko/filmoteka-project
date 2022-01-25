@@ -38,7 +38,7 @@ export default class Genres {
         return (genreName);                           // імена жанрів
       });
     });
-     console.log(genresNameArray)
+     /* console.log(genresNameArray) */
     const genresNameForMovie = genresNameArray.map(arrayNamesGenres => {  // масив з іменами жанрів
        /* console.log(arrayNamesGenres)  */
       if (arrayNamesGenres.length === 0) {            // якщо немає інформації про жанри
@@ -65,35 +65,6 @@ export default class Genres {
       /* console.log(elm.genre_ids)  */            // імена жанрів з Other, наприклад: Thriller,  Horror,  Other
       index += 1;
     });
-  }
-
-  addGenresInDetails(movieDetails) {
-    for (const key in movieDetails) {
-          let arrayGenres = movieDetails.genres;
-          /*  console.log(key)  */
-          console.log(arrayGenres)             //окремі масиви жанрів
-        
-          let genresArrayName = arrayGenres.map(elm => {
-            /* console.log(elm.name)    */          //імена жанрів
-            let nameObj = elm.name
-            return (nameObj);
-          });
-
-          const genresNameDetails = genresArrayName.forEach(genre => {
-            
-            /* console.log(genre)   */                       //імена жанрів з Other
-            if (genresArrayName.length === 2) {
-              console.log(`${genresArrayName[0]},  ${genresArrayName[1]}`)
-              return `${genresArrayName[0]},  ${genresArrayName[1]}`;
-            }
-
-            if (genresArrayName.length > 2) {
-              console.log(`${genresArrayName[0]},  ${genresArrayName[1]},  Other`)
-              return `${genresArrayName[0]},  ${genresArrayName[1]},  Other`;
-            }
-          })
-          
-        }
   }
 
   changeDate(date) {                                // зміна дати у картках фільму
