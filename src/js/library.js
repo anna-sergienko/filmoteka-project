@@ -25,14 +25,33 @@ renderUserQueueList()
 function click(e) {
   // console.log(e.target);
   if (e.target.classList.contains('lightbox-add-to-watched-btn-js')) {
+
     // console.log('add to watched button pressed');
     addMovieToWatchedList()
     renderUserMovieList()
+    if ((localStorage.getItem('userWatchedList')).includes(localStorage.getItem('currentMovieId'))) {
+      // console.log('yes in watchedList');
+      e.target.classList.add('movie-info__button-add-to-watched__pressed')
+      e.target.classList.remove('movie-info__button-add-to-watched__unpressed')
+    } else {
+      // console.log('not in watchedList');
+      e.target.classList.add('movie-info__button-add-to-watched__unpressed')
+      e.target.classList.remove('movie-info__button-add-to-watched__pressed')
+    }
   }
   if (e.target.classList.contains('lightbox-add-to-queue-btn-js')) {
     // console.log('lightbox: add to queue');
     addMovieToQueueList()
     renderUserQueueList()
+    if ((localStorage.getItem('userQueueList')).includes(localStorage.getItem('currentMovieId'))) {
+      // console.log('yes in queueList');
+      e.target.classList.add('movie-info__button-add-to-queue__pressed')
+      e.target.classList.remove('movie-info__button-add-to-queue__unpressed')
+    } else {
+      // console.log('not in queueList');
+      e.target.classList.add('movie-info__button-add-to-queue__unpressed')
+      e.target.classList.remove('movie-info__button-add-to-queue__pressed')
+    }
   }
 }
 
@@ -47,6 +66,7 @@ function addMovieToQueueList() {
     // console.log(moviesAddedToQueueList);
   }
   if (!moviesAddedToQueueList.includes(movie)) {
+    // lightboxQueueBtnTextChange()
     moviesAddedToQueueList.push(movie) // добавляет в список фильмов id фильма
     localStorage.setItem('userQueueList', moviesAddedToQueueList) // сохраняет скисок фильмов в localStorage с ключом userQueueList
     return
@@ -54,7 +74,7 @@ function addMovieToQueueList() {
     // console.log(typeof moviesAddedToQueueList[0], typeof movie);
     moviesAddedToQueueList = moviesAddedToQueueList.filter(id => id != movie) // фильтрует список от текущего id фильма
     localStorage.setItem('userQueueList', moviesAddedToQueueList) // сохраняет скисок фильмов в localStorage с ключом userQueueList
-    console.log('im here');
+    // console.log('im here');
     return
   }
 }
@@ -62,8 +82,8 @@ function addMovieToQueueList() {
 function renderUserQueueList() {
   let markupAccumulator = ""
   const userQueueList = localStorage.getItem('userQueueList')
-  console.log('step 2');
-  console.log(userQueueListMarkup);
+  // console.log('step 2');
+  // console.log(userQueueListMarkup);
   if (userQueueList === undefined || userQueueList.length === 0) {
     if (headerQueueBtn.classList.contains('btn--selected')) {
       cardList.innerHTML = ''
@@ -111,6 +131,7 @@ function addMovieToWatchedList() {
     moviesAddedToWatchedList = []; // если нет задать пустой массив
   }
   if (!moviesAddedToWatchedList.includes(movie)) {
+    // lightboxWatchedBtnTextChange()
     moviesAddedToWatchedList.push(movie) // добавляет в список фильмов id фильма
     localStorage.setItem('userWatchedList', moviesAddedToWatchedList) // сохраняет скисок фильмов в localStorage с ключом userWatchedList
     return
@@ -171,6 +192,23 @@ function renderUserMovieList() {
   }
 }
 
+// export function lightboxWatchedBtnTextChange() {
+//   if ((localStorage.getItem('userWatchedList')).includes(localStorage.getItem('currentMovieId'))) {
+//     console.log('yes in watchedList');
+//     console.log();
+//     lightboxAddToWatchedBtn.classList.toggle('movie-info__button-add-to-watched__pressed')
+//     return
+//   }
+//   console.log('not in watchedList');
+// }
+
+// export function lightboxQueueBtnTextChange() {
+//   if ((localStorage.getItem('userQueueList')).includes(localStorage.getItem('currentMovieId'))) {
+//     // console.log('yes in queueList');
+//     return
+//   }
+//   // console.log('not in queueList');
+// }
 
 
 
