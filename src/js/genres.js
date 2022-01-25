@@ -1,4 +1,3 @@
-
 export default class Genres {
   constructor() {
     this.genresName = [
@@ -26,43 +25,78 @@ export default class Genres {
 
   addGenres(filmGenres) {
     const genresIdsArray = filmGenres.map(film => {
-      return film.genre_ids;
+      /*  console.log(film)       */                         // об'єкти фільмів з назвами жанрів
+      return film.genre_ids;                          // масиви жанрів
     });
 
     const genresNameArray = genresIdsArray.map(elm => {
-      return elm.map(id => {
+     /*  console.log(elm)  */
+      return elm.map(id => {                          // Id жанрів
         const genreObj = this.genresName.find(gen => gen.id === id);
         const genreName = id = genreObj.name;
-        return (genreName);
+         /* console.log(genreName)  */
+        return (genreName);                           // імена жанрів
       });
     });
-
-    const genresNameForMovie = genresNameArray.map(ArrNames => {
-      if (ArrNames.length === 0) {
-        return (ArrNames = 'No genre information');
+     console.log(genresNameArray)
+    const genresNameForMovie = genresNameArray.map(arrayNamesGenres => {  // масив з іменами жанрів
+       /* console.log(arrayNamesGenres)  */
+      if (arrayNamesGenres.length === 0) {            // якщо немає інформації про жанри
+        return (arrayNamesGenres = 'No genre information');
       }
 
-      if (ArrNames.length === 1) {
-        return ArrNames;
+      if (arrayNamesGenres.length === 1) {            // якщо один жанр, запиши його
+        return arrayNamesGenres;
       }
 
-      if (ArrNames.length === 2) {
-        return `${ArrNames[0]},  ${ArrNames[1]}`;
+      if (arrayNamesGenres.length === 2) {           // якщо два жанри, запиши їх
+        return `${arrayNamesGenres[0]},  ${arrayNamesGenres[1]}`;
       }
 
-      if (ArrNames.length > 2) {
-        return `${ArrNames[0]},  ${ArrNames[1]},  Other`;
+      if (arrayNamesGenres.length > 2) {             // якщо три жанри і більше, запиши два жанри і Other
+        return `${arrayNamesGenres[0]},  ${arrayNamesGenres[1]},  Other`;
       }
     });
 
     let index = 0;
     filmGenres.forEach(elm => {
+      /* console.log(elm)  */                      // фільм з заміненими жанрами
       elm.genre_ids = genresNameForMovie[index];
+      /* console.log(elm.genre_ids)  */            // імена жанрів з Other, наприклад: Thriller,  Horror,  Other
       index += 1;
     });
   }
 
-  changeDate(date) {
+  addGenresInDetails(movieDetails) {
+    for (const key in movieDetails) {
+          let arrayGenres = movieDetails.genres;
+          /*  console.log(key)  */
+          console.log(arrayGenres)             //окремі масиви жанрів
+        
+          let genresArrayName = arrayGenres.map(elm => {
+            /* console.log(elm.name)    */          //імена жанрів
+            let nameObj = elm.name
+            return (nameObj);
+          });
+
+          const genresNameDetails = genresArrayName.forEach(genre => {
+            
+            /* console.log(genre)   */                       //імена жанрів з Other
+            if (genresArrayName.length === 2) {
+              console.log(`${genresArrayName[0]},  ${genresArrayName[1]}`)
+              return `${genresArrayName[0]},  ${genresArrayName[1]}`;
+            }
+
+            if (genresArrayName.length > 2) {
+              console.log(`${genresArrayName[0]},  ${genresArrayName[1]},  Other`)
+              return `${genresArrayName[0]},  ${genresArrayName[1]},  Other`;
+            }
+          })
+          
+        }
+  }
+
+  changeDate(date) {                                // зміна дати у картках фільму
     date.forEach(elm => {
       if (elm.release_date || null) {
         elm.release_date = elm.release_date.slice(0, 4);
@@ -79,3 +113,4 @@ export default class Genres {
     });
   }
 }
+

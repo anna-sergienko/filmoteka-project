@@ -5,10 +5,12 @@ import libraryFilmCard from '../templates/libraryTpl.hbs';
 import { emptyWatchedListError, emptyQueueListError, clearMovieCardContainer, appendMovieCardMarkup, clearEmptyError } from "./main";
 import watchedBtn from "./header";
 import QueueBtn from "./header";
+import Genres from './genres.js'
 
 const { headerMyLibrary, cardList, headerQueueBtn, headerWatchedBtn, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightbox, mainList } = refs;
 
 const api = new Api();
+const genresAppend = new Genres();
 let moviesAddedToWatchedList = [];
 let moviesAddedToQueueList = [];
 let userWatchedListMarkup = [];
@@ -88,6 +90,10 @@ function renderUserMovieList() {
       console.log(api.idQuery);
       await api.fetchMovieDetails().then((movieDetails) => {
         console.log(movieDetails);
+
+        /* addGenresInDetails.addGenres(movieDetails);
+        addGenresInDetails.changeDate(movieDetails); */
+
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;
