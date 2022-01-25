@@ -19,6 +19,7 @@ headerQueueBtn.addEventListener("click", showUserQueueListMarkup);
 lightbox.addEventListener("click", click)
 
 renderUserMovieList()
+renderUserQueueList()
 
 // ----- делигатор ----- 
 function click(e) {
@@ -61,8 +62,8 @@ function addMovieToQueueList() {
 function renderUserQueueList() {
   let markupAccumulator = ""
   const userQueueList = localStorage.getItem('userQueueList')
-  // console.log('step 2');
-  // console.log(userQueueListMarkup);
+  console.log('step 2');
+  console.log(userQueueListMarkup);
   if (userQueueList === undefined || userQueueList.length === 0) {
     if (headerQueueBtn.classList.contains('btn--selected')) {
       cardList.innerHTML = ''
@@ -139,16 +140,17 @@ function showUserWatchedListMarkup() {
 
 function renderUserMovieList() {
   let markupAccumulator = ""
-  console.log('step 2');
+  // console.log('step 2');
   const userWatchedList = localStorage.getItem('userWatchedList')
   // console.log(userWatchedList);
   if (userWatchedList === undefined || userWatchedList.length === 0) {
     if (headerWatchedBtn.classList.contains('btn--selected')) {
-      console.log('empty');
+      // console.log('empty');
       cardList.innerHTML = ''
       emptyWatchedListError()
       return
     }
+    return
   }
   if (userWatchedList.length > 0) {
     userWatchedList.forEach(async function createMarkup(movieId) {
