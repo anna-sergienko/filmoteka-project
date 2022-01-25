@@ -91,9 +91,6 @@ function renderUserMovieList() {
       await api.fetchMovieDetails().then((movieDetails) => {
         console.log(movieDetails);
 
-        /* addGenresInDetails.addGenres(movieDetails);
-        addGenresInDetails.changeDate(movieDetails); */
-
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;
