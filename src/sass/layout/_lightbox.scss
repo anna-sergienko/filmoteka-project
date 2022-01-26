@@ -31,19 +31,19 @@
     transform: translate(-50%, -50%) scale(1);
 
     @include for-phone {
-      width: 280px;
+      width: 288px;
       left: 50%;
       height: 99.9%;
     }
 
     @include for-tablet {
-      width: 620px;
+      width: 624px;
       height: auto;
       overflow: auto;
     }
 
     @include for-desktop {
-      width: 882px;
+      width: 888px;
       height: auto;
       overflow: auto;
     }
@@ -239,7 +239,7 @@
 
     @include for-phone {
       width: 112px;
-      padding: 13px 8px;
+      // padding: 13px 8px;
     }
 
     @include for-tablet {

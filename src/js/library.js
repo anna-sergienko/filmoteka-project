@@ -15,12 +15,14 @@ let moviesAddedToWatchedList = [];
 let moviesAddedToQueueList = [];
 let userWatchedListMarkup = [];
 let userQueueListMarkup = [];
+let userWatchedListObject = [];
 headerMyLibrary.addEventListener("click", showUserWatchedListMarkup);
 headerWatchedBtn.addEventListener("click", showUserWatchedListMarkup);
 headerQueueBtn.addEventListener("click", showUserQueueListMarkup);
 lightbox.addEventListener("click", click)
 
 renderUserMovieList()
+console.log();
 renderUserQueueList()
 
 // ----- делигатор ----- 
@@ -190,7 +192,7 @@ function renderUserMovieList() {
   let markupAccumulator = ""
   // console.log('step 2');
   const userWatchedList = localStorage.getItem('userWatchedList')
-   // console.log(userWatchedList);
+  // console.log(userWatchedList);
   if (userWatchedList === undefined || userWatchedList.length === 0) {
     if (headerWatchedBtn.classList.contains('btn--selected')) {
       // console.log('empty');
@@ -205,6 +207,7 @@ function renderUserMovieList() {
       api.idQuery = movieId
        console.log(api.idQuery);
       await api.fetchMovieDetails().then((movieDetails) => {
+
 
         let genAr = movieDetails.genres;
         const obj = { name: 'Other' };
@@ -228,7 +231,6 @@ function renderUserMovieList() {
           if (movieDetails.release_date === undefined) {
             return (movieDetails.release_date = 'No date');
           }
-      
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         // console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;
