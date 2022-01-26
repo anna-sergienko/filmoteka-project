@@ -29,6 +29,7 @@ const {
   lightboxHandlebars,
   lightboxAddToWatchedBtn,
   lightbox,
+  toTopButton,
 
 } = refs;
 
@@ -228,6 +229,7 @@ async function lightboxOpen(e) {
     // console.log('test');
     return
   }
+  toTopButton.classList.remove('show');
   startPreloader()
   let GenresToArray = {}
   let lightboxHTML = {};
