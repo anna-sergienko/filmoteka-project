@@ -9,8 +9,7 @@
   padding-bottom: 46px;
   position: relative;
 
-  &__preloader {
-  }
+  &__preloader {}
 
   @include for-phone {
     padding-top: 20px;
@@ -31,6 +30,7 @@
     @include for-phone {
       @include grid-list(0px);
     }
+
     &--none {
       display: none;
     }
@@ -80,8 +80,7 @@
     border-top-right-radius: 5px;
     margin-bottom: 10px;
 
-    &:hover {
-    }
+    &:hover {}
 
     @include for-phone {
       min-height: auto;
@@ -120,20 +119,23 @@
     background-color: $btn-accent;
     padding: 1px 9px;
     border-radius: 5px;
+    max-height: 17px;
   }
 }
+
 body.dark-theme {
+
   & .card__title,
   .main-error__watched,
   .main-error__queue {
     color: #ffffff;
   }
 }
+
 // ----- ошибки или пустые библиотеки -----
 
 .main-error {
-  &__wrapper {
-  }
+  &__wrapper {}
 
   &__queue,
   &__watched {
