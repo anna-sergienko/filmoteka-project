@@ -63,7 +63,7 @@
   }
 }
 body.dark-theme {
-  & .totop__button-svg {
-    stroke: #ffffff;
+  &.totop__button-svg {
+    stroke: rgb(255, 255, 255);
   }
 }
