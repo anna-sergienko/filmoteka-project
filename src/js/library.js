@@ -101,21 +101,30 @@ function renderUserQueueList() {
       api.idQuery = movieId
 
       // console.log(api.idQuery);
-      api.fetchMovieDetails().then((movieDetails) => {
-
-        let genAr = movieDetails.genres;
-        const obj = { name: 'Other' };
+      api.fetchMovieDetails()
+        .then((movieDetails) => {
         
-          if (genAr.length > 3) {
-            genAr === genAr.splice(2, genAr.length - 2, obj);  
-          }
-         
+         let genAr = movieDetails.genres;
+            const genreNames = [];
+
+            for (const gen of genAr) {
+              genreNames.push(gen.name);
+  
+            if (genreNames.length > 3) {
+              genreNames.splice(2, genAr.length - 2, 'Other');  
+            } 
+            }
+          
+            const name = genreNames.join(', ')
+            genAr.splice(0, 4); 
+            genAr.push(name);
+
           if (movieDetails.release_date || null) {
             movieDetails.release_date = movieDetails.release_date.slice(0, 4);
           } 
           if (movieDetails.release_date === undefined) {
             return (movieDetails.release_date = 'No date');
-          }
+          }  
 
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         // console.log(markupAccumulator);
@@ -196,33 +205,42 @@ function renderUserMovieList() {
   if (userWatchedList.length > 0) {
     userWatchedList.forEach(async function createMarkup(movieId) {
       api.idQuery = movieId
-       console.log(api.idQuery);
+      console.log(api.idQuery);
       await api.fetchMovieDetails()
-         .then((movieDetails) => {
+        .then((movieDetails) => {
            
-           let genAr = movieDetails.genres;
-        const obj = { name: 'Other' };
-        
-          if (genAr.length > 3) {
-            genAr === genAr.splice(2, genAr.length - 2, obj);  
-          }
-         
-          if (movieDetails.release_date || null) {
-            movieDetails.release_date = movieDetails.release_date.slice(0, 4);
-          } 
-          if (movieDetails.release_date === undefined) {
-            return (movieDetails.release_date = 'No date');
-          }
+            let genAr = movieDetails.genres;
+            const genreNames = [];
 
-        markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
-        // console.log(markupAccumulator);
-        userWatchedListMarkup = markupAccumulator;
-        // console.log(userWatchedListMarkup);
-        if (headerWatchedBtn.classList.contains('btn--selected')) {
-          cardList.innerHTML = ''
-          cardList.insertAdjacentHTML('afterbegin', userWatchedListMarkup)
-        }
-      })
+            for (const gen of genAr) {
+              genreNames.push(gen.name);
+  
+            if (genreNames.length > 3) {
+              genreNames.splice(2, genAr.length - 2, 'Other');  
+            } 
+            }
+          
+            const name = genreNames.join(', ')
+            genAr.splice(0, 4); 
+            genAr.push(name);
+
+            if (movieDetails.release_date || null) {
+              movieDetails.release_date = movieDetails.release_date.slice(0, 4);
+            }
+            if (movieDetails.release_date === undefined) {
+              return (movieDetails.release_date = 'No date');
+            }
+
+
+            markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
+            // console.log(markupAccumulator);
+            userWatchedListMarkup = markupAccumulator;
+            // console.log(userWatchedListMarkup);
+            if (headerWatchedBtn.classList.contains('btn--selected')) {
+              cardList.innerHTML = ''
+              cardList.insertAdjacentHTML('afterbegin', userWatchedListMarkup)
+            }
+          })
     })
   }
 }
