@@ -2,9 +2,7 @@ import filmCard from '../templates/movie-card.hbs';
 import lightboxTpl from '../templates/lightboxTpl.hbs';
 import refs from './refs.js';
 import Api from './api.js';
-import Genres from './genres.js'
 import localStorage from './local-storage.js'
-import filters from './filters.js';
 import { startPreloader, stopPreloader } from './preloader.js'
 import { lightboxCloseOnEscape } from './lightbox.js';
 import { trendingPaginationHome, searchQueryPagination } from './pagination.js';
@@ -35,7 +33,7 @@ const {
 } = refs;
 
 const api = new Api();
-const genresAppend = new Genres();
+
 export let scrollToMe;
 
 
@@ -63,26 +61,42 @@ trendingPaginationHome.on('afterMove', e => {
   startPreloader()
   api.page = e.page;
   api.fetchTrendingMoviesForToday()
-    .then((movies) => {
-      genresAppend.addGenres(movies.results);
-      genresAppend.changeDate(movies.results);
+    .then(async movies => {
+      const genres = await api.fetchGenre();
+      return { movies, genres };
+    })
+    .then(obj => {
+      const data = obj.movies.results.map(({ release_date, genre_ids, ...movie }) => {
+        const data = {
+          ...movie,
+          release_date: release_date?.split('-')[0],
+          genres: genre_ids.map(id => obj.genres[id]),   // переобразование id в name
+           
+        };
+       
+        
+        if (data.genres.length > 3) {
+          data.genres.splice(2, genre_ids.length - 2, 'Other');
+        }
+        return { ...data, genres: data.genres.join(', ') }; 
+      });console.log(data) 
+ 
       headerSection.scrollIntoView({ behavior: "smooth" });
-      appendMovieCardMarkup(movies);
+      appendMovieCardMarkup(data);
       stopPreloader()
     })
-    .catch(err => console.log(err))
-});
-
+  .catch(err => console.log(err))
+})
+     
 // ----- функция для загрузки списка самых популярных фильмов на сегодняя -----
 export default function onLoadTrendingMoviesForToday() {
   startPreloader()
-  api.fetchTrendingMoviesForToday().then(movies => {
+  api.fetchTrendingMoviesForToday().then(movies => { 
     clearMovieCardContainer();
     appendMovieCardMarkup(movies);
     switchClass(paginationTrending, paginationSearch, 'visually-hidden');
     trendingPaginationHome.setTotalItems(movies.total_results);
     trendingPaginationHome.movePageTo(1);
-    // console.log(movies);
     stopPreloader()
   });
 }
@@ -92,11 +106,24 @@ searchQueryPagination.on('beforeMove', (e) => {
   startPreloader()
   api.page = e.page;
   api.fetchSearchMovies()
-    .then((movies) => {
+    .then(async movies => {
+      const genres = await api.fetchGenre();
+      return { movies, genres };
+    })
+    .then(obj => {
+      const data = obj.movies.results.map(({ release_date, genre_ids, ...movie }) => {
+        const data = {
+          ...movie,
+          release_date: release_date?.split('-')[0],
+          genres: genre_ids.map(id => obj.genres[id]),   // переобразование id в name
+        };
+        if (data.genres.length > 3) {
+          data.genres.splice(2, genre_ids.length - 2, 'Other');
+        }
+        return { ...data, genres: data.genres.join(', ') }; 
+      });
       mainSection.scrollIntoView({ behavior: "smooth" });
-      genresAppend.addGenres(movies.results);
-      genresAppend.changeDate(movies.results);
-      appendMovieCardMarkup(movies);
+      appendMovieCardMarkup(data);
       stopPreloader()
     })
     .catch(err => console.log(err))
@@ -155,9 +182,8 @@ function cleanInput() {
 }
 
 // ----- функция для разметки картки фильма  -----
-export async function appendMovieCardMarkup(movies) {
-  const markup = await filmCard(movies.results);
-  // console.log(markup);
+export async function appendMovieCardMarkup(data) {
+  const markup = await filmCard(data);
   cardList.innerHTML = markup;
 }
 

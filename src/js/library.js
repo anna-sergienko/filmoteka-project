@@ -5,12 +5,12 @@ import libraryFilmCard from '../templates/libraryTpl.hbs';
 import { emptyWatchedListError, emptyQueueListError, clearMovieCardContainer, appendMovieCardMarkup, clearEmptyError } from "./main";
 import watchedBtn from "./header";
 import QueueBtn from "./header";
-import Genres from './genres.js'
+
 
 const { headerMyLibrary, cardList, headerQueueBtn, headerWatchedBtn, lightboxAddToWatchedBtn, lightboxAddToQueueBtn, lightbox, mainList } = refs;
 
 const api = new Api();
-const genresAppend = new Genres();
+
 let moviesAddedToWatchedList = [];
 let moviesAddedToQueueList = [];
 let userWatchedListMarkup = [];
@@ -71,7 +71,7 @@ function addMovieToQueueList() {
   }
   if (!moviesAddedToQueueList.includes(movie)) {
     // lightboxQueueBtnTextChange()
-    moviesAddedToQueueList.push(movie) // добавляет в список фильмов id фильма
+    moviesAddedToQueueList.unshift(movie) // добавляет в список фильмов id фильма
     localStorage.setItem('userQueueList', moviesAddedToQueueList) // сохраняет скисок фильмов в localStorage с ключом userQueueList
     return
   } else {
@@ -106,19 +106,10 @@ function renderUserQueueList() {
         let genAr = movieDetails.genres;
         const obj = { name: 'Other' };
         
-          if (genAr.length <= 2) {
-            genAr === genAr;
+          if (genAr.length > 3) {
+            genAr === genAr.splice(2, genAr.length - 2, obj);  
           }
-          if (genAr.length === 3) {
-            genAr === genAr.splice(2, 1, obj);  
-          }
-          if (genAr.length === 4) {
-            genAr === genAr.splice(2, 2, obj);
-          }
-          if (genAr.length === 5) {
-            genAr === genAr.splice(2, 3, obj);
-          }
-         console.log(genAr)
+         
           if (movieDetails.release_date || null) {
             movieDetails.release_date = movieDetails.release_date.slice(0, 4);
           } 
@@ -161,7 +152,7 @@ function addMovieToWatchedList() {
   }
   if (!moviesAddedToWatchedList.includes(movie)) {
     // lightboxWatchedBtnTextChange()
-    moviesAddedToWatchedList.push(movie) // добавляет в список фильмов id фильма
+    moviesAddedToWatchedList.unshift(movie) // добавляет в список фильмов id фильма
     localStorage.setItem('userWatchedList', moviesAddedToWatchedList) // сохраняет скисок фильмов в localStorage с ключом userWatchedList
     return
   } else {
@@ -206,31 +197,23 @@ function renderUserMovieList() {
     userWatchedList.forEach(async function createMarkup(movieId) {
       api.idQuery = movieId
        console.log(api.idQuery);
-      await api.fetchMovieDetails().then((movieDetails) => {
-
-
-        let genAr = movieDetails.genres;
+      await api.fetchMovieDetails()
+         .then((movieDetails) => {
+           
+           let genAr = movieDetails.genres;
         const obj = { name: 'Other' };
         
-          if (genAr.length <= 2) {
-            genAr === genAr;
+          if (genAr.length > 3) {
+            genAr === genAr.splice(2, genAr.length - 2, obj);  
           }
-          if (genAr.length === 3) {
-            genAr === genAr.splice(2, 1, obj);  
-          }
-          if (genAr.length === 4) {
-            genAr === genAr.splice(2, 2, obj);
-          }
-          if (genAr.length === 5) {
-            genAr === genAr.splice(2, 3, obj);
-          }
-         console.log(genAr)
+         
           if (movieDetails.release_date || null) {
             movieDetails.release_date = movieDetails.release_date.slice(0, 4);
           } 
           if (movieDetails.release_date === undefined) {
             return (movieDetails.release_date = 'No date');
           }
+
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         // console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;

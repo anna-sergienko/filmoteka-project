@@ -64,9 +64,14 @@ export default class Api {
         const url = `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
 
         try {
-            const response = await axios.get(url);
-            const data = response.data;
-            return data;
+            const data = await axios.get(url);
+            const objects = data.data.genres;
+            const genres = {};
+            objects.forEach(({id, name}) => {
+                genres[id] = name;
+            });
+        
+            return genres;
 
         } catch (error) {
             console.log(error);
