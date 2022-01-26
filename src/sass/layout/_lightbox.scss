@@ -286,6 +286,7 @@
 
     @include for-phone {
       width: 112px;
+      padding: 0 15px;
     }
 
     @include for-tablet {
