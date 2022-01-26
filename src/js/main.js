@@ -66,6 +66,7 @@ trendingPaginationHome.on('afterMove', e => {
       return { movies, genres };
     })
     .then(obj => {
+      console.log(obj);
       const data = obj.movies.results.map(({ release_date, genre_ids, ...movie }) => {
         const data = {
           ...movie,
@@ -73,13 +74,15 @@ trendingPaginationHome.on('afterMove', e => {
           genres: genre_ids.map(id => obj.genres[id]),   // переобразование id в name
 
         };
+        console.log(data);
 
 
-        if (data.genres.length > 3) {
+        if (data.genres.length > 2) {
           data.genres.splice(2, genre_ids.length - 2, 'Other');
         }
         return { ...data, genres: data.genres.join(', ') };
-      }); console.log(data)
+      });
+      console.log(data)
 
       headerSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(data);
