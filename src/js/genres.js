@@ -25,22 +25,20 @@ export default class Genres {
 
   addGenres(filmGenres) {
     const genresIdsArray = filmGenres.map(film => {
-      /*  console.log(film)       */                         // об'єкти фільмів з назвами жанрів
+      /*  console.log(film)   */                      // об'єкти фільмів з назвами жанрів
       return film.genre_ids;                          // масиви жанрів
     });
 
     const genresNameArray = genresIdsArray.map(elm => {
-     /*  console.log(elm)  */
       return elm.map(id => {                          // Id жанрів
         const genreObj = this.genresName.find(gen => gen.id === id);
         const genreName = id = genreObj.name;
-         /* console.log(genreName)  */
         return (genreName);                           // імена жанрів
       });
     });
-     /* console.log(genresNameArray) */
+     
     const genresNameForMovie = genresNameArray.map(arrayNamesGenres => {  // масив з іменами жанрів
-       /* console.log(arrayNamesGenres)  */
+      
       if (arrayNamesGenres.length === 0) {            // якщо немає інформації про жанри
         return (arrayNamesGenres = 'No genre information');
       }
@@ -59,10 +57,8 @@ export default class Genres {
     });
 
     let index = 0;
-    filmGenres.forEach(elm => {
-      /* console.log(elm)  */                      // фільм з заміненими жанрами
-      elm.genre_ids = genresNameForMovie[index];
-      /* console.log(elm.genre_ids)  */            // імена жанрів з Other, наприклад: Thriller,  Horror,  Other
+    filmGenres.forEach(elm => {                     // фільм з заміненими жанрами                
+      elm.genre_ids = genresNameForMovie[index];    // імена жанрів з Other, наприклад: Thriller,  Horror,  Other          
       index += 1;
     });
   }
