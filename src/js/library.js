@@ -102,6 +102,30 @@ function renderUserQueueList() {
 
       // console.log(api.idQuery);
       api.fetchMovieDetails().then((movieDetails) => {
+
+        let genAr = movieDetails.genres;
+        const obj = { name: 'Other' };
+        
+          if (genAr.length <= 2) {
+            genAr === genAr;
+          }
+          if (genAr.length === 3) {
+            genAr === genAr.splice(2, 1, obj);  
+          }
+          if (genAr.length === 4) {
+            genAr === genAr.splice(2, 2, obj);
+          }
+          if (genAr.length === 5) {
+            genAr === genAr.splice(2, 3, obj);
+          }
+         console.log(genAr)
+          if (movieDetails.release_date || null) {
+            movieDetails.release_date = movieDetails.release_date.slice(0, 4);
+          } 
+          if (movieDetails.release_date === undefined) {
+            return (movieDetails.release_date = 'No date');
+          }
+
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         // console.log(markupAccumulator);
         userQueueListMarkup = markupAccumulator
@@ -181,20 +205,32 @@ function renderUserMovieList() {
   if (userWatchedList.length > 0) {
     userWatchedList.forEach(async function createMarkup(movieId) {
       api.idQuery = movieId
-      // console.log(api.idQuery);
+       console.log(api.idQuery);
       await api.fetchMovieDetails().then((movieDetails) => {
-        let genAr = movieDetails.genres;
-        if (genAr.length <= 2) {
-          genAr === genAr
-        }
-        if (genAr.length === 3) {
-          genAr === genAr.splice(2, 1)
-        }
-        if (genAr.length === 4) {
-          genAr === genAr.splice(2, 2)
-        }
-        console.log(genAr)
 
+
+        let genAr = movieDetails.genres;
+        const obj = { name: 'Other' };
+        
+          if (genAr.length <= 2) {
+            genAr === genAr;
+          }
+          if (genAr.length === 3) {
+            genAr === genAr.splice(2, 1, obj);  
+          }
+          if (genAr.length === 4) {
+            genAr === genAr.splice(2, 2, obj);
+          }
+          if (genAr.length === 5) {
+            genAr === genAr.splice(2, 3, obj);
+          }
+         console.log(genAr)
+          if (movieDetails.release_date || null) {
+            movieDetails.release_date = movieDetails.release_date.slice(0, 4);
+          } 
+          if (movieDetails.release_date === undefined) {
+            return (movieDetails.release_date = 'No date');
+          }
         markupAccumulator = markupAccumulator.concat(libraryFilmCard(movieDetails))
         // console.log(markupAccumulator);
         userWatchedListMarkup = markupAccumulator;
