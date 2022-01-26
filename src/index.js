@@ -12,7 +12,7 @@ import './js/team';
 
 
 import './js/pagination';
-import './js/genres';
+
 
 
 import './js/library';
