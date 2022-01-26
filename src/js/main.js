@@ -197,6 +197,11 @@ export function clearEmptyError() {
 
 // ---- открыть lightbox по нажатию на картинку -----
 async function lightboxOpen(e) {
+  // console.log(e.target.classList)
+  if (!(e.target.classList.contains('lightbox-open'))) {
+    // console.log('test');
+    return
+  }
   startPreloader()
   let lightboxHTML = {};
   let watchedlog = {};
