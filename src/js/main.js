@@ -71,27 +71,27 @@ trendingPaginationHome.on('afterMove', e => {
           ...movie,
           release_date: release_date?.split('-')[0],
           genres: genre_ids.map(id => obj.genres[id]),   // переобразование id в name
-           
+
         };
-       
-        
+
+
         if (data.genres.length > 3) {
           data.genres.splice(2, genre_ids.length - 2, 'Other');
         }
-        return { ...data, genres: data.genres.join(', ') }; 
-      });console.log(data) 
- 
+        return { ...data, genres: data.genres.join(', ') };
+      }); console.log(data)
+
       headerSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(data);
       stopPreloader()
     })
-  .catch(err => console.log(err))
+    .catch(err => console.log(err))
 })
-     
+
 // ----- функция для загрузки списка самых популярных фильмов на сегодняя -----
 export default function onLoadTrendingMoviesForToday() {
   startPreloader()
-  api.fetchTrendingMoviesForToday().then(movies => { 
+  api.fetchTrendingMoviesForToday().then(movies => {
     clearMovieCardContainer();
     appendMovieCardMarkup(movies);
     switchClass(paginationTrending, paginationSearch, 'visually-hidden');
@@ -120,7 +120,7 @@ searchQueryPagination.on('beforeMove', (e) => {
         if (data.genres.length > 3) {
           data.genres.splice(2, genre_ids.length - 2, 'Other');
         }
-        return { ...data, genres: data.genres.join(', ') }; 
+        return { ...data, genres: data.genres.join(', ') };
       });
       mainSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(data);
@@ -229,17 +229,29 @@ async function lightboxOpen(e) {
     return
   }
   startPreloader()
+  let GenresToArray = {}
   let lightboxHTML = {};
   let watchedlog = {};
   let queuelog = {};
   let movieId = e.target.dataset.id   // проверка data-id
   api.idQuery = movieId   //запрос на api по фильму             
   await api.fetchMovieDetails().then((movie) => {
+
     localStorage.setItem('currentMovieId', movie.id)
-    // console.log(movie);
-    // let includes = ;
-    // console.log(includes);
-    lightboxHTML = movie
+    console.log(movie)
+    let genresFromMovieId = movie.genres
+    console.log(genresFromMovieId);
+    GenresToArray = genresFromMovieId.map((el) => {
+      return el.name
+    })
+
+
+    console.log(GenresToArray);
+    let genresForModal = { renderGenres: (GenresToArray.join(', ')) }
+    console.log(genresForModal);
+
+    lightboxHTML = { ...genresForModal, ...movie }
+    console.log(lightboxHTML);
     if (!(localStorage.getItem('userWatchedList') === undefined) && localStorage.getItem('userWatchedList').includes(localStorage.getItem('currentMovieId'))) {
       let watchedState = { watched: true }
       watchedlog = { ...watchedState, ...lightboxHTML }
