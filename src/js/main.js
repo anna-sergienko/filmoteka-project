@@ -67,7 +67,7 @@ trendingPaginationHome.on('afterMove', e => {
       return { movies, genres };
     })
     .then(obj => {
-      console.log(obj);
+      /* console.log(obj); */
       const data = obj.movies.results.map(({ release_date, genre_ids, ...movie }) => {
         const data = {
           ...movie,
@@ -75,7 +75,7 @@ trendingPaginationHome.on('afterMove', e => {
           genres: genre_ids.map(id => obj.genres[id]),   // переобразование id в name
 
         };
-        console.log(data);
+      /*   console.log(data); */
 
 
         if (data.genres.length > 3) {
@@ -83,7 +83,7 @@ trendingPaginationHome.on('afterMove', e => {
         }
         return { ...data, genres: data.genres.join(', ') };
       });
-      console.log(data)
+      /* console.log(data) */
 
       headerSection.scrollIntoView({ behavior: "smooth" });
       appendMovieCardMarkup(data);
@@ -171,7 +171,7 @@ function onSearchMovies(event) {
           switchClass(paginationSearch, paginationTrending, 'visually-hidden');
           searchQueryPagination.setTotalItems(movies.total_results);
           searchQueryPagination.movePageTo(1);
-          console.log(movies);
+          /* console.log(movies); */
           stopPreloader()
         }
 
@@ -243,20 +243,20 @@ async function lightboxOpen(e) {
   await api.fetchMovieDetails().then((movie) => {
 
     localStorage.setItem('currentMovieId', movie.id)
-    console.log(movie)
+    /* console.log(movie) */
     let genresFromMovieId = movie.genres
-    console.log(genresFromMovieId);
+    /* console.log(genresFromMovieId); */
     GenresToArray = genresFromMovieId.map((el) => {
       return el.name
     })
 
 
-    console.log(GenresToArray);
+    /* console.log(GenresToArray); */
     let genresForModal = { renderGenres: (GenresToArray.join(', ')) }
-    console.log(genresForModal);
+    /* console.log(genresForModal); */
 
     lightboxHTML = { ...genresForModal, ...movie }
-    console.log(lightboxHTML);
+   /*  console.log(lightboxHTML); */
     if (!(localStorage.getItem('userWatchedList') === undefined) && localStorage.getItem('userWatchedList').includes(localStorage.getItem('currentMovieId'))) {
       let watchedState = { watched: true }
       watchedlog = { ...watchedState, ...lightboxHTML }

@@ -9,7 +9,8 @@
   padding-bottom: 46px;
   position: relative;
 
-  &__preloader {}
+  &__preloader {
+  }
 
   @include for-phone {
     padding-top: 20px;
@@ -80,7 +81,8 @@
     border-top-right-radius: 5px;
     margin-bottom: 10px;
 
-    &:hover {}
+    &:hover {
+    }
 
     @include for-phone {
       min-height: auto;
@@ -94,7 +96,7 @@
   }
 
   &__info * {
-    @include font-style(500, 12px, 1.33, $fc-main);
+    @include font-style(500, 11.5px, 1.33, $fc-main);
   }
 
   &__text {
@@ -124,7 +126,6 @@
 }
 
 body.dark-theme {
-
   & .card__title,
   .main-error__watched,
   .main-error__queue {
@@ -135,7 +136,8 @@ body.dark-theme {
 // ----- ошибки или пустые библиотеки -----
 
 .main-error {
-  &__wrapper {}
+  &__wrapper {
+  }
 
   &__queue,
   &__watched {

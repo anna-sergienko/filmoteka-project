@@ -22,7 +22,7 @@ headerQueueBtn.addEventListener("click", showUserQueueListMarkup);
 lightbox.addEventListener("click", click)
 
 renderUserMovieList()
-console.log();
+/* console.log(); */
 renderUserQueueList()
 
 // ----- делигатор ----- 
@@ -132,7 +132,7 @@ function renderUserQueueList() {
         if (headerQueueBtn.classList.contains('btn--selected')) {
           cardList.innerHTML = ''
           cardList.insertAdjacentHTML('afterbegin', userQueueListMarkup)
-          console.log('true');
+          /* console.log('true'); */
         }
       })
     })
@@ -205,7 +205,7 @@ function renderUserMovieList() {
   if (userWatchedList.length > 0) {
     userWatchedList.forEach(async function createMarkup(movieId) {
       api.idQuery = movieId
-      console.log(api.idQuery);
+     /*  console.log(api.idQuery); */
       await api.fetchMovieDetails()
         .then((movieDetails) => {
            
