@@ -78,7 +78,7 @@ trendingPaginationHome.on('afterMove', e => {
         console.log(data);
 
 
-        if (data.genres.length > 2) {
+        if (data.genres.length > 3) {
           data.genres.splice(2, genre_ids.length - 2, 'Other');
         }
         return { ...data, genres: data.genres.join(', ') };
