@@ -21,11 +21,10 @@
     transition: all $speed $cubic-bezier;
 
     @include for-phone {
-      bottom: 203px;
-      right: 30px;
-      width: 38px;
-      height: 38px;
-      // border-color: ;
+      bottom: 190px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
     }
 
     @include for-tablet {
@@ -62,6 +61,7 @@
     width: auto;
   }
 }
+
 body.dark-theme {
   &.totop__button-svg {
     stroke: rgb(255, 255, 255);
